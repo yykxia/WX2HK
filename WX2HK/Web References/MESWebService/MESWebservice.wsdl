@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="MES_Bom">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cpCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MES_BomResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MES_BomResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MES_Bom_order">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="orderNo" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MES_Bom_orderResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MES_Bom_orderResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MES_MatrialsList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="orderNo" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MES_MatrialsListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MES_MatrialsListResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MES_Matrials">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cpCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MES_MatrialsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MES_MatrialsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MES_MatrialsVersion">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cpCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MES_MatrialsVersionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MES_MatrialsVersionResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MES_MatrialsVersion_order">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="orderNo" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MES_MatrialsVersion_orderResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MES_MatrialsVersion_orderResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="MES_BomSoapIn">
+    <wsdl:part name="parameters" element="tns:MES_Bom" />
+  </wsdl:message>
+  <wsdl:message name="MES_BomSoapOut">
+    <wsdl:part name="parameters" element="tns:MES_BomResponse" />
+  </wsdl:message>
+  <wsdl:message name="MES_Bom_orderSoapIn">
+    <wsdl:part name="parameters" element="tns:MES_Bom_order" />
+  </wsdl:message>
+  <wsdl:message name="MES_Bom_orderSoapOut">
+    <wsdl:part name="parameters" element="tns:MES_Bom_orderResponse" />
+  </wsdl:message>
+  <wsdl:message name="MES_MatrialsListSoapIn">
+    <wsdl:part name="parameters" element="tns:MES_MatrialsList" />
+  </wsdl:message>
+  <wsdl:message name="MES_MatrialsListSoapOut">
+    <wsdl:part name="parameters" element="tns:MES_MatrialsListResponse" />
+  </wsdl:message>
+  <wsdl:message name="MES_MatrialsSoapIn">
+    <wsdl:part name="parameters" element="tns:MES_Matrials" />
+  </wsdl:message>
+  <wsdl:message name="MES_MatrialsSoapOut">
+    <wsdl:part name="parameters" element="tns:MES_MatrialsResponse" />
+  </wsdl:message>
+  <wsdl:message name="MES_MatrialsVersionSoapIn">
+    <wsdl:part name="parameters" element="tns:MES_MatrialsVersion" />
+  </wsdl:message>
+  <wsdl:message name="MES_MatrialsVersionSoapOut">
+    <wsdl:part name="parameters" element="tns:MES_MatrialsVersionResponse" />
+  </wsdl:message>
+  <wsdl:message name="MES_MatrialsVersion_orderSoapIn">
+    <wsdl:part name="parameters" element="tns:MES_MatrialsVersion_order" />
+  </wsdl:message>
+  <wsdl:message name="MES_MatrialsVersion_orderSoapOut">
+    <wsdl:part name="parameters" element="tns:MES_MatrialsVersion_orderResponse" />
+  </wsdl:message>
+  <wsdl:portType name="MESWebserviceSoap">
+    <wsdl:operation name="MES_Bom">
+      <wsdl:input message="tns:MES_BomSoapIn" />
+      <wsdl:output message="tns:MES_BomSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MES_Bom_order">
+      <wsdl:input message="tns:MES_Bom_orderSoapIn" />
+      <wsdl:output message="tns:MES_Bom_orderSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MES_MatrialsList">
+      <wsdl:input message="tns:MES_MatrialsListSoapIn" />
+      <wsdl:output message="tns:MES_MatrialsListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MES_Matrials">
+      <wsdl:input message="tns:MES_MatrialsSoapIn" />
+      <wsdl:output message="tns:MES_MatrialsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MES_MatrialsVersion">
+      <wsdl:input message="tns:MES_MatrialsVersionSoapIn" />
+      <wsdl:output message="tns:MES_MatrialsVersionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MES_MatrialsVersion_order">
+      <wsdl:input message="tns:MES_MatrialsVersion_orderSoapIn" />
+      <wsdl:output message="tns:MES_MatrialsVersion_orderSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="MESWebserviceSoap" type="tns:MESWebserviceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="MES_Bom">
+      <soap:operation soapAction="http://tempuri.org/MES_Bom" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MES_Bom_order">
+      <soap:operation soapAction="http://tempuri.org/MES_Bom_order" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MES_MatrialsList">
+      <soap:operation soapAction="http://tempuri.org/MES_MatrialsList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MES_Matrials">
+      <soap:operation soapAction="http://tempuri.org/MES_Matrials" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MES_MatrialsVersion">
+      <soap:operation soapAction="http://tempuri.org/MES_MatrialsVersion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MES_MatrialsVersion_order">
+      <soap:operation soapAction="http://tempuri.org/MES_MatrialsVersion_order" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="MESWebserviceSoap12" type="tns:MESWebserviceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="MES_Bom">
+      <soap12:operation soapAction="http://tempuri.org/MES_Bom" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MES_Bom_order">
+      <soap12:operation soapAction="http://tempuri.org/MES_Bom_order" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MES_MatrialsList">
+      <soap12:operation soapAction="http://tempuri.org/MES_MatrialsList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MES_Matrials">
+      <soap12:operation soapAction="http://tempuri.org/MES_Matrials" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MES_MatrialsVersion">
+      <soap12:operation soapAction="http://tempuri.org/MES_MatrialsVersion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MES_MatrialsVersion_order">
+      <soap12:operation soapAction="http://tempuri.org/MES_MatrialsVersion_order" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="MESWebservice">
+    <wsdl:port name="MESWebserviceSoap" binding="tns:MESWebserviceSoap">
+      <soap:address location="http://192.168.4.253:30018/MES/MESWebservice.asmx" />
+    </wsdl:port>
+    <wsdl:port name="MESWebserviceSoap12" binding="tns:MESWebserviceSoap12">
+      <soap12:address location="http://192.168.4.253:30018/MES/MESWebservice.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,2019 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="isCnnected">
+        <s:complexType />
+      </s:element>
+      <s:element name="isCnnectedResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="isCnnectedResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="existNewVersion">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="updateInfo">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+            <s:element minOccurs="0" maxOccurs="1" name="sysName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="custVer" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="existNewVersionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="existNewVersionResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="updateInfo">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="offLine">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="optTime" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="barCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="optClient" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="offLineResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="offLineResult" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="optTime" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WH_Treat_flowLogin_isValid">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="loginClass" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="loginGroup" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="barCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="loginType" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WH_Treat_flowLogin_isValidResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="WH_Treat_flowLogin_isValidResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WH_Treat_LoginType">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="loginGroup" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WH_Treat_LoginTypeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="WH_Treat_LoginTypeResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WH_Treat_intevalCount_FlowLine">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TreatCount">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+            <s:element minOccurs="0" maxOccurs="1" name="CountClass" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CountGroup" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="barCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WH_Treat_intevalCount_FlowLineResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="WH_Treat_intevalCount_FlowLineResult" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="TreatCount">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WH_queryOrderInfoByBarCode">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="barCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WH_queryOrderInfoByBarCodeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="WH_queryOrderInfoByBarCodeResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="isValidStorageCode">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="barCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="isValidStorageCodeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="isValidStorageCodeResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sqlStr" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getDataResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ExecuteData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sqlStr" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ExecuteDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ExecuteDataResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WH_queryOrderInfoByBarCode_T">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="barCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WH_queryOrderInfoByBarCode_TResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="WH_queryOrderInfoByBarCode_TResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WH_queryOrderInfoByBarCode_S">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="barCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WH_queryOrderInfoByBarCode_SResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="WH_queryOrderInfoByBarCode_SResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="isBoundState">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="barCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="isBoundStateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="isBoundStateResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Storage_BoundState">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BarCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="StorageCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="RecordId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BoundStatus" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="onLineId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BoundQty" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Storage_BoundStateResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="StoragePos">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="storageCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="optType" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="StoragePosResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="Transfer_offLineList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="lineGroup" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Transfer_offLineListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Transfer_offLineListResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Tranfer_OffLine_queryOrder">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="orderId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Tranfer_OffLine_queryOrderResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Tranfer_OffLine_queryOrderResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Transfer_offLine_createTranfer">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="loginClass" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="loginGroup" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Transfer_offLine_createTranferResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Transfer_offLine_createTranferResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Transfer_offLine_orderBind">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="transferId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="orderId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="bindNumb" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Transfer_offLine_orderBindResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="Treat_orderInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="barCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TreatType" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Treat_orderInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Treat_orderInfoResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Treat_optRecord">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RecordId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TreatClass" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TreatGroup" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TreatType" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TreatStatus" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Treat_optRecordResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Treat_optRecordResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Treat_reBoundStorage">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="recordId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="origStorageCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="curStorageCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="treatType" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Treat_reBoundStorageResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Treat_reBoundStorageResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WH_ChangeStorage">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="barCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="origStorageCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="curStorageCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="changeNumb" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="recordId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="onlineId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WH_ChangeStorageResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="Treat_returnStorage">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="recordId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="treatType" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Treat_returnStorageResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Treat_returnStorageResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getDistData">
+        <s:complexType />
+      </s:element>
+      <s:element name="getDistDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getDistDataResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="execDist">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tempDistId" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="execDistResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="execDistResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetOrderInfoFromStorage">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="barCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetOrderInfoFromStorageResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetOrderInfoFromStorageResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WH_Storage_MergeCntr">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="storageId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="targetCntr" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WH_Storage_MergeCntrResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="WH_Storage_MergeCntrResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WH_Serials_Bound">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="onlineId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="boundQty" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WH_Serials_BoundResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="WH_Verify_Count">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="storageId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="verifyCount" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WH_Verify_CountResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="WH_Verify_CountResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WH_Storage_b2t">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ds">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+            <s:element minOccurs="0" maxOccurs="1" name="storageArr" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="storageCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WH_Storage_b2tResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="WH_Storage_b2tResult" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ds">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WH_Check_AddTransfer">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="onlineId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WH_Check_AddTransferResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="WH_Check_AddTransferResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WH_Check_Add_B">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="barCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WH_Check_Add_BResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="WH_Check_Add_BResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WH_Check_BoundStorage_B">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="recordId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="storageCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="barCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="onlineId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BoundQty" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="onlineStatus" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WH_Check_BoundStorage_BResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="WH_queryOrderList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="orderStr" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WH_queryOrderListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="WH_queryOrderListResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WH_OrderStorageList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="orderNo" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WH_OrderStorageListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="WH_OrderStorageListResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WH_StorageDetails">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="storageCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WH_StorageDetailsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="WH_StorageDetailsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WH_TreatAndOffLine">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="barCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoginClass" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="loginGroup" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WH_TreatAndOffLineResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="WH_TreatAndOffLineResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WH_orderQueryByOrderNo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="orderNo" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WH_orderQueryByOrderNoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="WH_orderQueryByOrderNoResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WH_getDistLines">
+        <s:complexType />
+      </s:element>
+      <s:element name="WH_getDistLinesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="WH_getDistLinesResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PROD_IsValiadBarCode">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="subCount" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="barCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PROD_IsValiadBarCodeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="PROD_IsValiadBarCodeResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WH_TreatProgress">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="topNumb" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WH_TreatProgressResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="WH_TreatProgressResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WH_AllStorageInfo">
+        <s:complexType />
+      </s:element>
+      <s:element name="WH_AllStorageInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="WH_AllStorageInfoResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="isCnnectedSoapIn">
+    <wsdl:part name="parameters" element="tns:isCnnected" />
+  </wsdl:message>
+  <wsdl:message name="isCnnectedSoapOut">
+    <wsdl:part name="parameters" element="tns:isCnnectedResponse" />
+  </wsdl:message>
+  <wsdl:message name="existNewVersionSoapIn">
+    <wsdl:part name="parameters" element="tns:existNewVersion" />
+  </wsdl:message>
+  <wsdl:message name="existNewVersionSoapOut">
+    <wsdl:part name="parameters" element="tns:existNewVersionResponse" />
+  </wsdl:message>
+  <wsdl:message name="offLineSoapIn">
+    <wsdl:part name="parameters" element="tns:offLine" />
+  </wsdl:message>
+  <wsdl:message name="offLineSoapOut">
+    <wsdl:part name="parameters" element="tns:offLineResponse" />
+  </wsdl:message>
+  <wsdl:message name="WH_Treat_flowLogin_isValidSoapIn">
+    <wsdl:part name="parameters" element="tns:WH_Treat_flowLogin_isValid" />
+  </wsdl:message>
+  <wsdl:message name="WH_Treat_flowLogin_isValidSoapOut">
+    <wsdl:part name="parameters" element="tns:WH_Treat_flowLogin_isValidResponse" />
+  </wsdl:message>
+  <wsdl:message name="WH_Treat_LoginTypeSoapIn">
+    <wsdl:part name="parameters" element="tns:WH_Treat_LoginType" />
+  </wsdl:message>
+  <wsdl:message name="WH_Treat_LoginTypeSoapOut">
+    <wsdl:part name="parameters" element="tns:WH_Treat_LoginTypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="WH_Treat_intevalCount_FlowLineSoapIn">
+    <wsdl:part name="parameters" element="tns:WH_Treat_intevalCount_FlowLine" />
+  </wsdl:message>
+  <wsdl:message name="WH_Treat_intevalCount_FlowLineSoapOut">
+    <wsdl:part name="parameters" element="tns:WH_Treat_intevalCount_FlowLineResponse" />
+  </wsdl:message>
+  <wsdl:message name="WH_queryOrderInfoByBarCodeSoapIn">
+    <wsdl:part name="parameters" element="tns:WH_queryOrderInfoByBarCode" />
+  </wsdl:message>
+  <wsdl:message name="WH_queryOrderInfoByBarCodeSoapOut">
+    <wsdl:part name="parameters" element="tns:WH_queryOrderInfoByBarCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="isValidStorageCodeSoapIn">
+    <wsdl:part name="parameters" element="tns:isValidStorageCode" />
+  </wsdl:message>
+  <wsdl:message name="isValidStorageCodeSoapOut">
+    <wsdl:part name="parameters" element="tns:isValidStorageCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="getDataSoapIn">
+    <wsdl:part name="parameters" element="tns:getData" />
+  </wsdl:message>
+  <wsdl:message name="getDataSoapOut">
+    <wsdl:part name="parameters" element="tns:getDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="ExecuteDataSoapIn">
+    <wsdl:part name="parameters" element="tns:ExecuteData" />
+  </wsdl:message>
+  <wsdl:message name="ExecuteDataSoapOut">
+    <wsdl:part name="parameters" element="tns:ExecuteDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="WH_queryOrderInfoByBarCode_TSoapIn">
+    <wsdl:part name="parameters" element="tns:WH_queryOrderInfoByBarCode_T" />
+  </wsdl:message>
+  <wsdl:message name="WH_queryOrderInfoByBarCode_TSoapOut">
+    <wsdl:part name="parameters" element="tns:WH_queryOrderInfoByBarCode_TResponse" />
+  </wsdl:message>
+  <wsdl:message name="WH_queryOrderInfoByBarCode_SSoapIn">
+    <wsdl:part name="parameters" element="tns:WH_queryOrderInfoByBarCode_S" />
+  </wsdl:message>
+  <wsdl:message name="WH_queryOrderInfoByBarCode_SSoapOut">
+    <wsdl:part name="parameters" element="tns:WH_queryOrderInfoByBarCode_SResponse" />
+  </wsdl:message>
+  <wsdl:message name="isBoundStateSoapIn">
+    <wsdl:part name="parameters" element="tns:isBoundState" />
+  </wsdl:message>
+  <wsdl:message name="isBoundStateSoapOut">
+    <wsdl:part name="parameters" element="tns:isBoundStateResponse" />
+  </wsdl:message>
+  <wsdl:message name="Storage_BoundStateSoapIn">
+    <wsdl:part name="parameters" element="tns:Storage_BoundState" />
+  </wsdl:message>
+  <wsdl:message name="Storage_BoundStateSoapOut">
+    <wsdl:part name="parameters" element="tns:Storage_BoundStateResponse" />
+  </wsdl:message>
+  <wsdl:message name="StoragePosSoapIn">
+    <wsdl:part name="parameters" element="tns:StoragePos" />
+  </wsdl:message>
+  <wsdl:message name="StoragePosSoapOut">
+    <wsdl:part name="parameters" element="tns:StoragePosResponse" />
+  </wsdl:message>
+  <wsdl:message name="Transfer_offLineListSoapIn">
+    <wsdl:part name="parameters" element="tns:Transfer_offLineList" />
+  </wsdl:message>
+  <wsdl:message name="Transfer_offLineListSoapOut">
+    <wsdl:part name="parameters" element="tns:Transfer_offLineListResponse" />
+  </wsdl:message>
+  <wsdl:message name="Tranfer_OffLine_queryOrderSoapIn">
+    <wsdl:part name="parameters" element="tns:Tranfer_OffLine_queryOrder" />
+  </wsdl:message>
+  <wsdl:message name="Tranfer_OffLine_queryOrderSoapOut">
+    <wsdl:part name="parameters" element="tns:Tranfer_OffLine_queryOrderResponse" />
+  </wsdl:message>
+  <wsdl:message name="Transfer_offLine_createTranferSoapIn">
+    <wsdl:part name="parameters" element="tns:Transfer_offLine_createTranfer" />
+  </wsdl:message>
+  <wsdl:message name="Transfer_offLine_createTranferSoapOut">
+    <wsdl:part name="parameters" element="tns:Transfer_offLine_createTranferResponse" />
+  </wsdl:message>
+  <wsdl:message name="Transfer_offLine_orderBindSoapIn">
+    <wsdl:part name="parameters" element="tns:Transfer_offLine_orderBind" />
+  </wsdl:message>
+  <wsdl:message name="Transfer_offLine_orderBindSoapOut">
+    <wsdl:part name="parameters" element="tns:Transfer_offLine_orderBindResponse" />
+  </wsdl:message>
+  <wsdl:message name="Treat_orderInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:Treat_orderInfo" />
+  </wsdl:message>
+  <wsdl:message name="Treat_orderInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:Treat_orderInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="Treat_optRecordSoapIn">
+    <wsdl:part name="parameters" element="tns:Treat_optRecord" />
+  </wsdl:message>
+  <wsdl:message name="Treat_optRecordSoapOut">
+    <wsdl:part name="parameters" element="tns:Treat_optRecordResponse" />
+  </wsdl:message>
+  <wsdl:message name="Treat_reBoundStorageSoapIn">
+    <wsdl:part name="parameters" element="tns:Treat_reBoundStorage" />
+  </wsdl:message>
+  <wsdl:message name="Treat_reBoundStorageSoapOut">
+    <wsdl:part name="parameters" element="tns:Treat_reBoundStorageResponse" />
+  </wsdl:message>
+  <wsdl:message name="WH_ChangeStorageSoapIn">
+    <wsdl:part name="parameters" element="tns:WH_ChangeStorage" />
+  </wsdl:message>
+  <wsdl:message name="WH_ChangeStorageSoapOut">
+    <wsdl:part name="parameters" element="tns:WH_ChangeStorageResponse" />
+  </wsdl:message>
+  <wsdl:message name="Treat_returnStorageSoapIn">
+    <wsdl:part name="parameters" element="tns:Treat_returnStorage" />
+  </wsdl:message>
+  <wsdl:message name="Treat_returnStorageSoapOut">
+    <wsdl:part name="parameters" element="tns:Treat_returnStorageResponse" />
+  </wsdl:message>
+  <wsdl:message name="getDistDataSoapIn">
+    <wsdl:part name="parameters" element="tns:getDistData" />
+  </wsdl:message>
+  <wsdl:message name="getDistDataSoapOut">
+    <wsdl:part name="parameters" element="tns:getDistDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="execDistSoapIn">
+    <wsdl:part name="parameters" element="tns:execDist" />
+  </wsdl:message>
+  <wsdl:message name="execDistSoapOut">
+    <wsdl:part name="parameters" element="tns:execDistResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetOrderInfoFromStorageSoapIn">
+    <wsdl:part name="parameters" element="tns:GetOrderInfoFromStorage" />
+  </wsdl:message>
+  <wsdl:message name="GetOrderInfoFromStorageSoapOut">
+    <wsdl:part name="parameters" element="tns:GetOrderInfoFromStorageResponse" />
+  </wsdl:message>
+  <wsdl:message name="WH_Storage_MergeCntrSoapIn">
+    <wsdl:part name="parameters" element="tns:WH_Storage_MergeCntr" />
+  </wsdl:message>
+  <wsdl:message name="WH_Storage_MergeCntrSoapOut">
+    <wsdl:part name="parameters" element="tns:WH_Storage_MergeCntrResponse" />
+  </wsdl:message>
+  <wsdl:message name="WH_Serials_BoundSoapIn">
+    <wsdl:part name="parameters" element="tns:WH_Serials_Bound" />
+  </wsdl:message>
+  <wsdl:message name="WH_Serials_BoundSoapOut">
+    <wsdl:part name="parameters" element="tns:WH_Serials_BoundResponse" />
+  </wsdl:message>
+  <wsdl:message name="WH_Verify_CountSoapIn">
+    <wsdl:part name="parameters" element="tns:WH_Verify_Count" />
+  </wsdl:message>
+  <wsdl:message name="WH_Verify_CountSoapOut">
+    <wsdl:part name="parameters" element="tns:WH_Verify_CountResponse" />
+  </wsdl:message>
+  <wsdl:message name="WH_Storage_b2tSoapIn">
+    <wsdl:part name="parameters" element="tns:WH_Storage_b2t" />
+  </wsdl:message>
+  <wsdl:message name="WH_Storage_b2tSoapOut">
+    <wsdl:part name="parameters" element="tns:WH_Storage_b2tResponse" />
+  </wsdl:message>
+  <wsdl:message name="WH_Check_AddTransferSoapIn">
+    <wsdl:part name="parameters" element="tns:WH_Check_AddTransfer" />
+  </wsdl:message>
+  <wsdl:message name="WH_Check_AddTransferSoapOut">
+    <wsdl:part name="parameters" element="tns:WH_Check_AddTransferResponse" />
+  </wsdl:message>
+  <wsdl:message name="WH_Check_Add_BSoapIn">
+    <wsdl:part name="parameters" element="tns:WH_Check_Add_B" />
+  </wsdl:message>
+  <wsdl:message name="WH_Check_Add_BSoapOut">
+    <wsdl:part name="parameters" element="tns:WH_Check_Add_BResponse" />
+  </wsdl:message>
+  <wsdl:message name="WH_Check_BoundStorage_BSoapIn">
+    <wsdl:part name="parameters" element="tns:WH_Check_BoundStorage_B" />
+  </wsdl:message>
+  <wsdl:message name="WH_Check_BoundStorage_BSoapOut">
+    <wsdl:part name="parameters" element="tns:WH_Check_BoundStorage_BResponse" />
+  </wsdl:message>
+  <wsdl:message name="WH_queryOrderListSoapIn">
+    <wsdl:part name="parameters" element="tns:WH_queryOrderList" />
+  </wsdl:message>
+  <wsdl:message name="WH_queryOrderListSoapOut">
+    <wsdl:part name="parameters" element="tns:WH_queryOrderListResponse" />
+  </wsdl:message>
+  <wsdl:message name="WH_OrderStorageListSoapIn">
+    <wsdl:part name="parameters" element="tns:WH_OrderStorageList" />
+  </wsdl:message>
+  <wsdl:message name="WH_OrderStorageListSoapOut">
+    <wsdl:part name="parameters" element="tns:WH_OrderStorageListResponse" />
+  </wsdl:message>
+  <wsdl:message name="WH_StorageDetailsSoapIn">
+    <wsdl:part name="parameters" element="tns:WH_StorageDetails" />
+  </wsdl:message>
+  <wsdl:message name="WH_StorageDetailsSoapOut">
+    <wsdl:part name="parameters" element="tns:WH_StorageDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="WH_TreatAndOffLineSoapIn">
+    <wsdl:part name="parameters" element="tns:WH_TreatAndOffLine" />
+  </wsdl:message>
+  <wsdl:message name="WH_TreatAndOffLineSoapOut">
+    <wsdl:part name="parameters" element="tns:WH_TreatAndOffLineResponse" />
+  </wsdl:message>
+  <wsdl:message name="WH_orderQueryByOrderNoSoapIn">
+    <wsdl:part name="parameters" element="tns:WH_orderQueryByOrderNo" />
+  </wsdl:message>
+  <wsdl:message name="WH_orderQueryByOrderNoSoapOut">
+    <wsdl:part name="parameters" element="tns:WH_orderQueryByOrderNoResponse" />
+  </wsdl:message>
+  <wsdl:message name="WH_getDistLinesSoapIn">
+    <wsdl:part name="parameters" element="tns:WH_getDistLines" />
+  </wsdl:message>
+  <wsdl:message name="WH_getDistLinesSoapOut">
+    <wsdl:part name="parameters" element="tns:WH_getDistLinesResponse" />
+  </wsdl:message>
+  <wsdl:message name="PROD_IsValiadBarCodeSoapIn">
+    <wsdl:part name="parameters" element="tns:PROD_IsValiadBarCode" />
+  </wsdl:message>
+  <wsdl:message name="PROD_IsValiadBarCodeSoapOut">
+    <wsdl:part name="parameters" element="tns:PROD_IsValiadBarCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="WH_TreatProgressSoapIn">
+    <wsdl:part name="parameters" element="tns:WH_TreatProgress" />
+  </wsdl:message>
+  <wsdl:message name="WH_TreatProgressSoapOut">
+    <wsdl:part name="parameters" element="tns:WH_TreatProgressResponse" />
+  </wsdl:message>
+  <wsdl:message name="WH_AllStorageInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:WH_AllStorageInfo" />
+  </wsdl:message>
+  <wsdl:message name="WH_AllStorageInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:WH_AllStorageInfoResponse" />
+  </wsdl:message>
+  <wsdl:portType name="PLM_WebServiceSoap">
+    <wsdl:operation name="isCnnected">
+      <wsdl:input message="tns:isCnnectedSoapIn" />
+      <wsdl:output message="tns:isCnnectedSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="existNewVersion">
+      <wsdl:input message="tns:existNewVersionSoapIn" />
+      <wsdl:output message="tns:existNewVersionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="offLine">
+      <wsdl:input message="tns:offLineSoapIn" />
+      <wsdl:output message="tns:offLineSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WH_Treat_flowLogin_isValid">
+      <wsdl:input message="tns:WH_Treat_flowLogin_isValidSoapIn" />
+      <wsdl:output message="tns:WH_Treat_flowLogin_isValidSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WH_Treat_LoginType">
+      <wsdl:input message="tns:WH_Treat_LoginTypeSoapIn" />
+      <wsdl:output message="tns:WH_Treat_LoginTypeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WH_Treat_intevalCount_FlowLine">
+      <wsdl:input message="tns:WH_Treat_intevalCount_FlowLineSoapIn" />
+      <wsdl:output message="tns:WH_Treat_intevalCount_FlowLineSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WH_queryOrderInfoByBarCode">
+      <wsdl:input message="tns:WH_queryOrderInfoByBarCodeSoapIn" />
+      <wsdl:output message="tns:WH_queryOrderInfoByBarCodeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="isValidStorageCode">
+      <wsdl:input message="tns:isValidStorageCodeSoapIn" />
+      <wsdl:output message="tns:isValidStorageCodeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getData">
+      <wsdl:input message="tns:getDataSoapIn" />
+      <wsdl:output message="tns:getDataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ExecuteData">
+      <wsdl:input message="tns:ExecuteDataSoapIn" />
+      <wsdl:output message="tns:ExecuteDataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WH_queryOrderInfoByBarCode_T">
+      <wsdl:input message="tns:WH_queryOrderInfoByBarCode_TSoapIn" />
+      <wsdl:output message="tns:WH_queryOrderInfoByBarCode_TSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WH_queryOrderInfoByBarCode_S">
+      <wsdl:input message="tns:WH_queryOrderInfoByBarCode_SSoapIn" />
+      <wsdl:output message="tns:WH_queryOrderInfoByBarCode_SSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="isBoundState">
+      <wsdl:input message="tns:isBoundStateSoapIn" />
+      <wsdl:output message="tns:isBoundStateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Storage_BoundState">
+      <wsdl:input message="tns:Storage_BoundStateSoapIn" />
+      <wsdl:output message="tns:Storage_BoundStateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="StoragePos">
+      <wsdl:input message="tns:StoragePosSoapIn" />
+      <wsdl:output message="tns:StoragePosSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Transfer_offLineList">
+      <wsdl:input message="tns:Transfer_offLineListSoapIn" />
+      <wsdl:output message="tns:Transfer_offLineListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Tranfer_OffLine_queryOrder">
+      <wsdl:input message="tns:Tranfer_OffLine_queryOrderSoapIn" />
+      <wsdl:output message="tns:Tranfer_OffLine_queryOrderSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Transfer_offLine_createTranfer">
+      <wsdl:input message="tns:Transfer_offLine_createTranferSoapIn" />
+      <wsdl:output message="tns:Transfer_offLine_createTranferSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Transfer_offLine_orderBind">
+      <wsdl:input message="tns:Transfer_offLine_orderBindSoapIn" />
+      <wsdl:output message="tns:Transfer_offLine_orderBindSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Treat_orderInfo">
+      <wsdl:input message="tns:Treat_orderInfoSoapIn" />
+      <wsdl:output message="tns:Treat_orderInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Treat_optRecord">
+      <wsdl:input message="tns:Treat_optRecordSoapIn" />
+      <wsdl:output message="tns:Treat_optRecordSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Treat_reBoundStorage">
+      <wsdl:input message="tns:Treat_reBoundStorageSoapIn" />
+      <wsdl:output message="tns:Treat_reBoundStorageSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WH_ChangeStorage">
+      <wsdl:input message="tns:WH_ChangeStorageSoapIn" />
+      <wsdl:output message="tns:WH_ChangeStorageSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Treat_returnStorage">
+      <wsdl:input message="tns:Treat_returnStorageSoapIn" />
+      <wsdl:output message="tns:Treat_returnStorageSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getDistData">
+      <wsdl:input message="tns:getDistDataSoapIn" />
+      <wsdl:output message="tns:getDistDataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="execDist">
+      <wsdl:input message="tns:execDistSoapIn" />
+      <wsdl:output message="tns:execDistSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderInfoFromStorage">
+      <wsdl:input message="tns:GetOrderInfoFromStorageSoapIn" />
+      <wsdl:output message="tns:GetOrderInfoFromStorageSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WH_Storage_MergeCntr">
+      <wsdl:input message="tns:WH_Storage_MergeCntrSoapIn" />
+      <wsdl:output message="tns:WH_Storage_MergeCntrSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WH_Serials_Bound">
+      <wsdl:input message="tns:WH_Serials_BoundSoapIn" />
+      <wsdl:output message="tns:WH_Serials_BoundSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WH_Verify_Count">
+      <wsdl:input message="tns:WH_Verify_CountSoapIn" />
+      <wsdl:output message="tns:WH_Verify_CountSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WH_Storage_b2t">
+      <wsdl:input message="tns:WH_Storage_b2tSoapIn" />
+      <wsdl:output message="tns:WH_Storage_b2tSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WH_Check_AddTransfer">
+      <wsdl:input message="tns:WH_Check_AddTransferSoapIn" />
+      <wsdl:output message="tns:WH_Check_AddTransferSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WH_Check_Add_B">
+      <wsdl:input message="tns:WH_Check_Add_BSoapIn" />
+      <wsdl:output message="tns:WH_Check_Add_BSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WH_Check_BoundStorage_B">
+      <wsdl:input message="tns:WH_Check_BoundStorage_BSoapIn" />
+      <wsdl:output message="tns:WH_Check_BoundStorage_BSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WH_queryOrderList">
+      <wsdl:input message="tns:WH_queryOrderListSoapIn" />
+      <wsdl:output message="tns:WH_queryOrderListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WH_OrderStorageList">
+      <wsdl:input message="tns:WH_OrderStorageListSoapIn" />
+      <wsdl:output message="tns:WH_OrderStorageListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WH_StorageDetails">
+      <wsdl:input message="tns:WH_StorageDetailsSoapIn" />
+      <wsdl:output message="tns:WH_StorageDetailsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WH_TreatAndOffLine">
+      <wsdl:input message="tns:WH_TreatAndOffLineSoapIn" />
+      <wsdl:output message="tns:WH_TreatAndOffLineSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WH_orderQueryByOrderNo">
+      <wsdl:input message="tns:WH_orderQueryByOrderNoSoapIn" />
+      <wsdl:output message="tns:WH_orderQueryByOrderNoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WH_getDistLines">
+      <wsdl:input message="tns:WH_getDistLinesSoapIn" />
+      <wsdl:output message="tns:WH_getDistLinesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PROD_IsValiadBarCode">
+      <wsdl:input message="tns:PROD_IsValiadBarCodeSoapIn" />
+      <wsdl:output message="tns:PROD_IsValiadBarCodeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WH_TreatProgress">
+      <wsdl:input message="tns:WH_TreatProgressSoapIn" />
+      <wsdl:output message="tns:WH_TreatProgressSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WH_AllStorageInfo">
+      <wsdl:input message="tns:WH_AllStorageInfoSoapIn" />
+      <wsdl:output message="tns:WH_AllStorageInfoSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="PLM_WebServiceSoap" type="tns:PLM_WebServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="isCnnected">
+      <soap:operation soapAction="http://tempuri.org/isCnnected" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="existNewVersion">
+      <soap:operation soapAction="http://tempuri.org/existNewVersion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="offLine">
+      <soap:operation soapAction="http://tempuri.org/offLine" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WH_Treat_flowLogin_isValid">
+      <soap:operation soapAction="http://tempuri.org/WH_Treat_flowLogin_isValid" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WH_Treat_LoginType">
+      <soap:operation soapAction="http://tempuri.org/WH_Treat_LoginType" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WH_Treat_intevalCount_FlowLine">
+      <soap:operation soapAction="http://tempuri.org/WH_Treat_intevalCount_FlowLine" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WH_queryOrderInfoByBarCode">
+      <soap:operation soapAction="http://tempuri.org/WH_queryOrderInfoByBarCode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="isValidStorageCode">
+      <soap:operation soapAction="http://tempuri.org/isValidStorageCode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getData">
+      <soap:operation soapAction="http://tempuri.org/getData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExecuteData">
+      <soap:operation soapAction="http://tempuri.org/ExecuteData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WH_queryOrderInfoByBarCode_T">
+      <soap:operation soapAction="http://tempuri.org/WH_queryOrderInfoByBarCode_T" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WH_queryOrderInfoByBarCode_S">
+      <soap:operation soapAction="http://tempuri.org/WH_queryOrderInfoByBarCode_S" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="isBoundState">
+      <soap:operation soapAction="http://tempuri.org/isBoundState" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Storage_BoundState">
+      <soap:operation soapAction="http://tempuri.org/Storage_BoundState" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StoragePos">
+      <soap:operation soapAction="http://tempuri.org/StoragePos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Transfer_offLineList">
+      <soap:operation soapAction="http://tempuri.org/Transfer_offLineList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Tranfer_OffLine_queryOrder">
+      <soap:operation soapAction="http://tempuri.org/Tranfer_OffLine_queryOrder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Transfer_offLine_createTranfer">
+      <soap:operation soapAction="http://tempuri.org/Transfer_offLine_createTranfer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Transfer_offLine_orderBind">
+      <soap:operation soapAction="http://tempuri.org/Transfer_offLine_orderBind" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Treat_orderInfo">
+      <soap:operation soapAction="http://tempuri.org/Treat_orderInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Treat_optRecord">
+      <soap:operation soapAction="http://tempuri.org/Treat_optRecord" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Treat_reBoundStorage">
+      <soap:operation soapAction="http://tempuri.org/Treat_reBoundStorage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WH_ChangeStorage">
+      <soap:operation soapAction="http://tempuri.org/WH_ChangeStorage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Treat_returnStorage">
+      <soap:operation soapAction="http://tempuri.org/Treat_returnStorage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getDistData">
+      <soap:operation soapAction="http://tempuri.org/getDistData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="execDist">
+      <soap:operation soapAction="http://tempuri.org/execDist" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderInfoFromStorage">
+      <soap:operation soapAction="http://tempuri.org/GetOrderInfoFromStorage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WH_Storage_MergeCntr">
+      <soap:operation soapAction="http://tempuri.org/WH_Storage_MergeCntr" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WH_Serials_Bound">
+      <soap:operation soapAction="http://tempuri.org/WH_Serials_Bound" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WH_Verify_Count">
+      <soap:operation soapAction="http://tempuri.org/WH_Verify_Count" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WH_Storage_b2t">
+      <soap:operation soapAction="http://tempuri.org/WH_Storage_b2t" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WH_Check_AddTransfer">
+      <soap:operation soapAction="http://tempuri.org/WH_Check_AddTransfer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WH_Check_Add_B">
+      <soap:operation soapAction="http://tempuri.org/WH_Check_Add_B" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WH_Check_BoundStorage_B">
+      <soap:operation soapAction="http://tempuri.org/WH_Check_BoundStorage_B" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WH_queryOrderList">
+      <soap:operation soapAction="http://tempuri.org/WH_queryOrderList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WH_OrderStorageList">
+      <soap:operation soapAction="http://tempuri.org/WH_OrderStorageList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WH_StorageDetails">
+      <soap:operation soapAction="http://tempuri.org/WH_StorageDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WH_TreatAndOffLine">
+      <soap:operation soapAction="http://tempuri.org/WH_TreatAndOffLine" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WH_orderQueryByOrderNo">
+      <soap:operation soapAction="http://tempuri.org/WH_orderQueryByOrderNo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WH_getDistLines">
+      <soap:operation soapAction="http://tempuri.org/WH_getDistLines" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PROD_IsValiadBarCode">
+      <soap:operation soapAction="http://tempuri.org/PROD_IsValiadBarCode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WH_TreatProgress">
+      <soap:operation soapAction="http://tempuri.org/WH_TreatProgress" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WH_AllStorageInfo">
+      <soap:operation soapAction="http://tempuri.org/WH_AllStorageInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="PLM_WebServiceSoap12" type="tns:PLM_WebServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="isCnnected">
+      <soap12:operation soapAction="http://tempuri.org/isCnnected" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="existNewVersion">
+      <soap12:operation soapAction="http://tempuri.org/existNewVersion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="offLine">
+      <soap12:operation soapAction="http://tempuri.org/offLine" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WH_Treat_flowLogin_isValid">
+      <soap12:operation soapAction="http://tempuri.org/WH_Treat_flowLogin_isValid" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WH_Treat_LoginType">
+      <soap12:operation soapAction="http://tempuri.org/WH_Treat_LoginType" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WH_Treat_intevalCount_FlowLine">
+      <soap12:operation soapAction="http://tempuri.org/WH_Treat_intevalCount_FlowLine" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WH_queryOrderInfoByBarCode">
+      <soap12:operation soapAction="http://tempuri.org/WH_queryOrderInfoByBarCode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="isValidStorageCode">
+      <soap12:operation soapAction="http://tempuri.org/isValidStorageCode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getData">
+      <soap12:operation soapAction="http://tempuri.org/getData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExecuteData">
+      <soap12:operation soapAction="http://tempuri.org/ExecuteData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WH_queryOrderInfoByBarCode_T">
+      <soap12:operation soapAction="http://tempuri.org/WH_queryOrderInfoByBarCode_T" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WH_queryOrderInfoByBarCode_S">
+      <soap12:operation soapAction="http://tempuri.org/WH_queryOrderInfoByBarCode_S" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="isBoundState">
+      <soap12:operation soapAction="http://tempuri.org/isBoundState" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Storage_BoundState">
+      <soap12:operation soapAction="http://tempuri.org/Storage_BoundState" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StoragePos">
+      <soap12:operation soapAction="http://tempuri.org/StoragePos" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Transfer_offLineList">
+      <soap12:operation soapAction="http://tempuri.org/Transfer_offLineList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Tranfer_OffLine_queryOrder">
+      <soap12:operation soapAction="http://tempuri.org/Tranfer_OffLine_queryOrder" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Transfer_offLine_createTranfer">
+      <soap12:operation soapAction="http://tempuri.org/Transfer_offLine_createTranfer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Transfer_offLine_orderBind">
+      <soap12:operation soapAction="http://tempuri.org/Transfer_offLine_orderBind" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Treat_orderInfo">
+      <soap12:operation soapAction="http://tempuri.org/Treat_orderInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Treat_optRecord">
+      <soap12:operation soapAction="http://tempuri.org/Treat_optRecord" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Treat_reBoundStorage">
+      <soap12:operation soapAction="http://tempuri.org/Treat_reBoundStorage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WH_ChangeStorage">
+      <soap12:operation soapAction="http://tempuri.org/WH_ChangeStorage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Treat_returnStorage">
+      <soap12:operation soapAction="http://tempuri.org/Treat_returnStorage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getDistData">
+      <soap12:operation soapAction="http://tempuri.org/getDistData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="execDist">
+      <soap12:operation soapAction="http://tempuri.org/execDist" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderInfoFromStorage">
+      <soap12:operation soapAction="http://tempuri.org/GetOrderInfoFromStorage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WH_Storage_MergeCntr">
+      <soap12:operation soapAction="http://tempuri.org/WH_Storage_MergeCntr" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WH_Serials_Bound">
+      <soap12:operation soapAction="http://tempuri.org/WH_Serials_Bound" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WH_Verify_Count">
+      <soap12:operation soapAction="http://tempuri.org/WH_Verify_Count" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WH_Storage_b2t">
+      <soap12:operation soapAction="http://tempuri.org/WH_Storage_b2t" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WH_Check_AddTransfer">
+      <soap12:operation soapAction="http://tempuri.org/WH_Check_AddTransfer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WH_Check_Add_B">
+      <soap12:operation soapAction="http://tempuri.org/WH_Check_Add_B" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WH_Check_BoundStorage_B">
+      <soap12:operation soapAction="http://tempuri.org/WH_Check_BoundStorage_B" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WH_queryOrderList">
+      <soap12:operation soapAction="http://tempuri.org/WH_queryOrderList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WH_OrderStorageList">
+      <soap12:operation soapAction="http://tempuri.org/WH_OrderStorageList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WH_StorageDetails">
+      <soap12:operation soapAction="http://tempuri.org/WH_StorageDetails" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WH_TreatAndOffLine">
+      <soap12:operation soapAction="http://tempuri.org/WH_TreatAndOffLine" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WH_orderQueryByOrderNo">
+      <soap12:operation soapAction="http://tempuri.org/WH_orderQueryByOrderNo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WH_getDistLines">
+      <soap12:operation soapAction="http://tempuri.org/WH_getDistLines" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PROD_IsValiadBarCode">
+      <soap12:operation soapAction="http://tempuri.org/PROD_IsValiadBarCode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WH_TreatProgress">
+      <soap12:operation soapAction="http://tempuri.org/WH_TreatProgress" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WH_AllStorageInfo">
+      <soap12:operation soapAction="http://tempuri.org/WH_AllStorageInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PLM_WebService">
+    <wsdl:port name="PLM_WebServiceSoap" binding="tns:PLM_WebServiceSoap">
+      <soap:address location="http://localhost:30018/PLM_WebService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="PLM_WebServiceSoap12" binding="tns:PLM_WebServiceSoap12">
+      <soap12:address location="http://localhost:30018/PLM_WebService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

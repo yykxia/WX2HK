@@ -1,0 +1,11 @@
+E:\code\weixin\WX2HK\PLM_TreatScan\bin\Debug\PLM_TreatScan.exe.config
+E:\code\weixin\WX2HK\PLM_TreatScan\bin\Debug\PLM_TreatScan.exe
+E:\code\weixin\WX2HK\PLM_TreatScan\bin\Debug\PLM_TreatScan.pdb
+E:\code\weixin\WX2HK\PLM_TreatScan\obj\Debug\PLM_TreatScan.Form1.resources
+E:\code\weixin\WX2HK\PLM_TreatScan\obj\Debug\PLM_TreatScan.f_main.resources
+E:\code\weixin\WX2HK\PLM_TreatScan\obj\Debug\PLM_TreatScan.Properties.Resources.resources
+E:\code\weixin\WX2HK\PLM_TreatScan\obj\Debug\PLM_TreatScan.TreatScan_port.resources
+E:\code\weixin\WX2HK\PLM_TreatScan\obj\Debug\PLM_TreatScan.csproj.GenerateResource.Cache
+E:\code\weixin\WX2HK\PLM_TreatScan\obj\Debug\PLM_TreatScan.exe
+E:\code\weixin\WX2HK\PLM_TreatScan\obj\Debug\PLM_TreatScan.pdb
+E:\code\weixin\WX2HK\PLM_TreatScan\obj\Debug\PLM_TreatScan.csprojResolveAssemblyReference.cache

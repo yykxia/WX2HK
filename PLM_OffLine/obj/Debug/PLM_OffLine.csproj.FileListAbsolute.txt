@@ -1,0 +1,10 @@
+E:\code\weixin\WX2HK\PLM_OffLine\bin\Debug\PLM_OffLine.exe
+E:\code\weixin\WX2HK\PLM_OffLine\bin\Debug\PLM_OffLine.pdb
+E:\code\weixin\WX2HK\PLM_OffLine\obj\Debug\PLM_OffLine.Properties.Resources.resources
+E:\code\weixin\WX2HK\PLM_OffLine\obj\Debug\PLM_OffLine.csproj.GenerateResource.Cache
+E:\code\weixin\WX2HK\PLM_OffLine\obj\Debug\PLM_OffLine.exe
+E:\code\weixin\WX2HK\PLM_OffLine\obj\Debug\PLM_OffLine.pdb
+E:\code\weixin\WX2HK\PLM_OffLine\obj\Debug\PLM_OffLine.f_OffLine_config.resources
+E:\code\weixin\WX2HK\PLM_OffLine\obj\Debug\PLM_OffLine.f_OffLine_dealList.resources
+E:\code\weixin\WX2HK\PLM_OffLine\bin\Debug\PLM_OffLine.exe.config
+E:\code\weixin\WX2HK\PLM_OffLine\obj\Debug\PLM_OffLine.csprojResolveAssemblyReference.cache

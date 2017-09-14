@@ -1,0 +1,12 @@
+E:\code\weixin\WX2HK\PLM_WH_Transfer\bin\Debug\PLM_WH_Transfer.exe.config
+E:\code\weixin\WX2HK\PLM_WH_Transfer\bin\Debug\PLM_WH_Transfer.exe
+E:\code\weixin\WX2HK\PLM_WH_Transfer\bin\Debug\PLM_WH_Transfer.pdb
+E:\code\weixin\WX2HK\PLM_WH_Transfer\obj\Debug\PLM_WH_Transfer.NumbKeyBoard.resources
+E:\code\weixin\WX2HK\PLM_WH_Transfer\obj\Debug\PLM_WH_Transfer.Properties.Resources.resources
+E:\code\weixin\WX2HK\PLM_WH_Transfer\obj\Debug\PLM_WH_Transfer.WH_OffLine_Login.resources
+E:\code\weixin\WX2HK\PLM_WH_Transfer\obj\Debug\PLM_WH_Transfer.WH_OffLine_Transfer.resources
+E:\code\weixin\WX2HK\PLM_WH_Transfer\obj\Debug\PLM_WH_Transfer.csproj.GenerateResource.Cache
+E:\code\weixin\WX2HK\PLM_WH_Transfer\obj\Debug\PLM_WH_Transfer.exe
+E:\code\weixin\WX2HK\PLM_WH_Transfer\obj\Debug\PLM_WH_Transfer.pdb
+E:\code\weixin\WX2HK\PLM_WH_Transfer\obj\Debug\PLM_WH_Transfer.csprojResolveAssemblyReference.cache
+E:\code\weixin\WX2HK\PLM_WH_Transfer\obj\Debug\PLM_WH_Transfer.Form1.resources
