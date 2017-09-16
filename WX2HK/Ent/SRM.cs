@@ -20,6 +20,7 @@ namespace WX2HK.Ent
             public string contactNo { get; set; }
             public string orderNo { get; set; }
             public string materialNo { get; set; }
+            public string materialName { get; set; }
             public double contactCount { get; set; }
             public double curCount { get; set; }
             public string deliveryDate { get; set; }
