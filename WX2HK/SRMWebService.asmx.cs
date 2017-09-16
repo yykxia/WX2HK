@@ -40,6 +40,7 @@ namespace WX2HK
                     item.contactNo = dt.Rows[i]["GYSCGDD_SJDH"].ToString();
                     item.orderNo = dt.Rows[i]["GYSCGDD_C1"].ToString();
                     item.materialNo = dt.Rows[i]["GYSCGDD_WLBH"].ToString();
+                    item.materialName = dt.Rows[i]["wlmc"].ToString();
                     item.contactCount = Convert.ToDouble(dt.Rows[i]["GYSCGDD_SL"]);
                     item.curCount = Convert.ToDouble(dt.Rows[i]["curTotal"]);
                     item.deliveryDate = dt.Rows[i]["curTotal"].ToString();
