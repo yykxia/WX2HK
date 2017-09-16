@@ -4,36 +4,33 @@ using System.Linq;
 using System.Web;
 
 namespace WX2HK.Ent
-{
-    
+{    
     public class ERP_Orders
     {
-        public order[] orders { get; set; }
+        public Order[] orders { get; set; }
     }
 
-    public class order
+    public class Order
     {
-        public string DDLX { get; set; } //订单类型：01：零售订单 02：经销商订单
-        public string XSDD_DDLS { get; set; }
-        public string XSDD_DDBH { get; set; }
-        public string XSDD_SPKH { get; set; }
-        public string XSDD_DJRQ { get; set; }
-        public string DDZE { get; set; }
-        public string XSFPMX_ZE { get; set; }
-        public string XSDD_SPKHMC { get; set; }
-        public string XSDD_C9 { get; set; }
-        public string XSDD_C10 { get; set; }
+        public string DDLX { get; set; }
+        public string XSTD_TDLS { get; set; }
+        public string XSTD_TDBH { get; set; }
+        public string XSTD_YWRQ { get; set; }
+        public string XSTD_SPKH { get; set; }
+        public string XSTD_SPKHMC { get; set; }
+        public string XSTD_C9 { get; set; }
+        public string XSTD_C10 { get; set; }
         public Item[] items { get; set; }
     }
 
     public class Item
     {
-        public string XSDDMX_DDLS { get; set; }
-        public string XSDDMX_DDFL { get; set; }
-        public string XSDDMX_WLBH { get; set; }
-        public string XSDDMX_BZHSJ { get; set; }
-        public string XSDDMX_ZSL { get; set; }
-        public string TDSL { get; set; }
+        public string XSTDMX_TDLS { get; set; }
+        public string XSTDMX_TDFL { get; set; }
+        public string XSTDMX_WLBH { get; set; }
+        public string XSTDMX_ZSL { get; set; }
+        public string XSTDMX_BZHSJ { get; set; }
+        public string XSTDMX_BHSE { get; set; }
     }
 
 }

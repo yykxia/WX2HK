@@ -61,11 +61,13 @@ namespace WX2HK
         /// <summary>
         /// 返回ERP订单信息及相关订单明细
         /// </summary>
+        /// <param name="queryMonth">订单月份</param>
         /// <returns></returns>
         [WebMethod]
-        public string DRP_ERP_Orders() 
+        public string DRP_ERP_Orders(string queryMonth) 
         {
-            string month = string.Format("{0:yyyyMM}", DateTime.Now);
+            string month = string.Format("{0:yyyyMM}", Convert.ToDateTime(queryMonth));
+            //string month = string.Format("{0:yyyyMM}", DateTime.Now);
             //string sqlCmd = "SELECT '02' AS DDLX,XSDD_DDLS,XSDD_DDBH,XSDD_SPKH,XSDD_DJRQ,DDZE,XSFPMX_ZE,";
             //sqlCmd += " XSDD_SPKHMC,XSDD_C9,XSDD_C10 FROM XSDD LEFT JOIN VIEW_XSDDMX_ZE ON";
             //sqlCmd += " XSDD.XSDD_DDLS=VIEW_XSDDMX_ZE.XSDDMX_DDLS LEFT JOIN VIEW_XSFPMX_ZE ON";
@@ -86,7 +88,7 @@ namespace WX2HK
 
             string sqlCmd = "SELECT (CASE WHEN XSTD_YWBH='02' THEN '02' ELSE '01' END) AS DDLX,";
             sqlCmd += " XSTD_TDLS,XSTD_TDBH,XSTD_YWRQ,XSTD_SPKH,XSTD_SPKHMC,XSTD_C9,XSTD_C10";
-            sqlCmd += " FROM XSTD WHERE XSTD_YWRQ>='20170501' AND XSTD_YWRQ<='20170731' AND XSTD_SHBZ='1'";
+            sqlCmd += " FROM XSTD WHERE XSTD_YWRQ LIKE '" + month + "%' AND XSTD_SHBZ='1'";
             DataTable dt = new DataTable();
             IETCsoft.sql.SqlSel_jsl.GetSqlSel(ref dt, sqlCmd);
             dt.Columns.Add("items", typeof(string));
@@ -97,7 +99,7 @@ namespace WX2HK
             //sqlCmd += " FROM XSTDMX GROUP BY XSTDMX_DDLS,XSTDMX_DDFL) t";
             //sqlCmd += " ON T.XSTDMX_DDLS=XSDDMX_DDLS AND T.XSTDMX_DDFL=XSDDMX_DDFL";
             //IETCsoft.sql.SqlSel_jsl.GetSqlSel(ref itemDt, sqlCmd);
-            string jsonStr_orders = "[";
+            string jsonStr_orders = "{\"orders\":[";
             int index = 0;
             foreach (DataRow dr in dt.Rows) 
             {
@@ -121,11 +123,11 @@ namespace WX2HK
                     {
                         if (itemDc.ColumnName == "XSTDMX_BHSE") 
                         {
-                            itemStr += "\"" + itemDc.ColumnName + "\":\"" + itemDr[itemDc].ToString() + "\"";
+                            itemStr += "\"" + itemDc.ColumnName + "\":\"" + itemDr[itemDc].ToString().Replace("\\", "") + "\"";
                         }
                         else
                         {
-                            itemStr += "\"" + itemDc.ColumnName + "\":\"" + itemDr[itemDc].ToString() + "\",";
+                            itemStr += "\"" + itemDc.ColumnName + "\":\"" + itemDr[itemDc].ToString().Replace("\\", "") + "\",";
                         }
                     }
                     itemIndex++;
@@ -148,11 +150,11 @@ namespace WX2HK
                 {
                     if (dc.ColumnName == "items") 
                     {
-                        jsonStr_orders += "\"" + dc.ColumnName + "\":" + dr[dc].ToString() + "";
+                        jsonStr_orders += "\"" + dc.ColumnName + "\":" + dr[dc].ToString().Replace("\\","") + "";
                     }
                     else
                     {
-                        jsonStr_orders += "\"" + dc.ColumnName + "\":\"" + dr[dc].ToString() + "\",";
+                        jsonStr_orders += "\"" + dc.ColumnName + "\":\"" + dr[dc].ToString().Replace("\\", "") + "\",";
                     }
                 }
                 index++;
@@ -168,7 +170,7 @@ namespace WX2HK
 
             }
             //jsonStr_orders.TrimEnd(',');
-            jsonStr_orders += "]";
+            jsonStr_orders += "]}";
 
             return jsonStr_orders;
         }
