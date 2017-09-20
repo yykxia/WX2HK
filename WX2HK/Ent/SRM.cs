@@ -17,7 +17,7 @@ namespace WX2HK.Ent
 
         public class Item
         {
-            public string contactNo { get; set; }
+            public string contractNo { get; set; }
             public string orderNo { get; set; }
             public string materialNo { get; set; }
             public string materialName { get; set; }

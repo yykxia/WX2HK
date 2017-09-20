@@ -24,7 +24,7 @@ namespace WX2HK
         /// <param name="supplierNo">供应商编码</param>
         /// <returns></returns>
         [WebMethod]
-        public string getRemainSendList(string supplierNo) 
+        public void getRemainSendList(string supplierNo) 
         {
             string sqlCmd = "SELECT * FROM VIEW_SRM_RemainSend where GYSCGDD_DDJSF = '" + supplierNo + "'";
             DataTable dt = new DataTable();
@@ -37,22 +37,20 @@ namespace WX2HK
                 for (int i = 0; i < dt.Rows.Count;i++ )
                 {
                     Ent.SRM.Item item = new Ent.SRM.Item();
-                    item.contactNo = dt.Rows[i]["GYSCGDD_SJDH"].ToString();
+                    item.contractNo = dt.Rows[i]["GYSCGDD_SJDH"].ToString();
                     item.orderNo = dt.Rows[i]["GYSCGDD_C1"].ToString();
                     item.materialNo = dt.Rows[i]["GYSCGDD_WLBH"].ToString();
                     item.materialName = dt.Rows[i]["wlmc"].ToString();
                     item.contactCount = Convert.ToDouble(dt.Rows[i]["GYSCGDD_SL"]);
                     item.curCount = Convert.ToDouble(dt.Rows[i]["curTotal"]);
-                    item.deliveryDate = dt.Rows[i]["curTotal"].ToString();
+                    item.deliveryDate = dt.Rows[i]["JQBG_BGRQ"].ToString();
                     items.Add(item);
                 }
                 remaind.Items = items.ToArray();
-                return JsonConvert.SerializeObject(remaind);
-
-            }
-            else 
-            {
-                return null;
+                Context.Response.ContentType = "text/xml; charset=utf-8";
+                Context.Response.Write(JsonConvert.SerializeObject(remaind));
+                Context.Response.End();
+                //return JsonConvert.SerializeObject(remaind);
             }
         }
     }
