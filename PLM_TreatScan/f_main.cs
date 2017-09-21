@@ -70,7 +70,7 @@ namespace PLM_TreatScan
             }
             List<ent.OrderInfo> orderList = ConvertToList(dt);
             dataGridView2.DataSource = orderList;
-
+            //设置列宽
             dataGridView2.Columns[0].FillWeight = 28;
             dataGridView2.Columns[1].FillWeight = 20;
             dataGridView2.Columns[2].FillWeight = 10;
