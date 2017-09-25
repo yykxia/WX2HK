@@ -86,7 +86,7 @@ namespace WX2HK
             //sqlCmd += " AND XSTDMX_DDLS <>'@' AND XSTDMX_DDLS <>'' AND XSTD_YWRQ<='20170731'";
             //sqlCmd += " GROUP BY XSTDMX_DDLS) AND XSDD_SHBZ='1' AND XSDD_DJRQ LIKE '" + month + "%'";
 
-            string sqlCmd = "SELECT (CASE WHEN XSTD_YWBH='02' THEN '02' ELSE '01' END) AS DDLX,";
+            string sqlCmd = "SELECT XSTD_YWBH,XSTD_DJRQ,";
             sqlCmd += " XSTD_TDLS,XSTD_TDBH,XSTD_YWRQ,XSTD_SPKH,XSTD_SPKHMC,XSTD_C9,XSTD_C10";
             sqlCmd += " FROM XSTD WHERE XSTD_YWRQ LIKE '" + month + "%' AND XSTD_SHBZ='1'";
             DataTable dt = new DataTable();
