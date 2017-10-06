@@ -30,8 +30,14 @@
     <File Include="bin/FineUI.dll">
       <publishTime>06/14/2016 13:40:29</publishTime>
     </File>
+    <File Include="bin/Microsoft.Web.Infrastructure.dll">
+      <publishTime>07/19/2012 10:59:52</publishTime>
+    </File>
+    <File Include="bin/MySql.Data.dll">
+      <publishTime>06/17/2016 18:28:04</publishTime>
+    </File>
     <File Include="bin/Newtonsoft.Json.dll">
-      <publishTime>09/14/2017 09:38:59</publishTime>
+      <publishTime>06/18/2017 13:57:10</publishTime>
     </File>
     <File Include="bin/System.Net.Http.dll">
       <publishTime>09/14/2017 09:39:01</publishTime>
@@ -49,7 +55,10 @@
       <publishTime>09/14/2017 09:39:03</publishTime>
     </File>
     <File Include="bin/WX2HK.dll">
-      <publishTime>09/18/2017 17:37:12</publishTime>
+      <publishTime>10/03/2017 17:36:34</publishTime>
+    </File>
+    <File Include="bin/WX2HK.pdb">
+      <publishTime>10/01/2017 22:45:19</publishTime>
     </File>
     <File Include="bin/zh-Hans/EntityFramework.resources.dll">
       <publishTime>09/17/2016 19:26:11</publishTime>
@@ -5686,7 +5695,7 @@
       <publishTime>12/08/2016 09:17:53</publishTime>
     </File>
     <File Include="packages.config">
-      <publishTime>09/14/2017 09:39:03</publishTime>
+      <publishTime>10/01/2017 17:56:15</publishTime>
     </File>
     <File Include="PLM/code128.aspx">
       <publishTime>12/10/2016 11:18:57</publishTime>
@@ -5699,6 +5708,9 @@
     </File>
     <File Include="PLM/PLM_BarCode_Release.aspx">
       <publishTime>02/07/2017 16:39:44</publishTime>
+    </File>
+    <File Include="PLM/PLM_classInit.aspx">
+      <publishTime>10/01/2017 20:50:15</publishTime>
     </File>
     <File Include="PLM/PLM_OffLine_Print.aspx">
       <publishTime>02/21/2017 08:57:14</publishTime>
@@ -11032,7 +11044,7 @@
       <publishTime>05/23/2017 18:50:53</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>09/18/2017 10:03:51</publishTime>
+      <publishTime>10/01/2017 21:49:12</publishTime>
     </File>
     <File Include="wxReturnBack.aspx">
       <publishTime>09/05/2016 14:32:24</publishTime>

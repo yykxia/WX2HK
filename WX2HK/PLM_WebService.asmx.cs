@@ -1706,16 +1706,31 @@ namespace WX2HK
         /// <param name="dt"></param>
         /// <returns></returns>
         [WebMethod]
-        public int PROD_isValidDate(DateTime dt) 
+        public int PROD_isValidDate(DateTime dt)
         {
-            if (dt.DayOfWeek == DayOfWeek.Sunday)
-            {
-                return -1;
-            }
-            else 
-            {
-                return 0;
-            }
+            string compTime = dt.ToString("yyyy-MM-dd HH:mm:ss");
+            string sqlCmd = "select max(InitDay) as recDay from [PLM_classInit]";
+            sqlCmd += " where InitDay <= '" + compTime + "' and CheckFlag='0'";
+            DataTable result = new DataTable();
+            SqlSel.GetSqlSel(ref result, sqlCmd);
+            DateTime recDay = Convert.ToDateTime(result.Rows[0]["recDay"]);
+            return -compDays(recDay, dt);
+            //if (dt.DayOfWeek == DayOfWeek.Sunday)
+            //{
+            //    return -1;
+            //}
+            //else
+            //{
+            //    return 0;
+            //}
+        }
+        //计算两个时间的天数差，只比较天数部分
+        private static int compDays(DateTime d1, DateTime d2)
+        {
+            DateTime d3 = Convert.ToDateTime(string.Format("{0}-{1}-{2}", d1.Year, d1.Month, d1.Day));
+            DateTime d4 = Convert.ToDateTime(string.Format("{0}-{1}-{2}", d2.Year, d2.Month, d2.Day));
+            int days = (d4 - d3).Days;
+            return days;
         }
 
         /// <summary>
