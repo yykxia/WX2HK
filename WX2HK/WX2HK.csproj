@@ -1974,6 +1974,7 @@
     <Content Include="MES\MES_BomList.aspx" />
     <Content Include="MsgAPI.asmx" />
     <Content Include="OneImage.aspx" />
+    <Content Include="others\barCodePrint.aspx" />
     <Content Include="PLM\code128.aspx" />
     <Content Include="PLM\Code128_WH.aspx" />
     <Content Include="PLM\PLM_BarCode_Release.aspx" />
@@ -3908,6 +3909,13 @@
     </Compile>
     <Compile Include="OneImage.aspx.designer.cs">
       <DependentUpon>OneImage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="others\barCodePrint.aspx.cs">
+      <DependentUpon>barCodePrint.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="others\barCodePrint.aspx.designer.cs">
+      <DependentUpon>barCodePrint.aspx</DependentUpon>
     </Compile>
     <Compile Include="PLM\code128.aspx.cs">
       <DependentUpon>code128.aspx</DependentUpon>
