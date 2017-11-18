@@ -24,6 +24,9 @@
     <File Include="appList.aspx">
       <publishTime>09/06/2016 10:27:40</publishTime>
     </File>
+    <File Include="bin/ChnCharInfo.dll">
+      <publishTime>05/06/2015 16:47:46</publishTime>
+    </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>09/17/2016 19:26:09</publishTime>
     </File>
@@ -55,10 +58,10 @@
       <publishTime>09/14/2017 09:39:03</publishTime>
     </File>
     <File Include="bin/WX2HK.dll">
-      <publishTime>10/10/2017 11:17:04</publishTime>
+      <publishTime>11/07/2017 14:06:26</publishTime>
     </File>
     <File Include="bin/WX2HK.pdb">
-      <publishTime>10/10/2017 11:17:04</publishTime>
+      <publishTime>11/07/2017 14:06:26</publishTime>
     </File>
     <File Include="bin/zh-Hans/EntityFramework.resources.dll">
       <publishTime>09/17/2016 19:26:11</publishTime>
@@ -5695,10 +5698,13 @@
       <publishTime>12/08/2016 09:17:53</publishTime>
     </File>
     <File Include="others/barCodePrint.aspx">
-      <publishTime>10/10/2017 11:10:41</publishTime>
+      <publishTime>10/14/2017 11:27:11</publishTime>
+    </File>
+    <File Include="others/Print_BarCode.aspx">
+      <publishTime>10/12/2017 14:30:03</publishTime>
     </File>
     <File Include="packages.config">
-      <publishTime>10/01/2017 17:56:15</publishTime>
+      <publishTime>10/31/2017 11:11:35</publishTime>
     </File>
     <File Include="PLM/code128.aspx">
       <publishTime>12/10/2016 11:18:57</publishTime>
@@ -11047,7 +11053,7 @@
       <publishTime>05/23/2017 18:50:53</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>10/01/2017 21:49:12</publishTime>
+      <publishTime>11/07/2017 14:06:28</publishTime>
     </File>
     <File Include="wxReturnBack.aspx">
       <publishTime>09/05/2016 14:32:24</publishTime>

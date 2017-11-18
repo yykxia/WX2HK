@@ -176,7 +176,11 @@ namespace WX2HK.MES
                 string sqlCmd = "select jswlzd_lsbh from View_jswlzd where jswlzd_wlbh='" + cpCode + "'";
                 string jswlzd_lsbh = SqlSel.GetSqlScale(sqlCmd).ToString();
                 sqlCmd = "select lswlzd_wlbh,lswlzd_wlmc,LSWLZD_GGXH,(select JSJLDW_DWMC from View_JSJLDW  where JSJLDW_DWDM=LSWLZD_JLDW) as jldw,";
-                sqlCmd += "(CASE WHEN LSWLZD_WLLY=1 THEN '采购' WHEN LSWLZD_WLLY=2 THEN '自制' WHEN LSWLZD_WLLY=3 THEN '自制' end) as ly,LSWLEX_C50 from (";
+                sqlCmd += "(CASE WHEN LSWLZD_WLLY=1 THEN '采购' WHEN LSWLZD_WLLY=2 THEN '自制' WHEN LSWLZD_WLLY=3 THEN '自制' end) as ly,LSWLEX_C50,";
+                sqlCmd += "(case when lswlzd_wlbh like 'ML%' then (select color from View_Ycbh where bh=LSWLEX_C3) end) as mlColor, ";
+                sqlCmd += "(case when lswlzd_wlbh like 'ML%' then ('http://192.168.10.208:82/'";
+                sqlCmd += "+(select filepath+filename from View_Ycbh where bh=LSWLEX_C3)) end) as addtionFile";
+                sqlCmd += " from (";
                 sqlCmd += " select (select jswlzd_wlbh from View_jswlzd where jswlzd_lsbh=id) as jswlzd_wlbh from f_BOM('" + jswlzd_lsbh + "')";
                 sqlCmd += " union (select jswlzd_wlbh from View_jswlzd where jswlzd_lsbh='" + jswlzd_lsbh + "')) A";
                 sqlCmd += " left join View_LSWLZD on LSWLZD_wlbh=A.jswlzd_wlbh left join View_LSWLEX on LSWLEX_WLBH=LSWLZD_WLBH";

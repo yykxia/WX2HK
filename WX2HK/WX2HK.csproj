@@ -45,6 +45,9 @@
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ChnCharInfo, Version=1.0.0.0, Culture=neutral, PublicKeyToken=18f031bd02e5e291, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.International.Converters.PinYinConverter.1.0.0\lib\ChnCharInfo.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=4.4.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.5.0.0\lib\net40\EntityFramework.dll</HintPath>
       <Private>True</Private>
@@ -1975,6 +1978,7 @@
     <Content Include="MsgAPI.asmx" />
     <Content Include="OneImage.aspx" />
     <Content Include="others\barCodePrint.aspx" />
+    <Content Include="others\Print_BarCode.aspx" />
     <Content Include="PLM\code128.aspx" />
     <Content Include="PLM\Code128_WH.aspx" />
     <Content Include="PLM\PLM_BarCode_Release.aspx" />
@@ -3794,6 +3798,7 @@
     <Compile Include="appList.aspx.designer.cs">
       <DependentUpon>appList.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ApplyInfo.cs" />
     <Compile Include="captcha\captcha.ashx.cs">
       <DependentUpon>captcha.ashx</DependentUpon>
     </Compile>
@@ -3916,6 +3921,13 @@
     </Compile>
     <Compile Include="others\barCodePrint.aspx.designer.cs">
       <DependentUpon>barCodePrint.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="others\Print_BarCode.aspx.cs">
+      <DependentUpon>Print_BarCode.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="others\Print_BarCode.aspx.designer.cs">
+      <DependentUpon>Print_BarCode.aspx</DependentUpon>
     </Compile>
     <Compile Include="PLM\code128.aspx.cs">
       <DependentUpon>code128.aspx</DependentUpon>

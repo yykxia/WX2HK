@@ -30,6 +30,7 @@ namespace WX2HK.PLM
 
         protected void sendDtl(string ddlsStr)
         {
+            int printWeight = 2;//条码厚重度
             //表头
             DataTable dt = new DataTable();
             dt.Columns.Add("itemNo");
@@ -67,7 +68,7 @@ namespace WX2HK.PLM
                     dr["OrderNo"] = tmpDt.Rows[0]["OrderNo"].ToString();
                     dr["ItemParm"] = tmpDt.Rows[0]["ItemParm"].ToString();
                     dr["ImgUrl"] = "../upload/ThumbNail/" + tmpDt.Rows[0]["ImgURL"].ToString();
-                    dr["BarCode"] = "code128.aspx?num=P" + recId;
+                    dr["BarCode"] = "code128.aspx?printWeight=" + printWeight + "&num=P" + recId;
                     dr["itemNo"] = tmpDt.Rows[0]["itemNo"].ToString();
                     dr["PlanCount"] = tmpDt.Rows[0]["PlanCount"].ToString();
                     dt.Rows.Add(dr);

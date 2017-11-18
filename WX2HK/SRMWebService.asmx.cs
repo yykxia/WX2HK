@@ -53,5 +53,46 @@ namespace WX2HK
                 //return JsonConvert.SerializeObject(remaind);
             }
         }
+
+        /// <summary>
+        /// 人事招聘信息接收
+        /// </summary>
+        /// <param name="DataJson"></param>
+        /// <returns></returns>
+        [WebMethod]
+        public void HR_ReceiveApply(string DataJson)
+        {
+            PostResult Result = new PostResult()
+            {
+                Success = 0,
+                ErrorMsg = ""
+            };
+            //求职信息json字符串转换
+            ApplyInfo ApplyInfo = JsonConvert.DeserializeObject<ApplyInfo>(DataJson);
+            string sqlCmd = "insert into HR_ApplyInfo (ApplyName,PhoneNumber,ApplyPosition,ApplyTime,Others)";
+            sqlCmd += "values ('" + ApplyInfo.ApplyName + "','" + ApplyInfo.PhoneNumber + "','" + ApplyInfo.ApplyPosition + "',";
+            sqlCmd += "getdate(),'" + ApplyInfo.Others + "')";
+            if (IETCsoft.sql.SqlSel.ExeSql(sqlCmd) > 0)
+            {
+                Result.Success = 1;
+            }
+            else
+            {
+                Result.ErrorMsg = "信息提交失败！";
+            }
+
+            Context.Response.ContentType = "text/json; charset=utf-8";
+            Context.Response.Write(JsonConvert.SerializeObject(Result));
+            Context.Response.End();
+
+        }
+        /// <summary>
+        /// 返回值信息
+        /// </summary>
+        public class PostResult 
+        {
+            public int Success { get; set; }
+            public string ErrorMsg { get; set; }
+        }
     }
 }

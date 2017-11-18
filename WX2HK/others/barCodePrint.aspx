@@ -19,8 +19,8 @@
                 <Items>
                     <f:GroupPanel ID="GroupPanel_printerSet" runat="server" Title="打印机设置">
                         <Items>
-                        <f:TextBox ID="txb_printWidth" runat="server" Label="宽度(mm)" Text="50"></f:TextBox>
-                        <f:TextBox ID="txb_printHeight" runat="server" Label="高度(mm)" Text="40"></f:TextBox>
+                        <f:TextBox ID="txb_printWidth" runat="server" Label="宽度(mm)" Text="1000"></f:TextBox>
+                        <f:TextBox ID="txb_printHeight" runat="server" Label="高度(mm)" Text="800"></f:TextBox>
                         </Items>
                     </f:GroupPanel>
                     <f:GroupPanel ID="GroupPanel1" runat="server" Title="数据相关">
@@ -50,22 +50,75 @@
         var LODOP; //声明为全局变量 
         function print() {
             try {
-                LODOP = getLodop();
+                var LODOP = getLodop();
                 var printWidth = $('#<%=txb_printWidth.ClientID %>-inputEl').val();//纸张宽度
                 var printHeight = $('#<%=txb_printHeight.ClientID %>-inputEl').val();//纸张高度
                 var startNumb = $('#<%=txb_curBarCode.ClientID %>-inputEl').val();//起始条码
                 var endNumb = $('#<%=nmb_printCount.ClientID %>-inputEl').val();//最大条码
-                if (isInteger(endNumb)) {
-                    LODOP.PRINT_INIT("条码打印");
-                    for (var barCode = 0; barCode < endNumb; barCode++) {
-                        LODOP.ADD_PRINT_BARCODE("5mm", "5mm", "40mm", "30mm", "", Number(startNumb) + Number(barCode));
-                        LODOP.SET_PRINT_PAGESIZE(1, printWidth, printHeight, "");
+
+                var printPages = Math.floor((Number(endNumb) - 1) / 4) + 1;
+                
+
+                LODOP.PRINT_INIT("条码打印");
+                for (var curPage = 0; curPage < printPages; curPage++) {
+
+                    var addNumb = curPage * 4;
+                    var pageNumb = Number(curPage) + Number(1);
+                    alert("第" + pageNumb + "页");
+                    LODOP.SET_PRINT_PAGESIZE(1, printWidth, printHeight, "");
+                    LODOP.ADD_PRINT_BARCODE("2mm", "0mm", "45mm", "30mm", "", Number(startNumb) + addNumb);
+
+                    if ((addNumb + 1) < endNumb) {
+                        LODOP.ADD_PRINT_BARCODE("2mm", "52mm", "45mm", "30mm", "", Number(startNumb) + addNumb + 1);
+                    } else {
                         LODOP.PRINT();
+                        break;
                     }
-                } else {
-                    alert("条码范围不是有效整数！");
-                    return;
+
+                    if ((addNumb + 2) < endNumb) {
+                        LODOP.ADD_PRINT_BARCODE("44mm", "0mm", "45mm", "30mm", "", Number(startNumb) + addNumb + 2);
+                    } else {
+                        LODOP.PRINT();
+                        break;
+                    }
+
+                    if ((addNumb + 3) < endNumb) {
+                        LODOP.ADD_PRINT_BARCODE("44mm", "52mm", "45mm", "30mm", "", Number(startNumb) + addNumb + 3);
+                        LODOP.PRINT();
+                    } else {
+                        LODOP.PRINT();
+                        break;
+                    }
+
+                    //for (var position = 1; position < 4; position++) {
+                    //    addNumb = addNumb + position;
+                    //    if (position == 1) {
+                    //        LODOP.ADD_PRINT_BARCODE("2mm", "52mm", "45mm", "30mm", "", Number(startNumb) + addNumb);
+                    //    }
+                    //    if (position == 2) {
+                    //        LODOP.ADD_PRINT_BARCODE("44mm", "0mm", "45mm", "30mm", "", Number(startNumb) + addNumb);
+                    //    }
+                    //    if (position == 3) {
+                    //        LODOP.ADD_PRINT_BARCODE("44mm", "52mm", "45mm", "30mm", "", Number(startNumb) + addNumb);
+                    //    }
+
+                    //    if (position == 3 || addNumb == endNumb) {
+                    //        LODOP.PRINT();
+                    //        break;
+                    //    }
                 }
+                //if (isInteger(endNumb)) {
+                //    alert(printPages);
+                //    //LODOP.PRINT_INIT("条码打印");
+                //    //for (var barCode = 0; barCode < endNumb; barCode++) {
+                //    //    LODOP.ADD_PRINT_BARCODE("5mm", "5mm", "40mm", "30mm", "", Number(startNumb) + Number(barCode));
+                //    //    LODOP.SET_PRINT_PAGESIZE(1, printWidth, printHeight, "");
+                //    //    LODOP.PRINT();
+                //    //}
+                //} else {
+                //    alert("条码范围不是有效整数！");
+                //    return;
+                //}
 
                 location.reload();
 

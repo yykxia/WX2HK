@@ -9,11 +9,11 @@ public partial class code128 : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        
         string num = Request["num"].ToString();
+        int barWeight = Convert.ToInt32(Request["printWeight"]);
         //string num = "KM20110715002";
         System.IO.MemoryStream ms = new System.IO.MemoryStream();
-        System.Drawing.Image myimg = BarCodeHelper.MakeBarcodeImage(num, 2, true);
+        System.Drawing.Image myimg = BarCodeHelper.MakeBarcodeImage(num, barWeight, true);
         myimg.Save(ms, System.Drawing.Imaging.ImageFormat.Gif);
         Response.ClearContent();
         Response.ContentType = "image/Gif";

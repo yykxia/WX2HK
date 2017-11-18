@@ -1744,6 +1744,32 @@ namespace WX2HK
             serverTime = DateTime.Now;
             return PROD_isValidDate(serverTime);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="date"></param>
+        /// <returns></returns>
+        [WebMethod]
+        public int LoadDateInfo(string date)
+        {
+            string sqlCmd = "select isnull(curNumb,0) from DZ_barCode where printDate='" + date + "'";
+            return Convert.ToInt32(SqlSel.GetSqlScale(sqlCmd));
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="date"></param>
+        /// <param name="afterPtintedNumb"></param>
+        [WebMethod]
+        public void updatePrintInfo(string date,int afterPtintedNumb)
+        {
+            string sqlCmd = "update DZ_barCode set curNumb='" + afterPtintedNumb + "' where printDate='" + date + "'";
+            if (SqlSel.ExeSql(sqlCmd) == 0)
+            {
+                sqlCmd = "insert into DZ_barCode (printDate,curNumb) values ('" + date + "','" + afterPtintedNumb + "')";
+                SqlSel.ExeSql(sqlCmd);
+            }
 
+        }
     }
 }

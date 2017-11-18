@@ -30,10 +30,11 @@ E:\code\projects\WX2HK\WX2HK\bin\System.Web.Http.WebHost.xml
 E:\code\projects\WX2HK\WX2HK\bin\zh-Hans\EntityFramework.resources.dll
 E:\code\projects\WX2HK\WX2HK\obj\Debug\WX2HK.dll
 E:\code\projects\WX2HK\WX2HK\obj\Debug\WX2HK.pdb
-E:\code\projects\WX2HK\WX2HK\obj\Debug\WX2HK.csprojResolveAssemblyReference.cache
+E:\code\projects\WX2HK\WX2HK\bin\ChnCharInfo.dll
 E:\code\projects\WX2HK\WX2HK\bin\WX2HK.dll.config
 E:\code\projects\WX2HK\WX2HK\bin\MySql.Data.dll
 E:\code\projects\WX2HK\WX2HK\bin\Microsoft.Web.Infrastructure.dll
 E:\code\projects\WX2HK\WX2HK\bin\MySql.Data.xml
 E:\code\projects\WX2HK\WX2HK\bin\Microsoft.Web.Infrastructure.xml
+E:\code\projects\WX2HK\WX2HK\obj\Debug\WX2HK.csprojResolveAssemblyReference.cache
 E:\code\projects\WX2HK\WX2HK\obj\Debug\WX2HK.csproj.CoreCompileInputs.cache
