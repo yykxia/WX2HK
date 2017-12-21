@@ -58,10 +58,10 @@
       <publishTime>09/14/2017 09:39:03</publishTime>
     </File>
     <File Include="bin/WX2HK.dll">
-      <publishTime>11/07/2017 14:06:26</publishTime>
+      <publishTime>12/13/2017 17:08:15</publishTime>
     </File>
     <File Include="bin/WX2HK.pdb">
-      <publishTime>11/07/2017 14:06:26</publishTime>
+      <publishTime>12/13/2017 17:08:15</publishTime>
     </File>
     <File Include="bin/zh-Hans/EntityFramework.resources.dll">
       <publishTime>09/17/2016 19:26:11</publishTime>
@@ -5685,6 +5685,9 @@
     <File Include="main.aspx">
       <publishTime>01/05/2017 14:02:36</publishTime>
     </File>
+    <File Include="MES/C2M2ERP.aspx">
+      <publishTime>12/13/2017 17:18:47</publishTime>
+    </File>
     <File Include="MES/MESWebservice.asmx">
       <publishTime>04/27/2017 17:11:59</publishTime>
     </File>
@@ -11053,7 +11056,10 @@
       <publishTime>05/23/2017 18:50:53</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>11/07/2017 14:06:28</publishTime>
+      <publishTime>12/13/2017 17:08:17</publishTime>
+    </File>
+    <File Include="WMSWebService.asmx">
+      <publishTime>12/04/2017 14:15:46</publishTime>
     </File>
     <File Include="wxReturnBack.aspx">
       <publishTime>09/05/2016 14:32:24</publishTime>

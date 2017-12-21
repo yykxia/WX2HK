@@ -194,7 +194,8 @@ namespace WX2HK
             if (IETCsoft.sql.SqlSel_jsl.GetSqlSel(ref dt, sqlCmd))
             {
                 //存在则更新
-                sqlCmd = "UPDATE ZWWLDW SET ZWWLDW_DWMC,ZWWLDW_TELE,ZWWLDW_LBBH WHERE ZWWLDW_DWBH='" + ClientNo + "'";
+                sqlCmd = "UPDATE ZWWLDW SET ZWWLDW_DWMC='"+ ClientName 
+                    + "',ZWWLDW_TELE='"+ ClientTel + "',ZWWLDW_LBBH='"+ ClientType + "' WHERE ZWWLDW_DWBH='" + ClientNo + "'";
                 if (IETCsoft.sql.SqlSel_jsl.ExeSql(sqlCmd) <= 0) 
                 {
                     result = false;
@@ -213,5 +214,70 @@ namespace WX2HK
 
             return result;
         }
+
+        /// <summary>
+        /// 金睡莲ERP部门字典
+        /// </summary>
+        /// <returns></returns>
+        [WebMethod]
+        public string DRP_JSL_BMZD()
+        {
+            string sqlCmd = "select ZWBMZD_BMBH,ZWBMZD_BMMC,ZWBMZD_SFFC from ZWBMZD";
+            DataTable data = new DataTable();
+            if(IETCsoft.sql.SqlSel_jsl.GetSqlSel(ref data, sqlCmd))
+            {
+                List<Ent.Department> DeptList = new List<Ent.Department>();
+                foreach(DataRow dr in data.Rows)
+                {
+                    Ent.Department department = new Ent.Department
+                    {
+                        Id = dr["ZWBMZD_BMBH"].ToString(),
+                        Name = dr["ZWBMZD_BMMC"].ToString(),
+                        Disabled = dr["ZWBMZD_SFFC"].ToString()
+                    };
+
+                    DeptList.Add(department);
+                }
+
+                return JsonConvert.SerializeObject(DeptList);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// 金睡莲ERP往来单位
+        /// </summary>
+        /// <returns></returns>
+        [WebMethod]
+        public string DRP_JSL_WLDW()
+        {
+            string sqlCmd = "select ZWWLDW_DWBH,ZWWLDW_DWMC,ZWWLDW_SFFC from ZWWLDW";
+            DataTable data = new DataTable();
+            if (IETCsoft.sql.SqlSel_jsl.GetSqlSel(ref data, sqlCmd))
+            {
+                List<Ent.Customer> CustomerList = new List<Ent.Customer>();
+                foreach (DataRow dr in data.Rows)
+                {
+                    Ent.Customer customer = new Ent.Customer
+                    {
+                        Id = dr["ZWWLDW_DWBH"].ToString(),
+                        Name = dr["ZWWLDW_DWMC"].ToString(),
+                        Disabled = dr["ZWWLDW_SFFC"].ToString()
+                    };
+
+                    CustomerList.Add(customer);
+                }
+
+                return JsonConvert.SerializeObject(CustomerList);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
     }
 }

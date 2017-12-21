@@ -6,7 +6,7 @@ using System.Web;
 namespace WX2HK.Ent
 {
 
-    public class ERP_Orders
+    public class ERP_JSL
     {
         public Order[] orders { get; set; }//订单列表
     }
@@ -35,5 +35,17 @@ namespace WX2HK.Ent
         public string XSTDMX_BHSE { get; set; }//总金额
     }
 
+    public class Department
+    {
+        public string Id { get; set; }//部门编号
+        public string Name { get; set; }//部门名称
+        public string Disabled { get; set; }//是否封存
+    }
 
+    public class Customer
+    {
+        public string Id { get; set; }//部门编号
+        public string Name { get; set; }//部门名称
+        public string Disabled { get; set; }//是否封存
+    }
 }

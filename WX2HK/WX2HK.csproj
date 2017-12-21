@@ -1973,6 +1973,7 @@
     <Content Include="js\processoffice.js" />
     <Content Include="js\ToolTip.js" />
     <Content Include="main.aspx" />
+    <Content Include="MES\C2M2ERP.aspx" />
     <Content Include="MES\MESWebservice.asmx" />
     <Content Include="MES\MES_BomList.aspx" />
     <Content Include="MsgAPI.asmx" />
@@ -3760,6 +3761,7 @@
     <Content Include="PLM_WareHouse\Expander_OrderStorage.ashx" />
     <None Include="Web References\MESWebService\MESWebservice.disco" />
     <Content Include="TestLogin.aspx" />
+    <Content Include="WMSWebService.asmx" />
     <Content Include="wxReturnBack.aspx" />
   </ItemGroup>
   <ItemGroup>
@@ -3850,6 +3852,7 @@
     <Compile Include="cs\ReturnInfo.cs" />
     <Compile Include="cs\Sample.cs" />
     <Compile Include="cs\SMSEntity.cs" />
+    <Compile Include="cs\SqlSel_WMS.cs" />
     <Compile Include="cs\SqlSel.cs" />
     <Compile Include="cs\VerifyLegal.cs" />
     <Compile Include="cs\WXBizMsgCrypt.cs" />
@@ -3883,7 +3886,9 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Ent\ERP_Orders.cs" />
-    <Compile Include="Ent\LSWLZD_DRP.cs" />
+    <Compile Include="Ent\WMS.cs" />
+    <Compile Include="Ent\MES_Department.cs" />
+    <Compile Include="Ent\MES_DeptLines.cs" />
     <Compile Include="Ent\SRM.cs" />
     <Compile Include="main.aspx.cs">
       <DependentUpon>main.aspx</DependentUpon>
@@ -3891,6 +3896,13 @@
     </Compile>
     <Compile Include="main.aspx.designer.cs">
       <DependentUpon>main.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MES\C2M2ERP.aspx.cs">
+      <DependentUpon>C2M2ERP.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MES\C2M2ERP.aspx.designer.cs">
+      <DependentUpon>C2M2ERP.aspx</DependentUpon>
     </Compile>
     <Compile Include="MES\MESWebservice.asmx.cs">
       <DependentUpon>MESWebservice.asmx</DependentUpon>
@@ -4240,6 +4252,10 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="WMSWebService.asmx.cs">
+      <DependentUpon>WMSWebService.asmx</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="wxReturnBack.aspx.cs">
       <DependentUpon>wxReturnBack.aspx</DependentUpon>

@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Services;
 using IETCsoft.sql;
 using System.Data;
+using Newtonsoft.Json;
 
 namespace WX2HK
 {
@@ -1565,6 +1566,30 @@ namespace WX2HK
         }
 
         /// <summary>
+        /// 根据条码查询上架订单信息
+        /// </summary>
+        /// <param name="BarCode"></param>
+        /// <returns></returns>
+        [WebMethod]
+        public DataTable PROD_QueryOrderInfo(string BarCode)
+        {
+            DataTable dt = new DataTable();
+            string sqlCmd = "select top 1 * from PLM_Serials_BindBarCode left join ";
+            sqlCmd += "PLM_Product_OnLine t on t.id=tradeno ";
+            sqlCmd += "left join PLM_Product_Line on PLM_Product_Line.id=PLM_Serials_BindBarCode.lineId ";
+            sqlCmd += "where olineStatus=1 and barcode='" + BarCode + "'";
+            if (SqlSel.GetSqlSel(ref dt, sqlCmd))
+            {
+                dt.TableName = "QueryOrderInfo";
+                return dt;
+            }
+            else
+            {
+                return null;
+            }
+            
+        }
+        /// <summary>
         /// 修改上架信息
         /// </summary>
         /// <param name="execTime">执行时间</param>
@@ -1634,11 +1659,22 @@ namespace WX2HK
         /// 退出登录后清空产线登录信息
         /// </summary>
         /// <param name="lineId">产线id</param>
+        /// <param name="CurentClass">登录班次</param>
+        /// <param name="LoginType">登录类型</param>
         /// <returns></returns>
         [WebMethod]
-        public bool PROD_ClearLoginInfo(int lineId) 
+        public bool PROD_ClearLoginInfo(int lineId,string CurentClass,int LoginType) 
         {
-            string sqlCmd = "update PLM_Product_Line set curentClass=null where id='" + lineId + "'";
+            string sqlCmd = "";
+            if (LoginType == 1)
+            {
+                sqlCmd = "update PLM_Product_Line set curentClass='" + CurentClass + "' where id='" + lineId + "'";
+            }
+            if (LoginType == 0)
+            {
+                sqlCmd = "update PLM_Product_Line set curentClass=null where id='" + lineId + "'";
+            }
+            
             if (SqlSel.ExeSql(sqlCmd) > 0)
             {
                 return true;
@@ -1768,6 +1804,52 @@ namespace WX2HK
             {
                 sqlCmd = "insert into DZ_barCode (printDate,curNumb) values ('" + date + "','" + afterPtintedNumb + "')";
                 SqlSel.ExeSql(sqlCmd);
+            }
+
+        }
+
+
+        /// <summary>
+        /// MES部门及产线信息
+        /// </summary>
+        /// <returns></returns>
+        [WebMethod]
+        public string MES_DeptInfo()
+        {
+            string sqlCmd = "select * from MES_Department t1 left join View_ERP_KCBMZD t2";
+            sqlCmd += " on t1.DeptNo=t2.KCBMZD_BMBH and t1.[Enabled]='1'";
+            DataTable Dept = new DataTable();
+            List<Ent.MES_Department> _Department = new List<Ent.MES_Department>();
+            if (SqlSel.GetSqlSel(ref Dept, sqlCmd))
+            {
+                sqlCmd = "select * from MES_DeptLines";
+                DataTable lines = new DataTable();
+                SqlSel.GetSqlSel(ref lines, sqlCmd);
+                foreach (DataRow dr in Dept.Rows)
+                {
+                    DataRow[] row = lines.Select("DeptId='" + dr["Id"].ToString() + "'");
+                    List<Ent.MES_DeptLines> _DeptLines = new List<Ent.MES_DeptLines>();
+                    foreach (DataRow LineRow in row)
+                    {
+                        _DeptLines.Add(new Ent.MES_DeptLines
+                        {
+                            //Id = Convert.ToInt32(LineRow["Id"]),
+                            LineName = LineRow["LineName"].ToString()
+                        });
+                    }
+                    _Department.Add(new Ent.MES_Department
+                    {
+                        DeptName = dr["KCBMZD_BMMC"].ToString(),
+                        DeptNo = dr["KCBMZD_BMBH"].ToString(),
+                        Lines = _DeptLines
+                    });
+                }
+
+                return JsonConvert.SerializeObject(_Department);
+            }
+            else
+            {
+                return null;
             }
 
         }

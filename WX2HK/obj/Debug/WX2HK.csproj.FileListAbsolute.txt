@@ -36,5 +36,5 @@ E:\code\projects\WX2HK\WX2HK\bin\MySql.Data.dll
 E:\code\projects\WX2HK\WX2HK\bin\Microsoft.Web.Infrastructure.dll
 E:\code\projects\WX2HK\WX2HK\bin\MySql.Data.xml
 E:\code\projects\WX2HK\WX2HK\bin\Microsoft.Web.Infrastructure.xml
-E:\code\projects\WX2HK\WX2HK\obj\Debug\WX2HK.csprojResolveAssemblyReference.cache
 E:\code\projects\WX2HK\WX2HK\obj\Debug\WX2HK.csproj.CoreCompileInputs.cache
+E:\code\projects\WX2HK\WX2HK\obj\Debug\WX2HK.csprojResolveAssemblyReference.cache

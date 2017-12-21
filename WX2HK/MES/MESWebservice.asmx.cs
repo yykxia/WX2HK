@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Services;
 using System.Data;
 using IETCsoft.sql;
+using Newtonsoft.Json;
 
 namespace WX2HK.MES
 {
@@ -337,6 +338,104 @@ namespace WX2HK.MES
                 erpData.Tables.Add(materialsDt);
 
                 return erpData;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+
+        }
+
+        [WebMethod]
+        public DataTable MES_Worder(string BeginDate, string EndDate, string BillType, string flag)
+        {                         
+            //起始时间，单据类型 ,连接标识 
+            //北厂定制线数据库抓取工单信息/订单信息/物料耗用信息
+            try
+            {
+                // DataSet WorderData = new DataSet();
+                //工单数据
+                DataTable WorderDt = new DataTable();
+                string sqlCmd = "";
+                if (BillType == "MES工单-ERP生产订单" && flag == "MES")                //MES中未插入中间库的单据
+                {
+                    WorderDt.TableName = "Worder";//工单
+
+                    sqlCmd = "select uorder_number,worder_number,worder_rmtnumber,worder_rmtname,worder_rmttype,worder_rmtunit,";
+                    sqlCmd += "worder_rmtsource,worder_rmtlength,worder_rmtlgtunit,worder_rmtwidth,worder_rmtwdtunit,";
+                    sqlCmd += "worder_rmtthickness,worder_rmttikunit,worder_rmtcolour,worder_rmtmaterial,worder_rmtnum,";
+                    sqlCmd += "uorder_ordertime,uorder_finishtime,worder_status,worder_status,worder_status,worder_status,convert(varchar(100),inserttime,23) as inserttime,";
+                    sqlCmd += " uorder_productnumber,uorder_id,uorder_productnum,uorder_Blength,uorder_Bwidth,uorder_Bthickness from InterFace_WorderExcute where 1=1 ";
+
+                    if (!BeginDate.Equals("") && !EndDate.Equals(""))
+                    {
+                        sqlCmd += "and inserttime>='" + BeginDate + " 00:00:00'      and inserttime<'" + EndDate + " 23:59:59 ' ";
+                    }
+                    sqlCmd += "order by uorder_number,inserttime";
+                    SqlSel.GetMesDataset(ref WorderDt, sqlCmd, "", "", "MES");  //"MES" MES连接  "MIDDLE"中间库连接 "ERP" ERP连接
+                }
+
+                if (BillType == "MES工单-ERP生产订单" && flag == "MIDDLE")                //中间库未插入ERP生产订单单据
+                {
+                    WorderDt.TableName = "Worder";//工单
+                    sqlCmd = "select  uorder_number,uorder_productnumber,uorder_productnum,worder_number,worder_rmtnumber ,worder_rmtname";
+                    sqlCmd += ",worder_rmttype,worder_rmtunit,worder_rmtnum ,inserttime FROM ImportErp ";
+                    //sqlCmd += "order by inserttime";
+                    SqlSel.GetMesDataset(ref WorderDt, sqlCmd, "", "", "MIDDLE");
+                }
+                if (BillType == "MES销售-ERP入库领料" && flag == "Instock")
+                {
+                    WorderDt.TableName = "Instock"; //MES入库数据
+                    sqlCmd = "pc_GetNowTimeActUse";
+                    SqlSel.GetMesDataset(ref WorderDt, sqlCmd, BeginDate, EndDate, "MES");
+                }
+                if (BillType == "MES销售-ERP入库领料" && flag == "Consume")
+                {
+                    WorderDt.TableName = "Consume"; //中间库入库数据
+                    sqlCmd = "select top 100  uorder_number,uorder_productnumber,uorder_productnum,worder_rmtnumber,worder_rmtname,worder_rmtnum,BLENGTH as uorder_Blength   ";
+                    sqlCmd += ",BWIDTH  as uorder_Bwidth, BTHICKNESS as uorder_Bthickness from ORDER_CONSUME where exists(select orderno from ordernoConsume    ";
+                    sqlCmd += " where orderno=ORDER_CONSUME.uorder_number and flag=0 )  or uorder_number not in  (select orderno from  ordernoConsume)  order by uorder_number ";
+                    SqlSel.GetMesDataset(ref WorderDt, sqlCmd, "", "", "MIDDLE");
+                }
+                if (BillType == "MES销售-ERP入库领料" && flag == "ErpConsume")
+                {
+                    WorderDt.TableName = "ErpConsume"; //需要导入ERP的耗用数据   flag=2 已经插入erp
+                    sqlCmd = " select distinct   ORDERNO  as uorder_number,P_CINVCODE as uorder_productnumber ,INSTOCK_QTY as uorder_productnum ,id as uorder_id, Blength as uorder_Blength,  ";
+                    sqlCmd += " Bwidth as uorder_Bwidth,BTHICKNESS as uorder_Bthickness from ordernoConsume   where flag=1  ";
+                    SqlSel.GetMesDataset(ref WorderDt, sqlCmd, "", "", "MIDDLE");
+                }
+
+
+                // WorderData.Tables.Add(WorderDt); 
+                return WorderDt;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// 从MES系统中取出耗用，插入到中间库耗用表中，为插入ERP做数据
+        /// </summary>
+        /// <param name="ORDERNO"></param>
+        /// <param name="P_CINVCODE"></param>
+        /// <param name="ORDER_QTY"></param>
+        /// <param name="CINVCODE"></param>
+        /// <param name="LENGTH"></param>
+        /// <param name="VOLUME"></param>
+        /// <param name="COSUME"></param>
+        /// <returns></returns>
+        [WebMethod]
+        public DataTable Insert_Worder(string ORDERNO, string P_CINVCODE, decimal ORDER_QTY, string CINVCODE, decimal COSUMEQTY, decimal LENGTH, decimal WIDTH, decimal THICKNESS)
+        {
+            DataTable WorderDt = new DataTable();
+            WorderDt.TableName = "Act_Consume"; //中间库耗用数据
+            String SqlCmd = "INSERT_ORDER_ACT_CONSUME";
+            try
+            {
+                SqlSel.GetMiddleDataset(ref WorderDt, SqlCmd, ORDERNO, P_CINVCODE, ORDER_QTY, CINVCODE, COSUMEQTY, LENGTH, WIDTH, THICKNESS);
+                return WorderDt;
             }
             catch (Exception)
             {
