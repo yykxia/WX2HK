@@ -1666,6 +1666,9 @@ namespace WX2HK
         public bool PROD_ClearLoginInfo(int lineId,string CurentClass,int LoginType) 
         {
             string sqlCmd = "";
+            sqlCmd = "insert into PLM_Product_LoginReg (loginLineId,loginClass,loginTime,changeSign) values ";
+            sqlCmd += " ('" + lineId + "','" + CurentClass + "','" + DateTime.Now + "','" + LoginType + "')";
+            SqlSel.ExeSql(sqlCmd);
             if (LoginType == 1)
             {
                 sqlCmd = "update PLM_Product_Line set curentClass='" + CurentClass + "' where id='" + lineId + "'";

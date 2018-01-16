@@ -18,7 +18,7 @@
 <%--    <div class="auto-style1" style="text-align: center">
         <strong>定制线-ERP接口</strong></div>--%>
      <f:PageManager ID="PageManager1" runat="server" AutoSizePanelID="WorderGrid" />
-        <f:Grid ID="WorderGrid" runat="server" ShowHeader="false" AutoScroll="true"  AllowPaging="true" PageSize="100"  
+        <f:Grid ID="WorderGrid" runat="server" ShowHeader="true" AutoScroll="true"  AllowPaging="true" PageSize="100"  
             EnableSummary="true" SummaryPosition="Flow"  KeepCurrentSelection="true" Title="定制线-ERP接口"
              EnableCheckBoxSelect="true"  CheckBoxSelectOnly="true" OnPageIndexChange="WorderGrid_PageIndexChange"   >
             <Toolbars>

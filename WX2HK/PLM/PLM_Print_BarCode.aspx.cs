@@ -20,7 +20,7 @@ namespace WX2HK.PLM
         {
             try
             {
-                int printWeight = 1;//条码厚重度
+                int printWeight = 2;//条码厚重度
                 int minCode = Convert.ToInt32(txb_code1.Text);
                 int maxCode = Convert.ToInt32(txb_code2.Text);
                 System.Data.DataTable dt = new System.Data.DataTable();

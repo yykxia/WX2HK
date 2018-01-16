@@ -13,11 +13,29 @@ namespace PLM_TreatScan
 {
     public partial class f_main : Form
     {
-        public delegate void Displaydelegate(byte[] InputBuf);
-        public Displaydelegate disp_delegate;
+        List<SerialPort> serialPortList = new List<SerialPort>();
+        List<string> scanList = new List<string>();     //用于保存扫描的数据，为了防止重复刷入
+        public object syncObj = new object();           //用于异步锁
+
+        //public delegate void Displaydelegate(byte[] InputBuf);
+        public delegate void DisplayDelegate(string scanCode);
+        //public DisplayDelegate disp_delegate;
+        public DisplayDelegate displayDelegate; //变量命名遵守驼峰命名法
 
         public f_main()
         {
+            InitializeComponent();
+        }
+
+        /// <summary>
+        /// 有参构造函数
+        /// writer: 许建
+        /// create date: 2017/12/28
+        /// </summary>
+        /// <param name="serialPortList">已经打开端口的SerialPort</param>
+        public f_main(List<SerialPort> serialPortList)
+        {
+            this.serialPortList = serialPortList;
             InitializeComponent();
         }
 
@@ -30,17 +48,77 @@ namespace PLM_TreatScan
             }
         }
 
+        /// <summary>
+        /// 给每个端口创建事件
+        /// writer: 许建
+        /// create date： 2017/12/28
+        /// </summary>
+        /// <param name="port">端口实例</param>
+        public void ReadDevice(SerialPort port)
+        {
+            port.DataReceived += new SerialDataReceivedEventHandler(SerialDataReceived);
+        }
+
+        /// <summary>
+        /// serialPort接收信息的时间，实际上开辟了一个新的时间线程
+        /// writer： 许建
+        /// create date： 2017/12/28
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SerialDataReceived(object sender, SerialDataReceivedEventArgs e)
+        {
+            SerialPort serialPort = sender as SerialPort; //读取serialPort实例
+            System.Threading.Thread.Sleep(100);
+            Byte[] InputBuf = new Byte[serialPort.BytesToRead];
+            try
+            {
+               
+                serialPort.Read(InputBuf, '\0',serialPort.BytesToRead);
+               
+                string scanCode = System.Text.Encoding.ASCII.GetString(InputBuf).Trim('\0');
+                if (scanCode != "" && !scanList.Contains(scanCode))
+                {
+                    //如果ScanCode不是空并且不在List里面的话则进行添加，排队进入，线程异步，防止同一个值进入此方法中
+                    lock (syncObj)
+                    {
+                        if (!scanList.Contains(scanCode))
+                        {
+                            scanList.Add(scanCode);
+                            //回调委托事件
+                            this.Invoke(displayDelegate, scanCode);
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                //发生异常，暂时不做任何事情，后续将日志加进程序，在正常操作的情况下在日志中查看
+            }
+        }
+
         private void f_main_Load(object sender, EventArgs e)
         {
-            toolStripStatusLabel1.Text = "当前登录：" + Program.loginClass + " 班 " + Program.loginGroup+" 组";
+            tslbLoginStatus.Text = "当前登录：" + Program.loginClass + " 班 " + Program.loginGroup+" 组";
+            this.WindowState = FormWindowState.Maximized;
+            //为每个端口分配接收数据的事件
+            foreach (SerialPort serialPort in serialPortList)
+            {
+                ReadDevice(serialPort);
+            }
+           
+            //无边框显示
+            //this.FormBorderStyle = FormBorderStyle.None;
 
+
+            //下面的代码涉及到业务，暂时不改
             this.dataGridView1.AutoGenerateColumns = false;
 
             this.dataGridView2.AutoGenerateColumns = false;
 
             //dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
 
-            disp_delegate = new Displaydelegate(DispUI);
+            displayDelegate = new DisplayDelegate(DispUI);
             //串口1
             //Program.sp1.DataReceived += new SerialDataReceivedEventHandler(Comm_DataReceived);
             ////串口2
@@ -54,17 +132,17 @@ namespace PLM_TreatScan
             dt.Columns.Add("Press", typeof(int));
             dt.Columns.Add("ProcessStr", typeof(string));
             dt.Columns.Add("storageLists", typeof(string));
-            for (int i = 0; i < dt.Rows.Count; i++) 
+            for (int i = 0; i < dt.Rows.Count; i++)
             {
                 string storageStr = "";
                 //拼接订单库位信息
                 DataRow[] drArr = storageInfo.Select("scddcp_jhpch='" + dt.Rows[i]["orderNo"].ToString() + "'");
-                for (int j = 0; j < drArr.Length; j++) 
+                for (int j = 0; j < drArr.Length; j++)
                 {
                     storageStr += drArr[j]["StorageCode"].ToString() + " ";
                 }
                 dt.Rows[i]["storageLists"] = storageStr;
-                double proc = Math.Round(Convert.ToDouble(dt.Rows[i]["process"])*100,0);
+                double proc = Math.Round(Convert.ToDouble(dt.Rows[i]["process"]) * 100, 0);
                 dt.Rows[i]["Press"] = Convert.ToInt32(proc);
                 dt.Rows[i]["ProcessStr"] = proc + "%";
             }
@@ -77,17 +155,25 @@ namespace PLM_TreatScan
             dataGridView2.Columns[3].FillWeight = 42;
         }
 
-        public void DispUI(byte[] InputBuf)
+        //public void DispUI(byte[] InputBuf)
+        /// <summary>
+        /// 委托回调函数，显示页面数据
+        /// update writer：许建
+        /// update date: 2017/12/28
+        /// update description: 将传入的参数由字符数组改为字符串
+        /// </summary>
+        /// <param name="scanCode">扫到的编码</param>
+        public void DispUI(string scanCode)
         {
             //textBox1.Text = Convert.ToString(InputBuf);  
 
-            string ScanCode = System.Text.Encoding.ASCII.GetString(InputBuf).Trim('\0');
+            //string ScanCode = System.Text.Encoding.ASCII.GetString(InputBuf).Trim('\0');
 
             try
             {
                 //处理数据
                 DataTable orderInfo = new DataTable();
-                orderInfo = Program.webServ.WH_TreatAndOffLine(ScanCode, Program.loginClass, Program.loginGroup);
+                orderInfo = Program.webServ.WH_TreatAndOffLine(scanCode, Program.loginClass, Program.loginGroup);
                 if (orderInfo != null)
                 {
                     DataTable curDt = (DataTable)dataGridView1.DataSource;
@@ -128,65 +214,66 @@ namespace PLM_TreatScan
 
         }
 
-        void Comm_DataReceived(object sender, SerialDataReceivedEventArgs e)
-        {
+        //void Comm_DataReceived(object sender, SerialDataReceivedEventArgs e)
+        //{
 
-            Byte[] InputBuf = new Byte[128];
-            try
-            {
-                Program.sp1.Read(InputBuf, '\0', Program.sp1.BytesToRead);
-                System.Threading.Thread.Sleep(50);
-                this.Invoke(disp_delegate, InputBuf);
-            }
-            catch (Exception) 
-            {
+        //    Byte[] InputBuf = new Byte[128];
+        //    try
+        //    {
+        //        Program.sp1.Read(InputBuf, '\0', Program.sp1.BytesToRead);
+        //        System.Threading.Thread.Sleep(50);
+        //        this.Invoke(disp_delegate, InputBuf);
+        //    }
+        //    catch (Exception) 
+        //    {
                 
-            }
-        }
+        //    }
+        //}
 
-        void Comm_DataReceived_com2(object sender, SerialDataReceivedEventArgs e)
-        {
+        //void Comm_DataReceived_com2(object sender, SerialDataReceivedEventArgs e)
+        //{
 
-            Byte[] InputBuf = new Byte[128];
-            try
-            {
-                Program.sp2.Read(InputBuf, '\0', Program.sp2.BytesToRead);
-                System.Threading.Thread.Sleep(50);
-                this.Invoke(disp_delegate, InputBuf);
-            }
-            catch (Exception)
-            {
+        //    Byte[] InputBuf = new Byte[128];
+        //    try
+        //    {
+        //        Program.sp2.Read(InputBuf, '\0', Program.sp2.BytesToRead);
+        //        System.Threading.Thread.Sleep(50);
+        //        this.Invoke(disp_delegate, InputBuf);
+        //    }
+        //    catch (Exception)
+        //    {
 
-            }
-        }
+        //    }
+        //}
 
         private void f_main_FormClosed(object sender, FormClosedEventArgs e)
         {
+            this.scanList.Clear();  //将list清空
             this.DialogResult = DialogResult.OK;
         }
 
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
-            if (Program.sp1.IsOpen)
-            {
-                Program.sp1.Close();
-            }
-            else 
-            {
-                Program.sp1.Open();
-            }
+            //if (Program.sp1.IsOpen)
+            //{
+            //    Program.sp1.Close();
+            //}
+            //else 
+            //{
+            //    Program.sp1.Open();
+            //}
         }
 
         private void toolStripButton3_Click(object sender, EventArgs e)
         {
-            if (Program.sp2.IsOpen)
-            {
-                Program.sp2.Close();
-            }
-            else
-            {
-                Program.sp2.Open();
-            }
+            //if (Program.sp2.IsOpen)
+            //{
+            //    Program.sp2.Close();
+            //}
+            //else
+            //{
+            //    Program.sp2.Open();
+            //}
         }
 
         /// <summary>

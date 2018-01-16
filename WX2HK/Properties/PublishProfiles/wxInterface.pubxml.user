@@ -58,10 +58,10 @@
       <publishTime>09/14/2017 09:39:03</publishTime>
     </File>
     <File Include="bin/WX2HK.dll">
-      <publishTime>12/13/2017 17:08:15</publishTime>
+      <publishTime>12/23/2017 11:14:38</publishTime>
     </File>
     <File Include="bin/WX2HK.pdb">
-      <publishTime>12/13/2017 17:08:15</publishTime>
+      <publishTime>12/23/2017 11:14:38</publishTime>
     </File>
     <File Include="bin/zh-Hans/EntityFramework.resources.dll">
       <publishTime>09/17/2016 19:26:11</publishTime>
@@ -5686,7 +5686,7 @@
       <publishTime>01/05/2017 14:02:36</publishTime>
     </File>
     <File Include="MES/C2M2ERP.aspx">
-      <publishTime>12/13/2017 17:18:47</publishTime>
+      <publishTime>12/13/2017 17:20:03</publishTime>
     </File>
     <File Include="MES/MESWebservice.asmx">
       <publishTime>04/27/2017 17:11:59</publishTime>

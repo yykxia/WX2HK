@@ -235,7 +235,7 @@ namespace WX2HK.MES
                         comStr.Parameters.Add("@GUID", SqlDbType.VarChar, 50).Value = WorderGrid.DataKeys[rowIndex][9];
                         comStr.Parameters.Add("@uorder_number", SqlDbType.VarChar, 30).Value = WorderGrid.DataKeys[rowIndex][0];            //original order no 
                         comStr.Parameters.Add("@operator_id", SqlDbType.VarChar, 30).Value = "2673";                                   //order productno 
-                        comStr.Parameters.Add("@completing_time", SqlDbType.VarChar, 10).Value = DateTime.Now.ToShortDateString().ToString().Substring(0, 10);  //original order id
+                        comStr.Parameters.Add("@completing_time", SqlDbType.VarChar, 10).Value = DateTime.Now.ToString("yyyy-MM-dd");  //original order id
                         constr.Open();//open database connect
                         SqlDataAdapter sda = new SqlDataAdapter(comStr);
                         DataTable dt = new DataTable();

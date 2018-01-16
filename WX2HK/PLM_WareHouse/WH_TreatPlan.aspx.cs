@@ -46,5 +46,19 @@ namespace WX2HK.PLM_WareHouse
             Grid2.DataSource = dt;
             Grid2.DataBind();
         }
+
+        protected void Btn_Pick_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void Grid1_RowCommand(object sender, GridCommandEventArgs e)
+        {
+            if (e.CommandName == "LevelUp")
+            {
+                int RowIndex = e.RowIndex;
+
+            }
+        }
     }
 }

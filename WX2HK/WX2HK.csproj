@@ -1976,6 +1976,7 @@
     <Content Include="MES\C2M2ERP.aspx" />
     <Content Include="MES\MESWebservice.asmx" />
     <Content Include="MES\MES_BomList.aspx" />
+    <Content Include="MES\MES_ProcessInit.aspx" />
     <Content Include="MsgAPI.asmx" />
     <Content Include="OneImage.aspx" />
     <Content Include="others\barCodePrint.aspx" />
@@ -3904,6 +3905,7 @@
     <Compile Include="MES\C2M2ERP.aspx.designer.cs">
       <DependentUpon>C2M2ERP.aspx</DependentUpon>
     </Compile>
+    <Compile Include="MES\MES.cs" />
     <Compile Include="MES\MESWebservice.asmx.cs">
       <DependentUpon>MESWebservice.asmx</DependentUpon>
       <SubType>Component</SubType>
@@ -3914,6 +3916,13 @@
     </Compile>
     <Compile Include="MES\MES_BomList.aspx.designer.cs">
       <DependentUpon>MES_BomList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MES\MES_ProcessInit.aspx.cs">
+      <DependentUpon>MES_ProcessInit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MES\MES_ProcessInit.aspx.designer.cs">
+      <DependentUpon>MES_ProcessInit.aspx</DependentUpon>
     </Compile>
     <Compile Include="MlilyAPI_SRM.cs" />
     <Compile Include="MsgAPI.asmx.cs">

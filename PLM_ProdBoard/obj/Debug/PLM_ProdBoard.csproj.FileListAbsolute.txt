@@ -7,3 +7,13 @@ E:\code\weixin\WX2HK\PLM_ProdBoard\obj\Debug\PLM_ProdBoard.csproj.GenerateResour
 E:\code\weixin\WX2HK\PLM_ProdBoard\obj\Debug\模塑实时产量看板.exe
 E:\code\weixin\WX2HK\PLM_ProdBoard\obj\Debug\模塑实时产量看板.pdb
 E:\code\weixin\WX2HK\PLM_ProdBoard\obj\Debug\PLM_ProdBoard.csprojResolveAssemblyReference.cache
+E:\code\projects\WX2HK\PLM_ProdBoard\bin\Debug\模塑实时产量看板.exe
+E:\code\projects\WX2HK\PLM_ProdBoard\bin\Debug\模塑实时产量看板.pdb
+E:\code\projects\WX2HK\PLM_ProdBoard\obj\Debug\PLM_ProdBoard.csprojResolveAssemblyReference.cache
+E:\code\projects\WX2HK\PLM_ProdBoard\obj\Debug\PLM_ProdBoard.F_board_main.resources
+E:\code\projects\WX2HK\PLM_ProdBoard\obj\Debug\PLM_ProdBoard.f_setUp.resources
+E:\code\projects\WX2HK\PLM_ProdBoard\obj\Debug\PLM_ProdBoard.Properties.Resources.resources
+E:\code\projects\WX2HK\PLM_ProdBoard\obj\Debug\PLM_ProdBoard.csproj.GenerateResource.Cache
+E:\code\projects\WX2HK\PLM_ProdBoard\obj\Debug\PLM_ProdBoard.csproj.CoreCompileInputs.cache
+E:\code\projects\WX2HK\PLM_ProdBoard\obj\Debug\模塑实时产量看板.exe
+E:\code\projects\WX2HK\PLM_ProdBoard\obj\Debug\模塑实时产量看板.pdb

@@ -20,3 +20,5 @@ E:\code\projects\WX2HK\PLM_TreatScan\obj\Debug\PLM_TreatScan.TreatScan_port.reso
 E:\code\projects\WX2HK\PLM_TreatScan\obj\Debug\PLM_TreatScan.csproj.GenerateResource.Cache
 E:\code\projects\WX2HK\PLM_TreatScan\obj\Debug\PLM_TreatScan.exe
 E:\code\projects\WX2HK\PLM_TreatScan\obj\Debug\PLM_TreatScan.pdb
+E:\code\projects\WX2HK\PLM_TreatScan\obj\Debug\PLM_TreatScan.csproj.CoreCompileInputs.cache
+E:\code\projects\WX2HK\PLM_TreatScan\obj\Debug\PLM_TreatScan.f_login.resources
