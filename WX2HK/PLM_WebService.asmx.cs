@@ -613,11 +613,12 @@ namespace WX2HK
         {
             DataTable orderInfo = new DataTable();
             string sqlCmd = "select A.*,B.orderNo,B.ItemNo,B.ItemParm,C.RecordId,isnull(C.TreatStatus,'-1') as TreatStatus,isnull(D.StorageCode,'0') as StorageCode ";
-            sqlCmd+=" from PLM_Serials_BindBarCode A left join PLM_Product_OnLine B";
+            sqlCmd += " from PLM_Serials_BindBarCode A left join PLM_Product_OnLine B";
             sqlCmd += " ON A.tradeNo=B.id left join PLM_WH_TreatRecord_B C ON C.RecordId=A.id and C.TreatType='" + TreatType + "'";
             sqlCmd += " left join PLM_WH_Storage_Actual D ON D.CntrCode=A.BarCode";
             sqlCmd += " where A.BarCode='" + barCode + "' and A.OlineStatus='1'";
             SqlSel.GetSqlSel(ref orderInfo, sqlCmd);
+
             orderInfo.TableName = "Treat_orderInfo";
             return orderInfo;
         }
@@ -885,7 +886,10 @@ namespace WX2HK
             DataTable dt = new DataTable();
             if (barCode != "0000") 
             {
-                string sqlCmd = "select A.id as storageId,* from PLM_WH_Storage_Actual A left join PLM_Product_OnLine B on A.OnlineId=B.id where CntrCode='" + barCode + "'";
+                string sqlCmd = "select A.id as storageId,*" +
+                    "from PLM_WH_Storage_Actual A " +
+                    "left join PLM_Product_OnLine B on A.OnlineId=B.id " +
+                    "where CntrCode='" + barCode + "'";
                 SqlSel.GetSqlSel(ref dt, sqlCmd);
                 dt.TableName = "orderInfo_cntr";
             }
@@ -1457,22 +1461,22 @@ namespace WX2HK
         }
 
         /// <summary>
-        /// 获取前n单未完成加工的订单信息
+        /// 获取该工序需优先处理的工单信息
         /// </summary>
-        /// <param name="topNumb"></param>
+        /// <param name="ProcessId"></param>
         /// <returns></returns>
         [WebMethod]
-        public DataTable WH_TreatProgress(int topNumb) 
+        public DataTable WH_TreatProgress(int ProcessId) 
         {
             DataTable dt = new DataTable();
             string sqlCmd = "SELECT t1.*,t2.BoundTotal,((t2.BoundTotal-t1.RemainTreated)*1.0/t2.BoundTotal) AS process FROM (";
-            sqlCmd += " SELECT TOP " + topNumb + " scddcp_jhpch AS orderNo,";
+            sqlCmd += " SELECT scddcp_jhpch AS orderNo,";
             sqlCmd += " SUM(BoundQty) AS RemainTreated,MIN(ProdTime) AS EarlistProdTime ";
             sqlCmd += " FROM View_PLM_StorageDetails WHERE CntrCode LIKE 'B%'";
-            sqlCmd += " AND Treated<0 GROUP BY scddcp_jhpch ORDER BY EarlistProdTime";
+            sqlCmd += " AND Treated<0 AND ProcessId='"+ProcessId+"' GROUP BY scddcp_jhpch";
             sqlCmd += " ) t1 LEFT JOIN ";
             sqlCmd += " (SELECT scddcp_jhpch,SUM(BoundQty) AS BoundTotal FROM View_PLM_StorageDetails GROUP BY scddcp_jhpch) t2";
-            sqlCmd += " ON T1.orderNo=t2.scddcp_jhpch";
+            sqlCmd += " ON T1.orderNo=t2.scddcp_jhpch ORDER BY EarlistProdTime";
             if (SqlSel.GetSqlSel(ref dt, sqlCmd))
             {
                 dt.TableName = "TreatProgress";
@@ -1855,6 +1859,194 @@ namespace WX2HK
                 return null;
             }
 
+        }
+
+        /// <summary>
+        /// 工单明细各工序情况汇总
+        /// </summary>
+        /// <param name="WOId">工单Id</param>
+        /// <param name="ProcessCode">工序编号，为%是该工单全部工序</param>
+        /// <param name="CntrCode">容器编号</param>
+        /// <returns></returns>
+        [WebMethod]
+        public DataTable MES_ProcessTrack(int WOId,string ProcessCode,string CntrCode)
+        {
+            DataTable data = new DataTable();
+            data.Columns.Add("CntrCode", typeof(string));
+            data.Columns.Add("Quantity", typeof(int));
+
+            string sqlCmd = "select * from PLM_WH_TreatType where Code like '" + ProcessCode + "'";
+            DataTable procDt = new DataTable();
+            SqlSel.GetSqlSel(ref procDt, sqlCmd);
+            //
+            for (int i = 0; i < procDt.Rows.Count; i++)
+            {
+                data.Columns.Add(procDt.Rows[i]["Code"].ToString(), typeof(int));
+            }
+
+            sqlCmd = "select Id,BarCode,TradeNo,CreateTime,BindQty " +
+                "from PLM_Serials_BindBarCode where " +
+                "TradeNo='" + WOId + "' and BarCode like '" + CntrCode + "' and OlineStatus='1'";
+            DataTable serialsDt = new DataTable();
+            SqlSel.GetSqlSel(ref serialsDt, sqlCmd);
+            int serialsId = 0;
+            DateTime serialsTime = new DateTime();
+            DateTime curTime = DateTime.Now;
+            for(int j = 0; j < serialsDt.Rows.Count; j++)
+            {
+                DataRow newRow = data.NewRow();
+                serialsTime = Convert.ToDateTime(serialsDt.Rows[j]["CreateTime"]);
+                serialsId = Convert.ToInt32(serialsDt.Rows[j]["Id"]);
+                newRow["CntrCode"] = serialsDt.Rows[j]["BarCode"];
+                newRow["Quantity"] = serialsDt.Rows[j]["BindQty"];
+                int ProcessId = 0;
+                string Code = string.Empty;
+                int TimeSet = 0;
+                bool TimeRequire = false;
+                for (int i = 0; i < procDt.Rows.Count; i++)
+                {
+                    Code = procDt.Rows[i]["Code"].ToString();
+                    TimeRequire = Convert.ToBoolean(procDt.Rows[i]["TimeRequire"]);
+                    ProcessId = Convert.ToInt32(procDt.Rows[i]["Id"]);
+                    if (TimeRequire == true)
+                    {
+                        TimeSet = Convert.ToInt32(procDt.Rows[i]["TimeSet"]);
+                        TimeSpan span = curTime - serialsTime;
+                        if (span.TotalSeconds > TimeSet)
+                        {
+                            newRow[Code] = 0;
+                        }
+                        else
+                        {
+                            newRow[Code] = 1;
+                        }
+                    }
+                    else
+                    {
+                        sqlCmd = "select TreatStatus from PLM_WH_TreatRecord_B " +
+                            "where RecordId='" + serialsId + "' and TreatType='" + ProcessId + "'";
+                        object TreatStatus = SqlSel.GetSqlScale(sqlCmd);
+                        if (TreatStatus == null)
+                        {
+                            newRow[Code] = -1;
+                        }
+                        else
+                        {
+                            newRow[Code] = TreatStatus;
+                        }
+                        //newRow[Code] = TreatStatus.Equals(null) ? -1 : TreatStatus;
+                    }
+                }
+
+                data.Rows.Add(newRow);
+            }
+            data.TableName = "Processes";
+            return data;
+        }
+
+        /// <summary>
+        /// 临时工分配的工序任务
+        /// </summary>
+        /// <returns></returns>
+        [WebMethod]
+        public DataTable MES_GetTempEmployeeInfo()
+        {
+            DataTable data = new DataTable();
+            string sqlCmd = "select t1.*,t3.workerNo,t3.RecordId AS serialsId " +
+                " from View_PLM_StorageDetails t1" +
+                " left join PLM_Serials_BindBarCode t2 on t2.BarCode=t1.CntrCode" +
+                " and t2.OlineStatus='1'" +
+                " left join PLM_WH_TreatRecord_B t3 on t3.RecordId=t2.Id" +
+                " where t3.Picked='1' and t3.TreatStatus='1'";
+            SqlSel.GetSqlSel(ref data, sqlCmd);
+            data.TableName = "TempEmployeeInfo";
+            return data;
+        }
+
+        /// <summary>
+        /// 返回容器物料信息
+        /// </summary>
+        /// <param name="CntrCode"></param>
+        /// <returns></returns>
+        [WebMethod]
+        public string MES_GetCntrInfo(string CntrCode)
+        {
+            string data = string.Empty;
+            //DataTable data = new DataTable();
+            MES.CntrOrderInfo cntrOrderInfo = new MES.CntrOrderInfo();
+            //获取真实库位订单信息
+            string sqlCmd = "select LSWLZD_WLBH,LSWLZD_WLMC,LSWLZD_GGXH,BoundTotal from " +
+                "(select ItemNo,SUM(BoundQty) as BoundTotal from PLM_WH_Storage_Actual t1 " +
+                "left join PLM_Product_OnLine t2 on t1.OnlineId=t2.id where CntrCode='"+CntrCode+"' " +
+                "group by ItemNo) t left join View_LSWLZD on t.ItemNo=LSWLZD_WLBH";
+            DataTable StorageDt = new DataTable();
+            if(SqlSel.GetSqlSel(ref StorageDt, sqlCmd))
+            {
+                cntrOrderInfo.ItemNo = StorageDt.Rows[0]["LSWLZD_WLBH"].ToString();
+                cntrOrderInfo.ItemName = StorageDt.Rows[0]["LSWLZD_WLMC"].ToString();
+                cntrOrderInfo.ItemPram = StorageDt.Rows[0]["LSWLZD_GGXH"].ToString();
+                cntrOrderInfo.ItemCount = Convert.ToInt32(StorageDt.Rows[0]["BoundTotal"].ToString());
+                sqlCmd = "select scddcp_jhpch as StorageObj " +
+                "from PLM_WH_Storage_Actual t1 " +
+                "left join PLM_Product_Rel t2 on t1.OnlineId=t2.ProdId  " +
+                "where CntrCode='" + CntrCode + "' group by scddcp_jhpch";
+                DataTable StorageObj = new DataTable();
+                SqlSel.GetSqlSel(ref StorageObj, sqlCmd);
+                List<MES.StorageObj> ObjList = new List<MES.StorageObj>();
+                foreach(DataRow dr in StorageObj.Rows)
+                {
+                    ObjList.Add(new MES.StorageObj
+                    {
+                        OrderNo = dr["StorageObj"].ToString()
+                    });
+                }
+
+                cntrOrderInfo.ObjList = ObjList;
+
+                //获取最初卸绵记录
+                sqlCmd = "select top 1 * from PLM_WH_InBound_Record " +
+                    "where barCode='" + CntrCode + "' and BoundStatus='1' order by Id";
+                DataTable TempDt = new DataTable();
+                if (SqlSel.GetSqlSel(ref TempDt, sqlCmd))
+                {
+                    int BoundId = Convert.ToInt32(TempDt.Rows[0]["Id"]);
+                    int BoundTotal = Convert.ToInt32(TempDt.Rows[0]["BoundQty"]);
+                    int Count = 0;
+                    //List<string> BoundIdList = new List<string>();
+                    System.Text.StringBuilder sb = new System.Text.StringBuilder();
+                    int SerialQty = 0;
+                    string SerialId = string.Empty;
+                    DataTable serialsDt = new DataTable();
+                    List<MES.OperateLogs> OpsList = new List<MES.OperateLogs>();
+                    while (Count < BoundTotal)
+                    {
+                        MES.OperateLogs operateLogs = new MES.OperateLogs();
+                        BoundId++;
+                        sqlCmd = "select * from PLM_WH_InBound_Record where id='" + BoundId + "'";
+                        if (SqlSel.GetSqlSel(ref TempDt, sqlCmd))
+                        {
+                            operateLogs.容器 = TempDt.Rows[0]["BarCode"].ToString();
+                            operateLogs.数量 = Convert.ToInt32(TempDt.Rows[0]["BoundQty"]);
+                            operateLogs.卸绵时间 = Convert.ToDateTime(TempDt.Rows[0]["boundTime"]).ToString("MM-dd HH:mm");
+                            SerialId = TempDt.Rows[0]["RecordId"].ToString();
+                            if (!string.IsNullOrEmpty(SerialId) && SerialId.StartsWith("B"))
+                            {
+                                sqlCmd = "select * from plm_serials_bindBarCode where id=" + SerialId.Substring(1);
+                                SqlSel.GetSqlSel(ref serialsDt, sqlCmd);
+                                operateLogs.产出时间 = Convert.ToDateTime(serialsDt.Rows[0]["createTime"]).ToString("MM-dd HH:mm");
+                            }
+                            SerialQty = Convert.ToInt32(TempDt.Rows[0]["BoundQty"]);
+                            Count += SerialQty;
+                            OpsList.Add(operateLogs);
+                        }
+                    }
+
+                    cntrOrderInfo.Ops = OpsList;
+                    
+                }
+            }
+
+            return JsonConvert.SerializeObject(cntrOrderInfo);
         }
     }
 }

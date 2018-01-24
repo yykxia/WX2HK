@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s1="http://tempuri.org/AbstractTypes" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:types>
     <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
       <s:element name="isCnnected">
@@ -759,7 +759,7 @@
       <s:element name="WH_TreatProgress">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="topNumb" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ProcessId" type="s:int" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -794,6 +794,274 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="PROD_BarCodeInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="barCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PROD_BarCodeInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PROD_BarCodeInfoResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PROD_OrderInfoBind">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BarCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TradeNo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BindQty" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ExcUser" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="lineId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PROD_OrderInfoBindResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PROD_OrderInfoBindResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PROD_QueryOrderInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BarCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PROD_QueryOrderInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PROD_QueryOrderInfoResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PROD_ModifyBindInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="execTime" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="recvId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="bindQty" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="banzhi" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="lineId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PROD_ModifyBindInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="PROD_ModifyBindInfoResult" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="execTime" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PROD_GetLineOrders">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="lineId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PROD_GetLineOrdersResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PROD_GetLineOrdersResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PROD_ClearLoginInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="lineId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="CurentClass" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="LoginType" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PROD_ClearLoginInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="PROD_ClearLoginInfoResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PROD_BindCount">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="queryTime" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="lineId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="banzhi" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PROD_BindCountResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PROD_BindCountResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+            <s:element minOccurs="1" maxOccurs="1" name="queryTime" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PROD_isValidDate">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="dt" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PROD_isValidDateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="PROD_isValidDateResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WH_getServerTime">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="serverTime" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WH_getServerTimeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="WH_getServerTimeResult" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="serverTime" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LoadDateInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="date" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LoadDateInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="LoadDateInfoResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="updatePrintInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="date" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="afterPtintedNumb" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="updatePrintInfoResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="MES_DeptInfo">
+        <s:complexType />
+      </s:element>
+      <s:element name="MES_DeptInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MES_DeptInfoResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MES_ProcessTrack">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="WOId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ProcessCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CntrCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MES_ProcessTrackResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MES_ProcessTrackResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MES_GetTempEmployeeInfo">
+        <s:complexType />
+      </s:element>
+      <s:element name="MES_GetTempEmployeeInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MES_GetTempEmployeeInfoResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="boolean" type="s:boolean" />
+      <s:element name="int" type="s:int" />
+      <s:element name="DataTable" nillable="true">
+        <s:complexType>
+          <s:sequence>
+            <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+            <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="string" nillable="true" type="s:string" />
+    </s:schema>
+    <s:schema targetNamespace="http://tempuri.org/AbstractTypes">
+      <s:import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+      <s:complexType name="StringArray">
+        <s:complexContent mixed="false">
+          <s:restriction base="soapenc:Array">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="unbounded" name="String" type="s:string" />
+            </s:sequence>
+          </s:restriction>
+        </s:complexContent>
+      </s:complexType>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="isCnnectedSoapIn">
@@ -1054,6 +1322,730 @@
   <wsdl:message name="WH_AllStorageInfoSoapOut">
     <wsdl:part name="parameters" element="tns:WH_AllStorageInfoResponse" />
   </wsdl:message>
+  <wsdl:message name="PROD_BarCodeInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:PROD_BarCodeInfo" />
+  </wsdl:message>
+  <wsdl:message name="PROD_BarCodeInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:PROD_BarCodeInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="PROD_OrderInfoBindSoapIn">
+    <wsdl:part name="parameters" element="tns:PROD_OrderInfoBind" />
+  </wsdl:message>
+  <wsdl:message name="PROD_OrderInfoBindSoapOut">
+    <wsdl:part name="parameters" element="tns:PROD_OrderInfoBindResponse" />
+  </wsdl:message>
+  <wsdl:message name="PROD_QueryOrderInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:PROD_QueryOrderInfo" />
+  </wsdl:message>
+  <wsdl:message name="PROD_QueryOrderInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:PROD_QueryOrderInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="PROD_ModifyBindInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:PROD_ModifyBindInfo" />
+  </wsdl:message>
+  <wsdl:message name="PROD_ModifyBindInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:PROD_ModifyBindInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="PROD_GetLineOrdersSoapIn">
+    <wsdl:part name="parameters" element="tns:PROD_GetLineOrders" />
+  </wsdl:message>
+  <wsdl:message name="PROD_GetLineOrdersSoapOut">
+    <wsdl:part name="parameters" element="tns:PROD_GetLineOrdersResponse" />
+  </wsdl:message>
+  <wsdl:message name="PROD_ClearLoginInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:PROD_ClearLoginInfo" />
+  </wsdl:message>
+  <wsdl:message name="PROD_ClearLoginInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:PROD_ClearLoginInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="PROD_BindCountSoapIn">
+    <wsdl:part name="parameters" element="tns:PROD_BindCount" />
+  </wsdl:message>
+  <wsdl:message name="PROD_BindCountSoapOut">
+    <wsdl:part name="parameters" element="tns:PROD_BindCountResponse" />
+  </wsdl:message>
+  <wsdl:message name="PROD_isValidDateSoapIn">
+    <wsdl:part name="parameters" element="tns:PROD_isValidDate" />
+  </wsdl:message>
+  <wsdl:message name="PROD_isValidDateSoapOut">
+    <wsdl:part name="parameters" element="tns:PROD_isValidDateResponse" />
+  </wsdl:message>
+  <wsdl:message name="WH_getServerTimeSoapIn">
+    <wsdl:part name="parameters" element="tns:WH_getServerTime" />
+  </wsdl:message>
+  <wsdl:message name="WH_getServerTimeSoapOut">
+    <wsdl:part name="parameters" element="tns:WH_getServerTimeResponse" />
+  </wsdl:message>
+  <wsdl:message name="LoadDateInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:LoadDateInfo" />
+  </wsdl:message>
+  <wsdl:message name="LoadDateInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:LoadDateInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="updatePrintInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:updatePrintInfo" />
+  </wsdl:message>
+  <wsdl:message name="updatePrintInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:updatePrintInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="MES_DeptInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:MES_DeptInfo" />
+  </wsdl:message>
+  <wsdl:message name="MES_DeptInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:MES_DeptInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="MES_ProcessTrackSoapIn">
+    <wsdl:part name="parameters" element="tns:MES_ProcessTrack" />
+  </wsdl:message>
+  <wsdl:message name="MES_ProcessTrackSoapOut">
+    <wsdl:part name="parameters" element="tns:MES_ProcessTrackResponse" />
+  </wsdl:message>
+  <wsdl:message name="MES_GetTempEmployeeInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:MES_GetTempEmployeeInfo" />
+  </wsdl:message>
+  <wsdl:message name="MES_GetTempEmployeeInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:MES_GetTempEmployeeInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="isCnnectedHttpGetIn" />
+  <wsdl:message name="isCnnectedHttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="WH_Treat_flowLogin_isValidHttpGetIn">
+    <wsdl:part name="loginClass" type="s:string" />
+    <wsdl:part name="loginGroup" type="s:string" />
+    <wsdl:part name="barCode" type="s:string" />
+    <wsdl:part name="loginType" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="WH_Treat_flowLogin_isValidHttpGetOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="WH_Treat_LoginTypeHttpGetIn">
+    <wsdl:part name="loginGroup" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="WH_Treat_LoginTypeHttpGetOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="WH_queryOrderInfoByBarCodeHttpGetIn">
+    <wsdl:part name="barCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="WH_queryOrderInfoByBarCodeHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="isValidStorageCodeHttpGetIn">
+    <wsdl:part name="barCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="isValidStorageCodeHttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="getDataHttpGetIn">
+    <wsdl:part name="sqlStr" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="getDataHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ExecuteDataHttpGetIn">
+    <wsdl:part name="sqlStr" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ExecuteDataHttpGetOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="WH_queryOrderInfoByBarCode_THttpGetIn">
+    <wsdl:part name="barCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="WH_queryOrderInfoByBarCode_THttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="WH_queryOrderInfoByBarCode_SHttpGetIn">
+    <wsdl:part name="barCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="WH_queryOrderInfoByBarCode_SHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="isBoundStateHttpGetIn">
+    <wsdl:part name="barCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="isBoundStateHttpGetOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="Storage_BoundStateHttpGetIn">
+    <wsdl:part name="BarCode" type="s:string" />
+    <wsdl:part name="StorageCode" type="s:string" />
+    <wsdl:part name="RecordId" type="s:string" />
+    <wsdl:part name="BoundStatus" type="s:string" />
+    <wsdl:part name="onLineId" type="s:string" />
+    <wsdl:part name="BoundQty" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Storage_BoundStateHttpGetOut" />
+  <wsdl:message name="StoragePosHttpGetIn">
+    <wsdl:part name="storageCode" type="s:string" />
+    <wsdl:part name="optType" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="StoragePosHttpGetOut" />
+  <wsdl:message name="Transfer_offLineListHttpGetIn">
+    <wsdl:part name="lineGroup" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Transfer_offLineListHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Tranfer_OffLine_queryOrderHttpGetIn">
+    <wsdl:part name="orderId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Tranfer_OffLine_queryOrderHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Transfer_offLine_createTranferHttpGetIn">
+    <wsdl:part name="loginClass" type="s:string" />
+    <wsdl:part name="loginGroup" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Transfer_offLine_createTranferHttpGetOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="Transfer_offLine_orderBindHttpGetIn">
+    <wsdl:part name="transferId" type="s:string" />
+    <wsdl:part name="orderId" type="s:string" />
+    <wsdl:part name="bindNumb" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Transfer_offLine_orderBindHttpGetOut" />
+  <wsdl:message name="Treat_orderInfoHttpGetIn">
+    <wsdl:part name="barCode" type="s:string" />
+    <wsdl:part name="TreatType" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Treat_orderInfoHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Treat_optRecordHttpGetIn">
+    <wsdl:part name="RecordId" type="s:string" />
+    <wsdl:part name="TreatClass" type="s:string" />
+    <wsdl:part name="TreatGroup" type="s:string" />
+    <wsdl:part name="TreatType" type="s:string" />
+    <wsdl:part name="TreatStatus" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Treat_optRecordHttpGetOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="Treat_reBoundStorageHttpGetIn">
+    <wsdl:part name="recordId" type="s:string" />
+    <wsdl:part name="origStorageCode" type="s:string" />
+    <wsdl:part name="curStorageCode" type="s:string" />
+    <wsdl:part name="treatType" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Treat_reBoundStorageHttpGetOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="WH_ChangeStorageHttpGetIn">
+    <wsdl:part name="barCode" type="s:string" />
+    <wsdl:part name="origStorageCode" type="s:string" />
+    <wsdl:part name="curStorageCode" type="s:string" />
+    <wsdl:part name="changeNumb" type="s:string" />
+    <wsdl:part name="recordId" type="s:string" />
+    <wsdl:part name="onlineId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="WH_ChangeStorageHttpGetOut" />
+  <wsdl:message name="Treat_returnStorageHttpGetIn">
+    <wsdl:part name="recordId" type="s:string" />
+    <wsdl:part name="treatType" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Treat_returnStorageHttpGetOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="getDistDataHttpGetIn" />
+  <wsdl:message name="getDistDataHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="execDistHttpGetIn">
+    <wsdl:part name="tempDistId" type="s1:StringArray" />
+  </wsdl:message>
+  <wsdl:message name="execDistHttpGetOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="GetOrderInfoFromStorageHttpGetIn">
+    <wsdl:part name="barCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetOrderInfoFromStorageHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="WH_Storage_MergeCntrHttpGetIn">
+    <wsdl:part name="storageId" type="s:string" />
+    <wsdl:part name="targetCntr" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="WH_Storage_MergeCntrHttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="WH_Serials_BoundHttpGetIn">
+    <wsdl:part name="onlineId" type="s:string" />
+    <wsdl:part name="boundQty" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="WH_Serials_BoundHttpGetOut" />
+  <wsdl:message name="WH_Verify_CountHttpGetIn">
+    <wsdl:part name="storageId" type="s:string" />
+    <wsdl:part name="verifyCount" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="WH_Verify_CountHttpGetOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="WH_Check_AddTransferHttpGetIn">
+    <wsdl:part name="onlineId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="WH_Check_AddTransferHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="WH_Check_Add_BHttpGetIn">
+    <wsdl:part name="barCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="WH_Check_Add_BHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="WH_Check_BoundStorage_BHttpGetIn">
+    <wsdl:part name="recordId" type="s:string" />
+    <wsdl:part name="storageCode" type="s:string" />
+    <wsdl:part name="barCode" type="s:string" />
+    <wsdl:part name="onlineId" type="s:string" />
+    <wsdl:part name="BoundQty" type="s:string" />
+    <wsdl:part name="onlineStatus" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="WH_Check_BoundStorage_BHttpGetOut" />
+  <wsdl:message name="WH_queryOrderListHttpGetIn">
+    <wsdl:part name="orderStr" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="WH_queryOrderListHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="WH_OrderStorageListHttpGetIn">
+    <wsdl:part name="orderNo" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="WH_OrderStorageListHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="WH_StorageDetailsHttpGetIn">
+    <wsdl:part name="storageCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="WH_StorageDetailsHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="WH_TreatAndOffLineHttpGetIn">
+    <wsdl:part name="barCode" type="s:string" />
+    <wsdl:part name="LoginClass" type="s:string" />
+    <wsdl:part name="loginGroup" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="WH_TreatAndOffLineHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="WH_orderQueryByOrderNoHttpGetIn">
+    <wsdl:part name="orderNo" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="WH_orderQueryByOrderNoHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="WH_getDistLinesHttpGetIn" />
+  <wsdl:message name="WH_getDistLinesHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="PROD_IsValiadBarCodeHttpGetIn">
+    <wsdl:part name="subCount" type="s:string" />
+    <wsdl:part name="barCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="PROD_IsValiadBarCodeHttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="WH_TreatProgressHttpGetIn">
+    <wsdl:part name="ProcessId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="WH_TreatProgressHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="WH_AllStorageInfoHttpGetIn" />
+  <wsdl:message name="WH_AllStorageInfoHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="PROD_BarCodeInfoHttpGetIn">
+    <wsdl:part name="barCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="PROD_BarCodeInfoHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="PROD_OrderInfoBindHttpGetIn">
+    <wsdl:part name="BarCode" type="s:string" />
+    <wsdl:part name="TradeNo" type="s:string" />
+    <wsdl:part name="BindQty" type="s:string" />
+    <wsdl:part name="ExcUser" type="s:string" />
+    <wsdl:part name="lineId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="PROD_OrderInfoBindHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="PROD_QueryOrderInfoHttpGetIn">
+    <wsdl:part name="BarCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="PROD_QueryOrderInfoHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="PROD_GetLineOrdersHttpGetIn">
+    <wsdl:part name="lineId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="PROD_GetLineOrdersHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="PROD_ClearLoginInfoHttpGetIn">
+    <wsdl:part name="lineId" type="s:string" />
+    <wsdl:part name="CurentClass" type="s:string" />
+    <wsdl:part name="LoginType" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="PROD_ClearLoginInfoHttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="PROD_isValidDateHttpGetIn">
+    <wsdl:part name="dt" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="PROD_isValidDateHttpGetOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="LoadDateInfoHttpGetIn">
+    <wsdl:part name="date" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="LoadDateInfoHttpGetOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="updatePrintInfoHttpGetIn">
+    <wsdl:part name="date" type="s:string" />
+    <wsdl:part name="afterPtintedNumb" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="updatePrintInfoHttpGetOut" />
+  <wsdl:message name="MES_DeptInfoHttpGetIn" />
+  <wsdl:message name="MES_DeptInfoHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="MES_ProcessTrackHttpGetIn">
+    <wsdl:part name="WOId" type="s:string" />
+    <wsdl:part name="ProcessCode" type="s:string" />
+    <wsdl:part name="CntrCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="MES_ProcessTrackHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="MES_GetTempEmployeeInfoHttpGetIn" />
+  <wsdl:message name="MES_GetTempEmployeeInfoHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="isCnnectedHttpPostIn" />
+  <wsdl:message name="isCnnectedHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="WH_Treat_flowLogin_isValidHttpPostIn">
+    <wsdl:part name="loginClass" type="s:string" />
+    <wsdl:part name="loginGroup" type="s:string" />
+    <wsdl:part name="barCode" type="s:string" />
+    <wsdl:part name="loginType" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="WH_Treat_flowLogin_isValidHttpPostOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="WH_Treat_LoginTypeHttpPostIn">
+    <wsdl:part name="loginGroup" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="WH_Treat_LoginTypeHttpPostOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="WH_queryOrderInfoByBarCodeHttpPostIn">
+    <wsdl:part name="barCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="WH_queryOrderInfoByBarCodeHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="isValidStorageCodeHttpPostIn">
+    <wsdl:part name="barCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="isValidStorageCodeHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="getDataHttpPostIn">
+    <wsdl:part name="sqlStr" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="getDataHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ExecuteDataHttpPostIn">
+    <wsdl:part name="sqlStr" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ExecuteDataHttpPostOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="WH_queryOrderInfoByBarCode_THttpPostIn">
+    <wsdl:part name="barCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="WH_queryOrderInfoByBarCode_THttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="WH_queryOrderInfoByBarCode_SHttpPostIn">
+    <wsdl:part name="barCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="WH_queryOrderInfoByBarCode_SHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="isBoundStateHttpPostIn">
+    <wsdl:part name="barCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="isBoundStateHttpPostOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="Storage_BoundStateHttpPostIn">
+    <wsdl:part name="BarCode" type="s:string" />
+    <wsdl:part name="StorageCode" type="s:string" />
+    <wsdl:part name="RecordId" type="s:string" />
+    <wsdl:part name="BoundStatus" type="s:string" />
+    <wsdl:part name="onLineId" type="s:string" />
+    <wsdl:part name="BoundQty" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Storage_BoundStateHttpPostOut" />
+  <wsdl:message name="StoragePosHttpPostIn">
+    <wsdl:part name="storageCode" type="s:string" />
+    <wsdl:part name="optType" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="StoragePosHttpPostOut" />
+  <wsdl:message name="Transfer_offLineListHttpPostIn">
+    <wsdl:part name="lineGroup" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Transfer_offLineListHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Tranfer_OffLine_queryOrderHttpPostIn">
+    <wsdl:part name="orderId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Tranfer_OffLine_queryOrderHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Transfer_offLine_createTranferHttpPostIn">
+    <wsdl:part name="loginClass" type="s:string" />
+    <wsdl:part name="loginGroup" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Transfer_offLine_createTranferHttpPostOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="Transfer_offLine_orderBindHttpPostIn">
+    <wsdl:part name="transferId" type="s:string" />
+    <wsdl:part name="orderId" type="s:string" />
+    <wsdl:part name="bindNumb" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Transfer_offLine_orderBindHttpPostOut" />
+  <wsdl:message name="Treat_orderInfoHttpPostIn">
+    <wsdl:part name="barCode" type="s:string" />
+    <wsdl:part name="TreatType" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Treat_orderInfoHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Treat_optRecordHttpPostIn">
+    <wsdl:part name="RecordId" type="s:string" />
+    <wsdl:part name="TreatClass" type="s:string" />
+    <wsdl:part name="TreatGroup" type="s:string" />
+    <wsdl:part name="TreatType" type="s:string" />
+    <wsdl:part name="TreatStatus" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Treat_optRecordHttpPostOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="Treat_reBoundStorageHttpPostIn">
+    <wsdl:part name="recordId" type="s:string" />
+    <wsdl:part name="origStorageCode" type="s:string" />
+    <wsdl:part name="curStorageCode" type="s:string" />
+    <wsdl:part name="treatType" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Treat_reBoundStorageHttpPostOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="WH_ChangeStorageHttpPostIn">
+    <wsdl:part name="barCode" type="s:string" />
+    <wsdl:part name="origStorageCode" type="s:string" />
+    <wsdl:part name="curStorageCode" type="s:string" />
+    <wsdl:part name="changeNumb" type="s:string" />
+    <wsdl:part name="recordId" type="s:string" />
+    <wsdl:part name="onlineId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="WH_ChangeStorageHttpPostOut" />
+  <wsdl:message name="Treat_returnStorageHttpPostIn">
+    <wsdl:part name="recordId" type="s:string" />
+    <wsdl:part name="treatType" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Treat_returnStorageHttpPostOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="getDistDataHttpPostIn" />
+  <wsdl:message name="getDistDataHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="execDistHttpPostIn">
+    <wsdl:part name="tempDistId" type="s1:StringArray" />
+  </wsdl:message>
+  <wsdl:message name="execDistHttpPostOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="GetOrderInfoFromStorageHttpPostIn">
+    <wsdl:part name="barCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetOrderInfoFromStorageHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="WH_Storage_MergeCntrHttpPostIn">
+    <wsdl:part name="storageId" type="s:string" />
+    <wsdl:part name="targetCntr" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="WH_Storage_MergeCntrHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="WH_Serials_BoundHttpPostIn">
+    <wsdl:part name="onlineId" type="s:string" />
+    <wsdl:part name="boundQty" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="WH_Serials_BoundHttpPostOut" />
+  <wsdl:message name="WH_Verify_CountHttpPostIn">
+    <wsdl:part name="storageId" type="s:string" />
+    <wsdl:part name="verifyCount" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="WH_Verify_CountHttpPostOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="WH_Check_AddTransferHttpPostIn">
+    <wsdl:part name="onlineId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="WH_Check_AddTransferHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="WH_Check_Add_BHttpPostIn">
+    <wsdl:part name="barCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="WH_Check_Add_BHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="WH_Check_BoundStorage_BHttpPostIn">
+    <wsdl:part name="recordId" type="s:string" />
+    <wsdl:part name="storageCode" type="s:string" />
+    <wsdl:part name="barCode" type="s:string" />
+    <wsdl:part name="onlineId" type="s:string" />
+    <wsdl:part name="BoundQty" type="s:string" />
+    <wsdl:part name="onlineStatus" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="WH_Check_BoundStorage_BHttpPostOut" />
+  <wsdl:message name="WH_queryOrderListHttpPostIn">
+    <wsdl:part name="orderStr" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="WH_queryOrderListHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="WH_OrderStorageListHttpPostIn">
+    <wsdl:part name="orderNo" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="WH_OrderStorageListHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="WH_StorageDetailsHttpPostIn">
+    <wsdl:part name="storageCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="WH_StorageDetailsHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="WH_TreatAndOffLineHttpPostIn">
+    <wsdl:part name="barCode" type="s:string" />
+    <wsdl:part name="LoginClass" type="s:string" />
+    <wsdl:part name="loginGroup" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="WH_TreatAndOffLineHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="WH_orderQueryByOrderNoHttpPostIn">
+    <wsdl:part name="orderNo" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="WH_orderQueryByOrderNoHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="WH_getDistLinesHttpPostIn" />
+  <wsdl:message name="WH_getDistLinesHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="PROD_IsValiadBarCodeHttpPostIn">
+    <wsdl:part name="subCount" type="s:string" />
+    <wsdl:part name="barCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="PROD_IsValiadBarCodeHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="WH_TreatProgressHttpPostIn">
+    <wsdl:part name="ProcessId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="WH_TreatProgressHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="WH_AllStorageInfoHttpPostIn" />
+  <wsdl:message name="WH_AllStorageInfoHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="PROD_BarCodeInfoHttpPostIn">
+    <wsdl:part name="barCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="PROD_BarCodeInfoHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="PROD_OrderInfoBindHttpPostIn">
+    <wsdl:part name="BarCode" type="s:string" />
+    <wsdl:part name="TradeNo" type="s:string" />
+    <wsdl:part name="BindQty" type="s:string" />
+    <wsdl:part name="ExcUser" type="s:string" />
+    <wsdl:part name="lineId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="PROD_OrderInfoBindHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="PROD_QueryOrderInfoHttpPostIn">
+    <wsdl:part name="BarCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="PROD_QueryOrderInfoHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="PROD_GetLineOrdersHttpPostIn">
+    <wsdl:part name="lineId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="PROD_GetLineOrdersHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="PROD_ClearLoginInfoHttpPostIn">
+    <wsdl:part name="lineId" type="s:string" />
+    <wsdl:part name="CurentClass" type="s:string" />
+    <wsdl:part name="LoginType" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="PROD_ClearLoginInfoHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="PROD_isValidDateHttpPostIn">
+    <wsdl:part name="dt" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="PROD_isValidDateHttpPostOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="LoadDateInfoHttpPostIn">
+    <wsdl:part name="date" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="LoadDateInfoHttpPostOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="updatePrintInfoHttpPostIn">
+    <wsdl:part name="date" type="s:string" />
+    <wsdl:part name="afterPtintedNumb" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="updatePrintInfoHttpPostOut" />
+  <wsdl:message name="MES_DeptInfoHttpPostIn" />
+  <wsdl:message name="MES_DeptInfoHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="MES_ProcessTrackHttpPostIn">
+    <wsdl:part name="WOId" type="s:string" />
+    <wsdl:part name="ProcessCode" type="s:string" />
+    <wsdl:part name="CntrCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="MES_ProcessTrackHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="MES_GetTempEmployeeInfoHttpPostIn" />
+  <wsdl:message name="MES_GetTempEmployeeInfoHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
   <wsdl:portType name="PLM_WebServiceSoap">
     <wsdl:operation name="isCnnected">
       <wsdl:input message="tns:isCnnectedSoapIn" />
@@ -1226,6 +2218,466 @@
     <wsdl:operation name="WH_AllStorageInfo">
       <wsdl:input message="tns:WH_AllStorageInfoSoapIn" />
       <wsdl:output message="tns:WH_AllStorageInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PROD_BarCodeInfo">
+      <wsdl:input message="tns:PROD_BarCodeInfoSoapIn" />
+      <wsdl:output message="tns:PROD_BarCodeInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PROD_OrderInfoBind">
+      <wsdl:input message="tns:PROD_OrderInfoBindSoapIn" />
+      <wsdl:output message="tns:PROD_OrderInfoBindSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PROD_QueryOrderInfo">
+      <wsdl:input message="tns:PROD_QueryOrderInfoSoapIn" />
+      <wsdl:output message="tns:PROD_QueryOrderInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PROD_ModifyBindInfo">
+      <wsdl:input message="tns:PROD_ModifyBindInfoSoapIn" />
+      <wsdl:output message="tns:PROD_ModifyBindInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PROD_GetLineOrders">
+      <wsdl:input message="tns:PROD_GetLineOrdersSoapIn" />
+      <wsdl:output message="tns:PROD_GetLineOrdersSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PROD_ClearLoginInfo">
+      <wsdl:input message="tns:PROD_ClearLoginInfoSoapIn" />
+      <wsdl:output message="tns:PROD_ClearLoginInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PROD_BindCount">
+      <wsdl:input message="tns:PROD_BindCountSoapIn" />
+      <wsdl:output message="tns:PROD_BindCountSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PROD_isValidDate">
+      <wsdl:input message="tns:PROD_isValidDateSoapIn" />
+      <wsdl:output message="tns:PROD_isValidDateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WH_getServerTime">
+      <wsdl:input message="tns:WH_getServerTimeSoapIn" />
+      <wsdl:output message="tns:WH_getServerTimeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadDateInfo">
+      <wsdl:input message="tns:LoadDateInfoSoapIn" />
+      <wsdl:output message="tns:LoadDateInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="updatePrintInfo">
+      <wsdl:input message="tns:updatePrintInfoSoapIn" />
+      <wsdl:output message="tns:updatePrintInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MES_DeptInfo">
+      <wsdl:input message="tns:MES_DeptInfoSoapIn" />
+      <wsdl:output message="tns:MES_DeptInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MES_ProcessTrack">
+      <wsdl:input message="tns:MES_ProcessTrackSoapIn" />
+      <wsdl:output message="tns:MES_ProcessTrackSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MES_GetTempEmployeeInfo">
+      <wsdl:input message="tns:MES_GetTempEmployeeInfoSoapIn" />
+      <wsdl:output message="tns:MES_GetTempEmployeeInfoSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="PLM_WebServiceHttpGet">
+    <wsdl:operation name="isCnnected">
+      <wsdl:input message="tns:isCnnectedHttpGetIn" />
+      <wsdl:output message="tns:isCnnectedHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WH_Treat_flowLogin_isValid">
+      <wsdl:input message="tns:WH_Treat_flowLogin_isValidHttpGetIn" />
+      <wsdl:output message="tns:WH_Treat_flowLogin_isValidHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WH_Treat_LoginType">
+      <wsdl:input message="tns:WH_Treat_LoginTypeHttpGetIn" />
+      <wsdl:output message="tns:WH_Treat_LoginTypeHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WH_queryOrderInfoByBarCode">
+      <wsdl:input message="tns:WH_queryOrderInfoByBarCodeHttpGetIn" />
+      <wsdl:output message="tns:WH_queryOrderInfoByBarCodeHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="isValidStorageCode">
+      <wsdl:input message="tns:isValidStorageCodeHttpGetIn" />
+      <wsdl:output message="tns:isValidStorageCodeHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getData">
+      <wsdl:input message="tns:getDataHttpGetIn" />
+      <wsdl:output message="tns:getDataHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ExecuteData">
+      <wsdl:input message="tns:ExecuteDataHttpGetIn" />
+      <wsdl:output message="tns:ExecuteDataHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WH_queryOrderInfoByBarCode_T">
+      <wsdl:input message="tns:WH_queryOrderInfoByBarCode_THttpGetIn" />
+      <wsdl:output message="tns:WH_queryOrderInfoByBarCode_THttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WH_queryOrderInfoByBarCode_S">
+      <wsdl:input message="tns:WH_queryOrderInfoByBarCode_SHttpGetIn" />
+      <wsdl:output message="tns:WH_queryOrderInfoByBarCode_SHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="isBoundState">
+      <wsdl:input message="tns:isBoundStateHttpGetIn" />
+      <wsdl:output message="tns:isBoundStateHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Storage_BoundState">
+      <wsdl:input message="tns:Storage_BoundStateHttpGetIn" />
+      <wsdl:output message="tns:Storage_BoundStateHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="StoragePos">
+      <wsdl:input message="tns:StoragePosHttpGetIn" />
+      <wsdl:output message="tns:StoragePosHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Transfer_offLineList">
+      <wsdl:input message="tns:Transfer_offLineListHttpGetIn" />
+      <wsdl:output message="tns:Transfer_offLineListHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Tranfer_OffLine_queryOrder">
+      <wsdl:input message="tns:Tranfer_OffLine_queryOrderHttpGetIn" />
+      <wsdl:output message="tns:Tranfer_OffLine_queryOrderHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Transfer_offLine_createTranfer">
+      <wsdl:input message="tns:Transfer_offLine_createTranferHttpGetIn" />
+      <wsdl:output message="tns:Transfer_offLine_createTranferHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Transfer_offLine_orderBind">
+      <wsdl:input message="tns:Transfer_offLine_orderBindHttpGetIn" />
+      <wsdl:output message="tns:Transfer_offLine_orderBindHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Treat_orderInfo">
+      <wsdl:input message="tns:Treat_orderInfoHttpGetIn" />
+      <wsdl:output message="tns:Treat_orderInfoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Treat_optRecord">
+      <wsdl:input message="tns:Treat_optRecordHttpGetIn" />
+      <wsdl:output message="tns:Treat_optRecordHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Treat_reBoundStorage">
+      <wsdl:input message="tns:Treat_reBoundStorageHttpGetIn" />
+      <wsdl:output message="tns:Treat_reBoundStorageHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WH_ChangeStorage">
+      <wsdl:input message="tns:WH_ChangeStorageHttpGetIn" />
+      <wsdl:output message="tns:WH_ChangeStorageHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Treat_returnStorage">
+      <wsdl:input message="tns:Treat_returnStorageHttpGetIn" />
+      <wsdl:output message="tns:Treat_returnStorageHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getDistData">
+      <wsdl:input message="tns:getDistDataHttpGetIn" />
+      <wsdl:output message="tns:getDistDataHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="execDist">
+      <wsdl:input message="tns:execDistHttpGetIn" />
+      <wsdl:output message="tns:execDistHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderInfoFromStorage">
+      <wsdl:input message="tns:GetOrderInfoFromStorageHttpGetIn" />
+      <wsdl:output message="tns:GetOrderInfoFromStorageHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WH_Storage_MergeCntr">
+      <wsdl:input message="tns:WH_Storage_MergeCntrHttpGetIn" />
+      <wsdl:output message="tns:WH_Storage_MergeCntrHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WH_Serials_Bound">
+      <wsdl:input message="tns:WH_Serials_BoundHttpGetIn" />
+      <wsdl:output message="tns:WH_Serials_BoundHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WH_Verify_Count">
+      <wsdl:input message="tns:WH_Verify_CountHttpGetIn" />
+      <wsdl:output message="tns:WH_Verify_CountHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WH_Check_AddTransfer">
+      <wsdl:input message="tns:WH_Check_AddTransferHttpGetIn" />
+      <wsdl:output message="tns:WH_Check_AddTransferHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WH_Check_Add_B">
+      <wsdl:input message="tns:WH_Check_Add_BHttpGetIn" />
+      <wsdl:output message="tns:WH_Check_Add_BHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WH_Check_BoundStorage_B">
+      <wsdl:input message="tns:WH_Check_BoundStorage_BHttpGetIn" />
+      <wsdl:output message="tns:WH_Check_BoundStorage_BHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WH_queryOrderList">
+      <wsdl:input message="tns:WH_queryOrderListHttpGetIn" />
+      <wsdl:output message="tns:WH_queryOrderListHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WH_OrderStorageList">
+      <wsdl:input message="tns:WH_OrderStorageListHttpGetIn" />
+      <wsdl:output message="tns:WH_OrderStorageListHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WH_StorageDetails">
+      <wsdl:input message="tns:WH_StorageDetailsHttpGetIn" />
+      <wsdl:output message="tns:WH_StorageDetailsHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WH_TreatAndOffLine">
+      <wsdl:input message="tns:WH_TreatAndOffLineHttpGetIn" />
+      <wsdl:output message="tns:WH_TreatAndOffLineHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WH_orderQueryByOrderNo">
+      <wsdl:input message="tns:WH_orderQueryByOrderNoHttpGetIn" />
+      <wsdl:output message="tns:WH_orderQueryByOrderNoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WH_getDistLines">
+      <wsdl:input message="tns:WH_getDistLinesHttpGetIn" />
+      <wsdl:output message="tns:WH_getDistLinesHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PROD_IsValiadBarCode">
+      <wsdl:input message="tns:PROD_IsValiadBarCodeHttpGetIn" />
+      <wsdl:output message="tns:PROD_IsValiadBarCodeHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WH_TreatProgress">
+      <wsdl:input message="tns:WH_TreatProgressHttpGetIn" />
+      <wsdl:output message="tns:WH_TreatProgressHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WH_AllStorageInfo">
+      <wsdl:input message="tns:WH_AllStorageInfoHttpGetIn" />
+      <wsdl:output message="tns:WH_AllStorageInfoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PROD_BarCodeInfo">
+      <wsdl:input message="tns:PROD_BarCodeInfoHttpGetIn" />
+      <wsdl:output message="tns:PROD_BarCodeInfoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PROD_OrderInfoBind">
+      <wsdl:input message="tns:PROD_OrderInfoBindHttpGetIn" />
+      <wsdl:output message="tns:PROD_OrderInfoBindHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PROD_QueryOrderInfo">
+      <wsdl:input message="tns:PROD_QueryOrderInfoHttpGetIn" />
+      <wsdl:output message="tns:PROD_QueryOrderInfoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PROD_GetLineOrders">
+      <wsdl:input message="tns:PROD_GetLineOrdersHttpGetIn" />
+      <wsdl:output message="tns:PROD_GetLineOrdersHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PROD_ClearLoginInfo">
+      <wsdl:input message="tns:PROD_ClearLoginInfoHttpGetIn" />
+      <wsdl:output message="tns:PROD_ClearLoginInfoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PROD_isValidDate">
+      <wsdl:input message="tns:PROD_isValidDateHttpGetIn" />
+      <wsdl:output message="tns:PROD_isValidDateHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadDateInfo">
+      <wsdl:input message="tns:LoadDateInfoHttpGetIn" />
+      <wsdl:output message="tns:LoadDateInfoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="updatePrintInfo">
+      <wsdl:input message="tns:updatePrintInfoHttpGetIn" />
+      <wsdl:output message="tns:updatePrintInfoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MES_DeptInfo">
+      <wsdl:input message="tns:MES_DeptInfoHttpGetIn" />
+      <wsdl:output message="tns:MES_DeptInfoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MES_ProcessTrack">
+      <wsdl:input message="tns:MES_ProcessTrackHttpGetIn" />
+      <wsdl:output message="tns:MES_ProcessTrackHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MES_GetTempEmployeeInfo">
+      <wsdl:input message="tns:MES_GetTempEmployeeInfoHttpGetIn" />
+      <wsdl:output message="tns:MES_GetTempEmployeeInfoHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="PLM_WebServiceHttpPost">
+    <wsdl:operation name="isCnnected">
+      <wsdl:input message="tns:isCnnectedHttpPostIn" />
+      <wsdl:output message="tns:isCnnectedHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WH_Treat_flowLogin_isValid">
+      <wsdl:input message="tns:WH_Treat_flowLogin_isValidHttpPostIn" />
+      <wsdl:output message="tns:WH_Treat_flowLogin_isValidHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WH_Treat_LoginType">
+      <wsdl:input message="tns:WH_Treat_LoginTypeHttpPostIn" />
+      <wsdl:output message="tns:WH_Treat_LoginTypeHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WH_queryOrderInfoByBarCode">
+      <wsdl:input message="tns:WH_queryOrderInfoByBarCodeHttpPostIn" />
+      <wsdl:output message="tns:WH_queryOrderInfoByBarCodeHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="isValidStorageCode">
+      <wsdl:input message="tns:isValidStorageCodeHttpPostIn" />
+      <wsdl:output message="tns:isValidStorageCodeHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getData">
+      <wsdl:input message="tns:getDataHttpPostIn" />
+      <wsdl:output message="tns:getDataHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ExecuteData">
+      <wsdl:input message="tns:ExecuteDataHttpPostIn" />
+      <wsdl:output message="tns:ExecuteDataHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WH_queryOrderInfoByBarCode_T">
+      <wsdl:input message="tns:WH_queryOrderInfoByBarCode_THttpPostIn" />
+      <wsdl:output message="tns:WH_queryOrderInfoByBarCode_THttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WH_queryOrderInfoByBarCode_S">
+      <wsdl:input message="tns:WH_queryOrderInfoByBarCode_SHttpPostIn" />
+      <wsdl:output message="tns:WH_queryOrderInfoByBarCode_SHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="isBoundState">
+      <wsdl:input message="tns:isBoundStateHttpPostIn" />
+      <wsdl:output message="tns:isBoundStateHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Storage_BoundState">
+      <wsdl:input message="tns:Storage_BoundStateHttpPostIn" />
+      <wsdl:output message="tns:Storage_BoundStateHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="StoragePos">
+      <wsdl:input message="tns:StoragePosHttpPostIn" />
+      <wsdl:output message="tns:StoragePosHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Transfer_offLineList">
+      <wsdl:input message="tns:Transfer_offLineListHttpPostIn" />
+      <wsdl:output message="tns:Transfer_offLineListHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Tranfer_OffLine_queryOrder">
+      <wsdl:input message="tns:Tranfer_OffLine_queryOrderHttpPostIn" />
+      <wsdl:output message="tns:Tranfer_OffLine_queryOrderHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Transfer_offLine_createTranfer">
+      <wsdl:input message="tns:Transfer_offLine_createTranferHttpPostIn" />
+      <wsdl:output message="tns:Transfer_offLine_createTranferHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Transfer_offLine_orderBind">
+      <wsdl:input message="tns:Transfer_offLine_orderBindHttpPostIn" />
+      <wsdl:output message="tns:Transfer_offLine_orderBindHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Treat_orderInfo">
+      <wsdl:input message="tns:Treat_orderInfoHttpPostIn" />
+      <wsdl:output message="tns:Treat_orderInfoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Treat_optRecord">
+      <wsdl:input message="tns:Treat_optRecordHttpPostIn" />
+      <wsdl:output message="tns:Treat_optRecordHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Treat_reBoundStorage">
+      <wsdl:input message="tns:Treat_reBoundStorageHttpPostIn" />
+      <wsdl:output message="tns:Treat_reBoundStorageHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WH_ChangeStorage">
+      <wsdl:input message="tns:WH_ChangeStorageHttpPostIn" />
+      <wsdl:output message="tns:WH_ChangeStorageHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Treat_returnStorage">
+      <wsdl:input message="tns:Treat_returnStorageHttpPostIn" />
+      <wsdl:output message="tns:Treat_returnStorageHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getDistData">
+      <wsdl:input message="tns:getDistDataHttpPostIn" />
+      <wsdl:output message="tns:getDistDataHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="execDist">
+      <wsdl:input message="tns:execDistHttpPostIn" />
+      <wsdl:output message="tns:execDistHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderInfoFromStorage">
+      <wsdl:input message="tns:GetOrderInfoFromStorageHttpPostIn" />
+      <wsdl:output message="tns:GetOrderInfoFromStorageHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WH_Storage_MergeCntr">
+      <wsdl:input message="tns:WH_Storage_MergeCntrHttpPostIn" />
+      <wsdl:output message="tns:WH_Storage_MergeCntrHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WH_Serials_Bound">
+      <wsdl:input message="tns:WH_Serials_BoundHttpPostIn" />
+      <wsdl:output message="tns:WH_Serials_BoundHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WH_Verify_Count">
+      <wsdl:input message="tns:WH_Verify_CountHttpPostIn" />
+      <wsdl:output message="tns:WH_Verify_CountHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WH_Check_AddTransfer">
+      <wsdl:input message="tns:WH_Check_AddTransferHttpPostIn" />
+      <wsdl:output message="tns:WH_Check_AddTransferHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WH_Check_Add_B">
+      <wsdl:input message="tns:WH_Check_Add_BHttpPostIn" />
+      <wsdl:output message="tns:WH_Check_Add_BHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WH_Check_BoundStorage_B">
+      <wsdl:input message="tns:WH_Check_BoundStorage_BHttpPostIn" />
+      <wsdl:output message="tns:WH_Check_BoundStorage_BHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WH_queryOrderList">
+      <wsdl:input message="tns:WH_queryOrderListHttpPostIn" />
+      <wsdl:output message="tns:WH_queryOrderListHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WH_OrderStorageList">
+      <wsdl:input message="tns:WH_OrderStorageListHttpPostIn" />
+      <wsdl:output message="tns:WH_OrderStorageListHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WH_StorageDetails">
+      <wsdl:input message="tns:WH_StorageDetailsHttpPostIn" />
+      <wsdl:output message="tns:WH_StorageDetailsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WH_TreatAndOffLine">
+      <wsdl:input message="tns:WH_TreatAndOffLineHttpPostIn" />
+      <wsdl:output message="tns:WH_TreatAndOffLineHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WH_orderQueryByOrderNo">
+      <wsdl:input message="tns:WH_orderQueryByOrderNoHttpPostIn" />
+      <wsdl:output message="tns:WH_orderQueryByOrderNoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WH_getDistLines">
+      <wsdl:input message="tns:WH_getDistLinesHttpPostIn" />
+      <wsdl:output message="tns:WH_getDistLinesHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PROD_IsValiadBarCode">
+      <wsdl:input message="tns:PROD_IsValiadBarCodeHttpPostIn" />
+      <wsdl:output message="tns:PROD_IsValiadBarCodeHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WH_TreatProgress">
+      <wsdl:input message="tns:WH_TreatProgressHttpPostIn" />
+      <wsdl:output message="tns:WH_TreatProgressHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WH_AllStorageInfo">
+      <wsdl:input message="tns:WH_AllStorageInfoHttpPostIn" />
+      <wsdl:output message="tns:WH_AllStorageInfoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PROD_BarCodeInfo">
+      <wsdl:input message="tns:PROD_BarCodeInfoHttpPostIn" />
+      <wsdl:output message="tns:PROD_BarCodeInfoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PROD_OrderInfoBind">
+      <wsdl:input message="tns:PROD_OrderInfoBindHttpPostIn" />
+      <wsdl:output message="tns:PROD_OrderInfoBindHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PROD_QueryOrderInfo">
+      <wsdl:input message="tns:PROD_QueryOrderInfoHttpPostIn" />
+      <wsdl:output message="tns:PROD_QueryOrderInfoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PROD_GetLineOrders">
+      <wsdl:input message="tns:PROD_GetLineOrdersHttpPostIn" />
+      <wsdl:output message="tns:PROD_GetLineOrdersHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PROD_ClearLoginInfo">
+      <wsdl:input message="tns:PROD_ClearLoginInfoHttpPostIn" />
+      <wsdl:output message="tns:PROD_ClearLoginInfoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PROD_isValidDate">
+      <wsdl:input message="tns:PROD_isValidDateHttpPostIn" />
+      <wsdl:output message="tns:PROD_isValidDateHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadDateInfo">
+      <wsdl:input message="tns:LoadDateInfoHttpPostIn" />
+      <wsdl:output message="tns:LoadDateInfoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="updatePrintInfo">
+      <wsdl:input message="tns:updatePrintInfoHttpPostIn" />
+      <wsdl:output message="tns:updatePrintInfoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MES_DeptInfo">
+      <wsdl:input message="tns:MES_DeptInfoHttpPostIn" />
+      <wsdl:output message="tns:MES_DeptInfoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MES_ProcessTrack">
+      <wsdl:input message="tns:MES_ProcessTrackHttpPostIn" />
+      <wsdl:output message="tns:MES_ProcessTrackHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MES_GetTempEmployeeInfo">
+      <wsdl:input message="tns:MES_GetTempEmployeeInfoHttpPostIn" />
+      <wsdl:output message="tns:MES_GetTempEmployeeInfoHttpPostOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="PLM_WebServiceSoap" type="tns:PLM_WebServiceSoap">
@@ -1610,6 +3062,132 @@
     </wsdl:operation>
     <wsdl:operation name="WH_AllStorageInfo">
       <soap:operation soapAction="http://tempuri.org/WH_AllStorageInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PROD_BarCodeInfo">
+      <soap:operation soapAction="http://tempuri.org/PROD_BarCodeInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PROD_OrderInfoBind">
+      <soap:operation soapAction="http://tempuri.org/PROD_OrderInfoBind" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PROD_QueryOrderInfo">
+      <soap:operation soapAction="http://tempuri.org/PROD_QueryOrderInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PROD_ModifyBindInfo">
+      <soap:operation soapAction="http://tempuri.org/PROD_ModifyBindInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PROD_GetLineOrders">
+      <soap:operation soapAction="http://tempuri.org/PROD_GetLineOrders" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PROD_ClearLoginInfo">
+      <soap:operation soapAction="http://tempuri.org/PROD_ClearLoginInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PROD_BindCount">
+      <soap:operation soapAction="http://tempuri.org/PROD_BindCount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PROD_isValidDate">
+      <soap:operation soapAction="http://tempuri.org/PROD_isValidDate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WH_getServerTime">
+      <soap:operation soapAction="http://tempuri.org/WH_getServerTime" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadDateInfo">
+      <soap:operation soapAction="http://tempuri.org/LoadDateInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updatePrintInfo">
+      <soap:operation soapAction="http://tempuri.org/updatePrintInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MES_DeptInfo">
+      <soap:operation soapAction="http://tempuri.org/MES_DeptInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MES_ProcessTrack">
+      <soap:operation soapAction="http://tempuri.org/MES_ProcessTrack" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MES_GetTempEmployeeInfo">
+      <soap:operation soapAction="http://tempuri.org/MES_GetTempEmployeeInfo" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -2007,6 +3585,1010 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="PROD_BarCodeInfo">
+      <soap12:operation soapAction="http://tempuri.org/PROD_BarCodeInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PROD_OrderInfoBind">
+      <soap12:operation soapAction="http://tempuri.org/PROD_OrderInfoBind" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PROD_QueryOrderInfo">
+      <soap12:operation soapAction="http://tempuri.org/PROD_QueryOrderInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PROD_ModifyBindInfo">
+      <soap12:operation soapAction="http://tempuri.org/PROD_ModifyBindInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PROD_GetLineOrders">
+      <soap12:operation soapAction="http://tempuri.org/PROD_GetLineOrders" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PROD_ClearLoginInfo">
+      <soap12:operation soapAction="http://tempuri.org/PROD_ClearLoginInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PROD_BindCount">
+      <soap12:operation soapAction="http://tempuri.org/PROD_BindCount" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PROD_isValidDate">
+      <soap12:operation soapAction="http://tempuri.org/PROD_isValidDate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WH_getServerTime">
+      <soap12:operation soapAction="http://tempuri.org/WH_getServerTime" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadDateInfo">
+      <soap12:operation soapAction="http://tempuri.org/LoadDateInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updatePrintInfo">
+      <soap12:operation soapAction="http://tempuri.org/updatePrintInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MES_DeptInfo">
+      <soap12:operation soapAction="http://tempuri.org/MES_DeptInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MES_ProcessTrack">
+      <soap12:operation soapAction="http://tempuri.org/MES_ProcessTrack" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MES_GetTempEmployeeInfo">
+      <soap12:operation soapAction="http://tempuri.org/MES_GetTempEmployeeInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="PLM_WebServiceHttpGet" type="tns:PLM_WebServiceHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="isCnnected">
+      <http:operation location="/isCnnected" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WH_Treat_flowLogin_isValid">
+      <http:operation location="/WH_Treat_flowLogin_isValid" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WH_Treat_LoginType">
+      <http:operation location="/WH_Treat_LoginType" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WH_queryOrderInfoByBarCode">
+      <http:operation location="/WH_queryOrderInfoByBarCode" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="isValidStorageCode">
+      <http:operation location="/isValidStorageCode" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getData">
+      <http:operation location="/getData" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExecuteData">
+      <http:operation location="/ExecuteData" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WH_queryOrderInfoByBarCode_T">
+      <http:operation location="/WH_queryOrderInfoByBarCode_T" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WH_queryOrderInfoByBarCode_S">
+      <http:operation location="/WH_queryOrderInfoByBarCode_S" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="isBoundState">
+      <http:operation location="/isBoundState" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Storage_BoundState">
+      <http:operation location="/Storage_BoundState" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="StoragePos">
+      <http:operation location="/StoragePos" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="Transfer_offLineList">
+      <http:operation location="/Transfer_offLineList" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Tranfer_OffLine_queryOrder">
+      <http:operation location="/Tranfer_OffLine_queryOrder" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Transfer_offLine_createTranfer">
+      <http:operation location="/Transfer_offLine_createTranfer" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Transfer_offLine_orderBind">
+      <http:operation location="/Transfer_offLine_orderBind" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="Treat_orderInfo">
+      <http:operation location="/Treat_orderInfo" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Treat_optRecord">
+      <http:operation location="/Treat_optRecord" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Treat_reBoundStorage">
+      <http:operation location="/Treat_reBoundStorage" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WH_ChangeStorage">
+      <http:operation location="/WH_ChangeStorage" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="Treat_returnStorage">
+      <http:operation location="/Treat_returnStorage" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getDistData">
+      <http:operation location="/getDistData" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="execDist">
+      <http:operation location="/execDist" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderInfoFromStorage">
+      <http:operation location="/GetOrderInfoFromStorage" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WH_Storage_MergeCntr">
+      <http:operation location="/WH_Storage_MergeCntr" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WH_Serials_Bound">
+      <http:operation location="/WH_Serials_Bound" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="WH_Verify_Count">
+      <http:operation location="/WH_Verify_Count" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WH_Check_AddTransfer">
+      <http:operation location="/WH_Check_AddTransfer" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WH_Check_Add_B">
+      <http:operation location="/WH_Check_Add_B" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WH_Check_BoundStorage_B">
+      <http:operation location="/WH_Check_BoundStorage_B" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="WH_queryOrderList">
+      <http:operation location="/WH_queryOrderList" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WH_OrderStorageList">
+      <http:operation location="/WH_OrderStorageList" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WH_StorageDetails">
+      <http:operation location="/WH_StorageDetails" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WH_TreatAndOffLine">
+      <http:operation location="/WH_TreatAndOffLine" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WH_orderQueryByOrderNo">
+      <http:operation location="/WH_orderQueryByOrderNo" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WH_getDistLines">
+      <http:operation location="/WH_getDistLines" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PROD_IsValiadBarCode">
+      <http:operation location="/PROD_IsValiadBarCode" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WH_TreatProgress">
+      <http:operation location="/WH_TreatProgress" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WH_AllStorageInfo">
+      <http:operation location="/WH_AllStorageInfo" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PROD_BarCodeInfo">
+      <http:operation location="/PROD_BarCodeInfo" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PROD_OrderInfoBind">
+      <http:operation location="/PROD_OrderInfoBind" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PROD_QueryOrderInfo">
+      <http:operation location="/PROD_QueryOrderInfo" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PROD_GetLineOrders">
+      <http:operation location="/PROD_GetLineOrders" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PROD_ClearLoginInfo">
+      <http:operation location="/PROD_ClearLoginInfo" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PROD_isValidDate">
+      <http:operation location="/PROD_isValidDate" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadDateInfo">
+      <http:operation location="/LoadDateInfo" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updatePrintInfo">
+      <http:operation location="/updatePrintInfo" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="MES_DeptInfo">
+      <http:operation location="/MES_DeptInfo" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MES_ProcessTrack">
+      <http:operation location="/MES_ProcessTrack" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MES_GetTempEmployeeInfo">
+      <http:operation location="/MES_GetTempEmployeeInfo" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="PLM_WebServiceHttpPost" type="tns:PLM_WebServiceHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="isCnnected">
+      <http:operation location="/isCnnected" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WH_Treat_flowLogin_isValid">
+      <http:operation location="/WH_Treat_flowLogin_isValid" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WH_Treat_LoginType">
+      <http:operation location="/WH_Treat_LoginType" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WH_queryOrderInfoByBarCode">
+      <http:operation location="/WH_queryOrderInfoByBarCode" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="isValidStorageCode">
+      <http:operation location="/isValidStorageCode" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getData">
+      <http:operation location="/getData" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExecuteData">
+      <http:operation location="/ExecuteData" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WH_queryOrderInfoByBarCode_T">
+      <http:operation location="/WH_queryOrderInfoByBarCode_T" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WH_queryOrderInfoByBarCode_S">
+      <http:operation location="/WH_queryOrderInfoByBarCode_S" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="isBoundState">
+      <http:operation location="/isBoundState" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Storage_BoundState">
+      <http:operation location="/Storage_BoundState" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="StoragePos">
+      <http:operation location="/StoragePos" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="Transfer_offLineList">
+      <http:operation location="/Transfer_offLineList" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Tranfer_OffLine_queryOrder">
+      <http:operation location="/Tranfer_OffLine_queryOrder" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Transfer_offLine_createTranfer">
+      <http:operation location="/Transfer_offLine_createTranfer" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Transfer_offLine_orderBind">
+      <http:operation location="/Transfer_offLine_orderBind" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="Treat_orderInfo">
+      <http:operation location="/Treat_orderInfo" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Treat_optRecord">
+      <http:operation location="/Treat_optRecord" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Treat_reBoundStorage">
+      <http:operation location="/Treat_reBoundStorage" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WH_ChangeStorage">
+      <http:operation location="/WH_ChangeStorage" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="Treat_returnStorage">
+      <http:operation location="/Treat_returnStorage" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getDistData">
+      <http:operation location="/getDistData" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="execDist">
+      <http:operation location="/execDist" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderInfoFromStorage">
+      <http:operation location="/GetOrderInfoFromStorage" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WH_Storage_MergeCntr">
+      <http:operation location="/WH_Storage_MergeCntr" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WH_Serials_Bound">
+      <http:operation location="/WH_Serials_Bound" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="WH_Verify_Count">
+      <http:operation location="/WH_Verify_Count" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WH_Check_AddTransfer">
+      <http:operation location="/WH_Check_AddTransfer" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WH_Check_Add_B">
+      <http:operation location="/WH_Check_Add_B" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WH_Check_BoundStorage_B">
+      <http:operation location="/WH_Check_BoundStorage_B" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="WH_queryOrderList">
+      <http:operation location="/WH_queryOrderList" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WH_OrderStorageList">
+      <http:operation location="/WH_OrderStorageList" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WH_StorageDetails">
+      <http:operation location="/WH_StorageDetails" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WH_TreatAndOffLine">
+      <http:operation location="/WH_TreatAndOffLine" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WH_orderQueryByOrderNo">
+      <http:operation location="/WH_orderQueryByOrderNo" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WH_getDistLines">
+      <http:operation location="/WH_getDistLines" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PROD_IsValiadBarCode">
+      <http:operation location="/PROD_IsValiadBarCode" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WH_TreatProgress">
+      <http:operation location="/WH_TreatProgress" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WH_AllStorageInfo">
+      <http:operation location="/WH_AllStorageInfo" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PROD_BarCodeInfo">
+      <http:operation location="/PROD_BarCodeInfo" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PROD_OrderInfoBind">
+      <http:operation location="/PROD_OrderInfoBind" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PROD_QueryOrderInfo">
+      <http:operation location="/PROD_QueryOrderInfo" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PROD_GetLineOrders">
+      <http:operation location="/PROD_GetLineOrders" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PROD_ClearLoginInfo">
+      <http:operation location="/PROD_ClearLoginInfo" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PROD_isValidDate">
+      <http:operation location="/PROD_isValidDate" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadDateInfo">
+      <http:operation location="/LoadDateInfo" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updatePrintInfo">
+      <http:operation location="/updatePrintInfo" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="MES_DeptInfo">
+      <http:operation location="/MES_DeptInfo" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MES_ProcessTrack">
+      <http:operation location="/MES_ProcessTrack" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MES_GetTempEmployeeInfo">
+      <http:operation location="/MES_GetTempEmployeeInfo" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="PLM_WebService">
     <wsdl:port name="PLM_WebServiceSoap" binding="tns:PLM_WebServiceSoap">
@@ -2014,6 +4596,12 @@
     </wsdl:port>
     <wsdl:port name="PLM_WebServiceSoap12" binding="tns:PLM_WebServiceSoap12">
       <soap12:address location="http://localhost:30018/PLM_WebService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="PLM_WebServiceHttpGet" binding="tns:PLM_WebServiceHttpGet">
+      <http:address location="http://localhost:30018/PLM_WebService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="PLM_WebServiceHttpPost" binding="tns:PLM_WebServiceHttpPost">
+      <http:address location="http://localhost:30018/PLM_WebService.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

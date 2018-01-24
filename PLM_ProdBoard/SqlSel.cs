@@ -11,7 +11,7 @@ namespace IETCsoft.sql
         static string getconn()
         {
             //string ConnectionString = "server=192.168.10.239;uid=KQADMIN;pwd=kqadmin123;database=HKOA;";
-            string ConnectionString = "server=.;uid=sa;pwd=ice_tea.7;database=HKOATest;";
+            string ConnectionString = "server=.;uid=sa;pwd=ice_tea.7;database=HKOA;";
             return ConnectionString;
         }
         public static bool GetSqlSel(ref DataTable ODT, string SQL)

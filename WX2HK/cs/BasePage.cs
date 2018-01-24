@@ -203,5 +203,28 @@ namespace WX2HK
 
             return find;
         }
+
+        /// <summary>
+        /// 枚举工单工序状态
+        /// </summary>
+        public enum ProcessStatus
+        {
+            WAITING = -1,//待处理
+            DONE = 0,//已结束
+            GOING = 1//正在处理中
+        }
+
+        /// <summary>
+        /// 获取临时工信息(汉王firebird数据库语法) 2018-01-20 19:15:14
+        /// </summary>
+        /// <returns></returns>
+        public DataTable GetEmployee_Temp()
+        {
+            DataTable data = new DataTable();
+            string sqlCmd = "select (REALEMPLOYEECODE)code,(REALEMPLOYEECODE || ' ' || EMPLOYEENAME)name" +
+                " from KQZ_EMPLOYEE";
+            FireBird_Conn.GetSqlSel(ref data, sqlCmd);
+            return data;
+        }
     }
 }

@@ -37,26 +37,39 @@
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
             this.Panel_Right = new System.Windows.Forms.Panel();
+            this.panel_right2 = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panel_RightTop = new System.Windows.Forms.Panel();
+            this.label_right = new System.Windows.Forms.Label();
             this.Panel_Left = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.panel_left3 = new System.Windows.Forms.Panel();
+            this.dataGridView_temp = new System.Windows.Forms.DataGridView();
+            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panel_Left2 = new System.Windows.Forms.Panel();
+            this.dataGridView_WOList = new System.Windows.Forms.DataGridView();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewImageColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
+            this.label_ProcessLevel = new System.Windows.Forms.Label();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusStrip1.SuspendLayout();
             this.Panel_Right.SuspendLayout();
+            this.panel_right2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.panel_RightTop.SuspendLayout();
             this.Panel_Left.SuspendLayout();
-            this.panel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            this.panel_left3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_temp)).BeginInit();
+            this.panel_Left2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_WOList)).BeginInit();
             this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -96,13 +109,23 @@
             // 
             // Panel_Right
             // 
-            this.Panel_Right.Controls.Add(this.dataGridView1);
+            this.Panel_Right.Controls.Add(this.panel_right2);
+            this.Panel_Right.Controls.Add(this.panel_RightTop);
             this.Panel_Right.Dock = System.Windows.Forms.DockStyle.Right;
             this.Panel_Right.Location = new System.Drawing.Point(753, 0);
             this.Panel_Right.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.Panel_Right.Name = "Panel_Right";
             this.Panel_Right.Size = new System.Drawing.Size(244, 635);
             this.Panel_Right.TabIndex = 2;
+            // 
+            // panel_right2
+            // 
+            this.panel_right2.Controls.Add(this.dataGridView1);
+            this.panel_right2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel_right2.Location = new System.Drawing.Point(0, 21);
+            this.panel_right2.Name = "panel_right2";
+            this.panel_right2.Size = new System.Drawing.Size(244, 614);
+            this.panel_right2.TabIndex = 2;
             // 
             // dataGridView1
             // 
@@ -118,33 +141,31 @@
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(244, 635);
+            this.dataGridView1.Size = new System.Drawing.Size(244, 614);
             this.dataGridView1.TabIndex = 0;
             // 
-            // Column1
+            // panel_RightTop
             // 
-            this.Column1.DataPropertyName = "OrderNo";
-            this.Column1.HeaderText = "订单号";
-            this.Column1.Name = "Column1";
-            this.Column1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.panel_RightTop.Controls.Add(this.label_right);
+            this.panel_RightTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel_RightTop.Location = new System.Drawing.Point(0, 0);
+            this.panel_RightTop.Name = "panel_RightTop";
+            this.panel_RightTop.Size = new System.Drawing.Size(244, 21);
+            this.panel_RightTop.TabIndex = 1;
             // 
-            // Column2
+            // label_right
             // 
-            this.Column2.DataPropertyName = "ItemParm";
-            this.Column2.HeaderText = "规格";
-            this.Column2.Name = "Column2";
-            this.Column2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // Column3
-            // 
-            this.Column3.DataPropertyName = "BindQty";
-            this.Column3.HeaderText = "数量";
-            this.Column3.Name = "Column3";
-            this.Column3.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.label_right.AutoSize = true;
+            this.label_right.Location = new System.Drawing.Point(6, 6);
+            this.label_right.Name = "label_right";
+            this.label_right.Size = new System.Drawing.Size(53, 12);
+            this.label_right.TabIndex = 0;
+            this.label_right.Text = "实时产量";
             // 
             // Panel_Left
             // 
-            this.Panel_Left.Controls.Add(this.panel4);
+            this.Panel_Left.Controls.Add(this.panel_left3);
+            this.Panel_Left.Controls.Add(this.panel_Left2);
             this.Panel_Left.Controls.Add(this.panel3);
             this.Panel_Left.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Panel_Left.Location = new System.Drawing.Point(0, 0);
@@ -153,22 +174,73 @@
             this.Panel_Left.Size = new System.Drawing.Size(753, 635);
             this.Panel_Left.TabIndex = 3;
             // 
-            // panel4
+            // panel_left3
             // 
-            this.panel4.Controls.Add(this.dataGridView2);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(0, 24);
-            this.panel4.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(753, 611);
-            this.panel4.TabIndex = 2;
+            this.panel_left3.Controls.Add(this.dataGridView_temp);
+            this.panel_left3.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel_left3.Location = new System.Drawing.Point(0, 535);
+            this.panel_left3.Name = "panel_left3";
+            this.panel_left3.Size = new System.Drawing.Size(753, 100);
+            this.panel_left3.TabIndex = 3;
             // 
-            // dataGridView2
+            // dataGridView_temp
             // 
-            this.dataGridView2.AllowUserToAddRows = false;
-            this.dataGridView2.AllowUserToDeleteRows = false;
-            this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView2.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dataGridView_temp.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView_temp.BackgroundColor = System.Drawing.Color.White;
+            this.dataGridView_temp.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView_temp.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column8,
+            this.Column9,
+            this.Column11,
+            this.Column10});
+            this.dataGridView_temp.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView_temp.Location = new System.Drawing.Point(0, 0);
+            this.dataGridView_temp.Name = "dataGridView_temp";
+            this.dataGridView_temp.RowTemplate.Height = 23;
+            this.dataGridView_temp.Size = new System.Drawing.Size(753, 100);
+            this.dataGridView_temp.TabIndex = 0;
+            this.dataGridView_temp.AutoGenerateColumns = false;
+            // 
+            // Column8
+            // 
+            this.Column8.DataPropertyName = "WorkerNo";
+            this.Column8.HeaderText = "人员编号";
+            this.Column8.Name = "Column8";
+            // 
+            // Column9
+            // 
+            this.Column9.DataPropertyName = "StorageCode";
+            this.Column9.HeaderText = "库位";
+            this.Column9.Name = "Column9";
+            // 
+            // Column11
+            // 
+            this.Column11.DataPropertyName = "CntrCode";
+            this.Column11.HeaderText = "条码";
+            this.Column11.Name = "Column11";
+            // 
+            // Column10
+            // 
+            this.Column10.DataPropertyName = "BoundQty";
+            this.Column10.HeaderText = "数量";
+            this.Column10.Name = "Column10";
+            // 
+            // panel_Left2
+            // 
+            this.panel_Left2.Controls.Add(this.dataGridView_WOList);
+            this.panel_Left2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel_Left2.Location = new System.Drawing.Point(0, 24);
+            this.panel_Left2.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.panel_Left2.Name = "panel_Left2";
+            this.panel_Left2.Size = new System.Drawing.Size(753, 611);
+            this.panel_Left2.TabIndex = 2;
+            // 
+            // dataGridView_WOList
+            // 
+            this.dataGridView_WOList.AllowUserToAddRows = false;
+            this.dataGridView_WOList.AllowUserToDeleteRows = false;
+            this.dataGridView_WOList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView_WOList.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.Black;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("宋体", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -176,9 +248,9 @@
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridView_WOList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dataGridView_WOList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView_WOList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column4,
             this.Column6,
             this.Column5,
@@ -190,17 +262,17 @@
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView2.DefaultCellStyle = dataGridViewCellStyle3;
-            this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView2.EnableHeadersVisualStyles = false;
-            this.dataGridView2.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.ReadOnly = true;
-            this.dataGridView2.RowHeadersVisible = false;
-            this.dataGridView2.RowTemplate.Height = 23;
-            this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView2.Size = new System.Drawing.Size(753, 611);
-            this.dataGridView2.TabIndex = 0;
+            this.dataGridView_WOList.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dataGridView_WOList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView_WOList.EnableHeadersVisualStyles = false;
+            this.dataGridView_WOList.Location = new System.Drawing.Point(0, 0);
+            this.dataGridView_WOList.Name = "dataGridView_WOList";
+            this.dataGridView_WOList.ReadOnly = true;
+            this.dataGridView_WOList.RowHeadersVisible = false;
+            this.dataGridView_WOList.RowTemplate.Height = 23;
+            this.dataGridView_WOList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView_WOList.Size = new System.Drawing.Size(753, 611);
+            this.dataGridView_WOList.TabIndex = 0;
             // 
             // Column4
             // 
@@ -237,7 +309,7 @@
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.label1);
+            this.panel3.Controls.Add(this.label_ProcessLevel);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
@@ -245,15 +317,14 @@
             this.panel3.Size = new System.Drawing.Size(753, 24);
             this.panel3.TabIndex = 1;
             // 
-            // label1
+            // label_ProcessLevel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(8, 6);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(41, 12);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Top 10";
+            this.label_ProcessLevel.AutoSize = true;
+            this.label_ProcessLevel.Location = new System.Drawing.Point(3, 6);
+            this.label_ProcessLevel.Name = "label_ProcessLevel";
+            this.label_ProcessLevel.Size = new System.Drawing.Size(53, 12);
+            this.label_ProcessLevel.TabIndex = 0;
+            this.label_ProcessLevel.Text = "优先处理";
             // 
             // dataGridViewImageColumn1
             // 
@@ -266,6 +337,28 @@
             this.dataGridViewImageColumn1.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Stretch;
             this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
             this.dataGridViewImageColumn1.Width = 173;
+            // 
+            // Column1
+            // 
+            this.Column1.DataPropertyName = "OrderNo";
+            this.Column1.HeaderText = "订单号";
+            this.Column1.Name = "Column1";
+            this.Column1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // Column2
+            // 
+            this.Column2.DataPropertyName = "ItemParm";
+            this.Column2.HeaderText = "规格";
+            this.Column2.Name = "Column2";
+            this.Column2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Column2.Visible = false;
+            // 
+            // Column3
+            // 
+            this.Column3.DataPropertyName = "BindQty";
+            this.Column3.HeaderText = "数量";
+            this.Column3.Name = "Column3";
+            this.Column3.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
             // f_main
             // 
@@ -282,10 +375,15 @@
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.Panel_Right.ResumeLayout(false);
+            this.panel_right2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.panel_RightTop.ResumeLayout(false);
+            this.panel_RightTop.PerformLayout();
             this.Panel_Left.ResumeLayout(false);
-            this.panel4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            this.panel_left3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_temp)).EndInit();
+            this.panel_Left2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_WOList)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.ResumeLayout(false);
@@ -299,20 +397,29 @@
         private System.Windows.Forms.ToolStripStatusLabel tslbLoginStatus;
         private System.Windows.Forms.Panel Panel_Right;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel3;
         private System.Windows.Forms.Panel Panel_Left;
-        private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.Panel panel_Left2;
+        private System.Windows.Forms.DataGridView dataGridView_WOList;
         private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewImageColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Panel panel_right2;
+        private System.Windows.Forms.Panel panel_RightTop;
+        private System.Windows.Forms.Label label_ProcessLevel;
+        private System.Windows.Forms.Label label_right;
+        private System.Windows.Forms.Panel panel_left3;
+        private System.Windows.Forms.DataGridView dataGridView_temp;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
     }
 }

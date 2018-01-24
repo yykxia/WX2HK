@@ -49,13 +49,40 @@ namespace WX2HK.PLM_WareHouse {
         protected global::FineUI.Grid Grid1;
         
         /// <summary>
-        /// Grid2 控件。
+        /// tlb1 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FineUI.Grid Grid2;
+        protected global::FineUI.Toolbar tlb1;
+        
+        /// <summary>
+        /// tlbf1 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.ToolbarFill tlbf1;
+        
+        /// <summary>
+        /// btn_commit 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.Button btn_commit;
+        
+        /// <summary>
+        /// Grid_wating 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.Grid Grid_wating;
         
         /// <summary>
         /// tlb2 控件。
@@ -67,6 +94,15 @@ namespace WX2HK.PLM_WareHouse {
         protected global::FineUI.Toolbar tlb2;
         
         /// <summary>
+        /// DDL_Emple 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.DropDownList DDL_Emple;
+        
+        /// <summary>
         /// Btn_Pick 控件。
         /// </summary>
         /// <remarks>
@@ -74,5 +110,14 @@ namespace WX2HK.PLM_WareHouse {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::FineUI.Button Btn_Pick;
+        
+        /// <summary>
+        /// Grid_doing 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.Grid Grid_doing;
     }
 }

@@ -99,6 +99,9 @@ namespace PLM_TreatScan
 
         private void f_main_Load(object sender, EventArgs e)
         {
+            //加载临时工加工信息
+            BindTempGrid();
+
             tslbLoginStatus.Text = "当前登录：" + Program.loginClass + " 班 " + Program.loginGroup+" 组";
             this.WindowState = FormWindowState.Maximized;
             //为每个端口分配接收数据的事件
@@ -114,7 +117,7 @@ namespace PLM_TreatScan
             //下面的代码涉及到业务，暂时不改
             this.dataGridView1.AutoGenerateColumns = false;
 
-            this.dataGridView2.AutoGenerateColumns = false;
+            this.dataGridView_WOList.AutoGenerateColumns = false;
 
             //dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
 
@@ -126,7 +129,7 @@ namespace PLM_TreatScan
 
             //
 
-            DataTable dt = Program.webServ.WH_TreatProgress(20);
+            DataTable dt = Program.webServ.WH_TreatProgress(1);
             DataTable storageInfo = Program.webServ.WH_AllStorageInfo();
 
             dt.Columns.Add("Press", typeof(int));
@@ -147,12 +150,12 @@ namespace PLM_TreatScan
                 dt.Rows[i]["ProcessStr"] = proc + "%";
             }
             List<ent.OrderInfo> orderList = ConvertToList(dt);
-            dataGridView2.DataSource = orderList;
+            dataGridView_WOList.DataSource = orderList;
             //设置列宽
-            dataGridView2.Columns[0].FillWeight = 28;
-            dataGridView2.Columns[1].FillWeight = 20;
-            dataGridView2.Columns[2].FillWeight = 10;
-            dataGridView2.Columns[3].FillWeight = 42;
+            dataGridView_WOList.Columns[0].FillWeight = 28;
+            dataGridView_WOList.Columns[1].FillWeight = 20;
+            dataGridView_WOList.Columns[2].FillWeight = 10;
+            dataGridView_WOList.Columns[3].FillWeight = 42;
         }
 
         //public void DispUI(byte[] InputBuf)
@@ -360,6 +363,13 @@ namespace PLM_TreatScan
             }
 
             return list;
+        }
+
+        private void BindTempGrid()
+        {
+            DataTable dt = new DataTable();
+            dt = Program.webServ.MES_GetTempEmployeeInfo();//手动分配的临时工剪边
+            dataGridView_temp.DataSource = dt;
         }
     }
 }

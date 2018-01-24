@@ -24,7 +24,7 @@ namespace PLM_TreatScan.PLMWebService {
     
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Web.Services.WebServiceBindingAttribute(Name="PLM_WebServiceSoap", Namespace="http://tempuri.org/")]
@@ -115,6 +115,34 @@ namespace PLM_TreatScan.PLMWebService {
         private System.Threading.SendOrPostCallback WH_TreatProgressOperationCompleted;
         
         private System.Threading.SendOrPostCallback WH_AllStorageInfoOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback PROD_BarCodeInfoOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback PROD_OrderInfoBindOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback PROD_QueryOrderInfoOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback PROD_ModifyBindInfoOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback PROD_GetLineOrdersOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback PROD_ClearLoginInfoOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback PROD_BindCountOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback PROD_isValidDateOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback WH_getServerTimeOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback LoadDateInfoOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback updatePrintInfoOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback MES_DeptInfoOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback MES_ProcessTrackOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback MES_GetTempEmployeeInfoOperationCompleted;
         
         private bool useDefaultCredentialsSetExplicitly;
         
@@ -282,6 +310,48 @@ namespace PLM_TreatScan.PLMWebService {
         
         /// <remarks/>
         public event WH_AllStorageInfoCompletedEventHandler WH_AllStorageInfoCompleted;
+        
+        /// <remarks/>
+        public event PROD_BarCodeInfoCompletedEventHandler PROD_BarCodeInfoCompleted;
+        
+        /// <remarks/>
+        public event PROD_OrderInfoBindCompletedEventHandler PROD_OrderInfoBindCompleted;
+        
+        /// <remarks/>
+        public event PROD_QueryOrderInfoCompletedEventHandler PROD_QueryOrderInfoCompleted;
+        
+        /// <remarks/>
+        public event PROD_ModifyBindInfoCompletedEventHandler PROD_ModifyBindInfoCompleted;
+        
+        /// <remarks/>
+        public event PROD_GetLineOrdersCompletedEventHandler PROD_GetLineOrdersCompleted;
+        
+        /// <remarks/>
+        public event PROD_ClearLoginInfoCompletedEventHandler PROD_ClearLoginInfoCompleted;
+        
+        /// <remarks/>
+        public event PROD_BindCountCompletedEventHandler PROD_BindCountCompleted;
+        
+        /// <remarks/>
+        public event PROD_isValidDateCompletedEventHandler PROD_isValidDateCompleted;
+        
+        /// <remarks/>
+        public event WH_getServerTimeCompletedEventHandler WH_getServerTimeCompleted;
+        
+        /// <remarks/>
+        public event LoadDateInfoCompletedEventHandler LoadDateInfoCompleted;
+        
+        /// <remarks/>
+        public event updatePrintInfoCompletedEventHandler updatePrintInfoCompleted;
+        
+        /// <remarks/>
+        public event MES_DeptInfoCompletedEventHandler MES_DeptInfoCompleted;
+        
+        /// <remarks/>
+        public event MES_ProcessTrackCompletedEventHandler MES_ProcessTrackCompleted;
+        
+        /// <remarks/>
+        public event MES_GetTempEmployeeInfoCompletedEventHandler MES_GetTempEmployeeInfoCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/isCnnected", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -1558,24 +1628,24 @@ namespace PLM_TreatScan.PLMWebService {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/WH_TreatProgress", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataTable WH_TreatProgress(int topNumb) {
+        public System.Data.DataTable WH_TreatProgress(int ProcessId) {
             object[] results = this.Invoke("WH_TreatProgress", new object[] {
-                        topNumb});
+                        ProcessId});
             return ((System.Data.DataTable)(results[0]));
         }
         
         /// <remarks/>
-        public void WH_TreatProgressAsync(int topNumb) {
-            this.WH_TreatProgressAsync(topNumb, null);
+        public void WH_TreatProgressAsync(int ProcessId) {
+            this.WH_TreatProgressAsync(ProcessId, null);
         }
         
         /// <remarks/>
-        public void WH_TreatProgressAsync(int topNumb, object userState) {
+        public void WH_TreatProgressAsync(int ProcessId, object userState) {
             if ((this.WH_TreatProgressOperationCompleted == null)) {
                 this.WH_TreatProgressOperationCompleted = new System.Threading.SendOrPostCallback(this.OnWH_TreatProgressOperationCompleted);
             }
             this.InvokeAsync("WH_TreatProgress", new object[] {
-                        topNumb}, this.WH_TreatProgressOperationCompleted, userState);
+                        ProcessId}, this.WH_TreatProgressOperationCompleted, userState);
         }
         
         private void OnWH_TreatProgressOperationCompleted(object arg) {
@@ -1613,6 +1683,442 @@ namespace PLM_TreatScan.PLMWebService {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/PROD_BarCodeInfo", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataTable PROD_BarCodeInfo(string barCode) {
+            object[] results = this.Invoke("PROD_BarCodeInfo", new object[] {
+                        barCode});
+            return ((System.Data.DataTable)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void PROD_BarCodeInfoAsync(string barCode) {
+            this.PROD_BarCodeInfoAsync(barCode, null);
+        }
+        
+        /// <remarks/>
+        public void PROD_BarCodeInfoAsync(string barCode, object userState) {
+            if ((this.PROD_BarCodeInfoOperationCompleted == null)) {
+                this.PROD_BarCodeInfoOperationCompleted = new System.Threading.SendOrPostCallback(this.OnPROD_BarCodeInfoOperationCompleted);
+            }
+            this.InvokeAsync("PROD_BarCodeInfo", new object[] {
+                        barCode}, this.PROD_BarCodeInfoOperationCompleted, userState);
+        }
+        
+        private void OnPROD_BarCodeInfoOperationCompleted(object arg) {
+            if ((this.PROD_BarCodeInfoCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.PROD_BarCodeInfoCompleted(this, new PROD_BarCodeInfoCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/PROD_OrderInfoBind", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public string PROD_OrderInfoBind(string BarCode, string TradeNo, string BindQty, string ExcUser, string lineId) {
+            object[] results = this.Invoke("PROD_OrderInfoBind", new object[] {
+                        BarCode,
+                        TradeNo,
+                        BindQty,
+                        ExcUser,
+                        lineId});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void PROD_OrderInfoBindAsync(string BarCode, string TradeNo, string BindQty, string ExcUser, string lineId) {
+            this.PROD_OrderInfoBindAsync(BarCode, TradeNo, BindQty, ExcUser, lineId, null);
+        }
+        
+        /// <remarks/>
+        public void PROD_OrderInfoBindAsync(string BarCode, string TradeNo, string BindQty, string ExcUser, string lineId, object userState) {
+            if ((this.PROD_OrderInfoBindOperationCompleted == null)) {
+                this.PROD_OrderInfoBindOperationCompleted = new System.Threading.SendOrPostCallback(this.OnPROD_OrderInfoBindOperationCompleted);
+            }
+            this.InvokeAsync("PROD_OrderInfoBind", new object[] {
+                        BarCode,
+                        TradeNo,
+                        BindQty,
+                        ExcUser,
+                        lineId}, this.PROD_OrderInfoBindOperationCompleted, userState);
+        }
+        
+        private void OnPROD_OrderInfoBindOperationCompleted(object arg) {
+            if ((this.PROD_OrderInfoBindCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.PROD_OrderInfoBindCompleted(this, new PROD_OrderInfoBindCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/PROD_QueryOrderInfo", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataTable PROD_QueryOrderInfo(string BarCode) {
+            object[] results = this.Invoke("PROD_QueryOrderInfo", new object[] {
+                        BarCode});
+            return ((System.Data.DataTable)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void PROD_QueryOrderInfoAsync(string BarCode) {
+            this.PROD_QueryOrderInfoAsync(BarCode, null);
+        }
+        
+        /// <remarks/>
+        public void PROD_QueryOrderInfoAsync(string BarCode, object userState) {
+            if ((this.PROD_QueryOrderInfoOperationCompleted == null)) {
+                this.PROD_QueryOrderInfoOperationCompleted = new System.Threading.SendOrPostCallback(this.OnPROD_QueryOrderInfoOperationCompleted);
+            }
+            this.InvokeAsync("PROD_QueryOrderInfo", new object[] {
+                        BarCode}, this.PROD_QueryOrderInfoOperationCompleted, userState);
+        }
+        
+        private void OnPROD_QueryOrderInfoOperationCompleted(object arg) {
+            if ((this.PROD_QueryOrderInfoCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.PROD_QueryOrderInfoCompleted(this, new PROD_QueryOrderInfoCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/PROD_ModifyBindInfo", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool PROD_ModifyBindInfo(ref System.DateTime execTime, string recvId, string bindQty, string banzhi, string lineId, string sId) {
+            object[] results = this.Invoke("PROD_ModifyBindInfo", new object[] {
+                        execTime,
+                        recvId,
+                        bindQty,
+                        banzhi,
+                        lineId,
+                        sId});
+            execTime = ((System.DateTime)(results[1]));
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void PROD_ModifyBindInfoAsync(System.DateTime execTime, string recvId, string bindQty, string banzhi, string lineId, string sId) {
+            this.PROD_ModifyBindInfoAsync(execTime, recvId, bindQty, banzhi, lineId, sId, null);
+        }
+        
+        /// <remarks/>
+        public void PROD_ModifyBindInfoAsync(System.DateTime execTime, string recvId, string bindQty, string banzhi, string lineId, string sId, object userState) {
+            if ((this.PROD_ModifyBindInfoOperationCompleted == null)) {
+                this.PROD_ModifyBindInfoOperationCompleted = new System.Threading.SendOrPostCallback(this.OnPROD_ModifyBindInfoOperationCompleted);
+            }
+            this.InvokeAsync("PROD_ModifyBindInfo", new object[] {
+                        execTime,
+                        recvId,
+                        bindQty,
+                        banzhi,
+                        lineId,
+                        sId}, this.PROD_ModifyBindInfoOperationCompleted, userState);
+        }
+        
+        private void OnPROD_ModifyBindInfoOperationCompleted(object arg) {
+            if ((this.PROD_ModifyBindInfoCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.PROD_ModifyBindInfoCompleted(this, new PROD_ModifyBindInfoCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/PROD_GetLineOrders", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataTable PROD_GetLineOrders(int lineId) {
+            object[] results = this.Invoke("PROD_GetLineOrders", new object[] {
+                        lineId});
+            return ((System.Data.DataTable)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void PROD_GetLineOrdersAsync(int lineId) {
+            this.PROD_GetLineOrdersAsync(lineId, null);
+        }
+        
+        /// <remarks/>
+        public void PROD_GetLineOrdersAsync(int lineId, object userState) {
+            if ((this.PROD_GetLineOrdersOperationCompleted == null)) {
+                this.PROD_GetLineOrdersOperationCompleted = new System.Threading.SendOrPostCallback(this.OnPROD_GetLineOrdersOperationCompleted);
+            }
+            this.InvokeAsync("PROD_GetLineOrders", new object[] {
+                        lineId}, this.PROD_GetLineOrdersOperationCompleted, userState);
+        }
+        
+        private void OnPROD_GetLineOrdersOperationCompleted(object arg) {
+            if ((this.PROD_GetLineOrdersCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.PROD_GetLineOrdersCompleted(this, new PROD_GetLineOrdersCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/PROD_ClearLoginInfo", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool PROD_ClearLoginInfo(int lineId, string CurentClass, int LoginType) {
+            object[] results = this.Invoke("PROD_ClearLoginInfo", new object[] {
+                        lineId,
+                        CurentClass,
+                        LoginType});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void PROD_ClearLoginInfoAsync(int lineId, string CurentClass, int LoginType) {
+            this.PROD_ClearLoginInfoAsync(lineId, CurentClass, LoginType, null);
+        }
+        
+        /// <remarks/>
+        public void PROD_ClearLoginInfoAsync(int lineId, string CurentClass, int LoginType, object userState) {
+            if ((this.PROD_ClearLoginInfoOperationCompleted == null)) {
+                this.PROD_ClearLoginInfoOperationCompleted = new System.Threading.SendOrPostCallback(this.OnPROD_ClearLoginInfoOperationCompleted);
+            }
+            this.InvokeAsync("PROD_ClearLoginInfo", new object[] {
+                        lineId,
+                        CurentClass,
+                        LoginType}, this.PROD_ClearLoginInfoOperationCompleted, userState);
+        }
+        
+        private void OnPROD_ClearLoginInfoOperationCompleted(object arg) {
+            if ((this.PROD_ClearLoginInfoCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.PROD_ClearLoginInfoCompleted(this, new PROD_ClearLoginInfoCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/PROD_BindCount", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataTable PROD_BindCount(ref System.DateTime queryTime, int lineId, string banzhi) {
+            object[] results = this.Invoke("PROD_BindCount", new object[] {
+                        queryTime,
+                        lineId,
+                        banzhi});
+            queryTime = ((System.DateTime)(results[1]));
+            return ((System.Data.DataTable)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void PROD_BindCountAsync(System.DateTime queryTime, int lineId, string banzhi) {
+            this.PROD_BindCountAsync(queryTime, lineId, banzhi, null);
+        }
+        
+        /// <remarks/>
+        public void PROD_BindCountAsync(System.DateTime queryTime, int lineId, string banzhi, object userState) {
+            if ((this.PROD_BindCountOperationCompleted == null)) {
+                this.PROD_BindCountOperationCompleted = new System.Threading.SendOrPostCallback(this.OnPROD_BindCountOperationCompleted);
+            }
+            this.InvokeAsync("PROD_BindCount", new object[] {
+                        queryTime,
+                        lineId,
+                        banzhi}, this.PROD_BindCountOperationCompleted, userState);
+        }
+        
+        private void OnPROD_BindCountOperationCompleted(object arg) {
+            if ((this.PROD_BindCountCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.PROD_BindCountCompleted(this, new PROD_BindCountCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/PROD_isValidDate", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public int PROD_isValidDate(System.DateTime dt) {
+            object[] results = this.Invoke("PROD_isValidDate", new object[] {
+                        dt});
+            return ((int)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void PROD_isValidDateAsync(System.DateTime dt) {
+            this.PROD_isValidDateAsync(dt, null);
+        }
+        
+        /// <remarks/>
+        public void PROD_isValidDateAsync(System.DateTime dt, object userState) {
+            if ((this.PROD_isValidDateOperationCompleted == null)) {
+                this.PROD_isValidDateOperationCompleted = new System.Threading.SendOrPostCallback(this.OnPROD_isValidDateOperationCompleted);
+            }
+            this.InvokeAsync("PROD_isValidDate", new object[] {
+                        dt}, this.PROD_isValidDateOperationCompleted, userState);
+        }
+        
+        private void OnPROD_isValidDateOperationCompleted(object arg) {
+            if ((this.PROD_isValidDateCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.PROD_isValidDateCompleted(this, new PROD_isValidDateCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/WH_getServerTime", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public int WH_getServerTime(ref System.DateTime serverTime) {
+            object[] results = this.Invoke("WH_getServerTime", new object[] {
+                        serverTime});
+            serverTime = ((System.DateTime)(results[1]));
+            return ((int)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void WH_getServerTimeAsync(System.DateTime serverTime) {
+            this.WH_getServerTimeAsync(serverTime, null);
+        }
+        
+        /// <remarks/>
+        public void WH_getServerTimeAsync(System.DateTime serverTime, object userState) {
+            if ((this.WH_getServerTimeOperationCompleted == null)) {
+                this.WH_getServerTimeOperationCompleted = new System.Threading.SendOrPostCallback(this.OnWH_getServerTimeOperationCompleted);
+            }
+            this.InvokeAsync("WH_getServerTime", new object[] {
+                        serverTime}, this.WH_getServerTimeOperationCompleted, userState);
+        }
+        
+        private void OnWH_getServerTimeOperationCompleted(object arg) {
+            if ((this.WH_getServerTimeCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.WH_getServerTimeCompleted(this, new WH_getServerTimeCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/LoadDateInfo", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public int LoadDateInfo(string date) {
+            object[] results = this.Invoke("LoadDateInfo", new object[] {
+                        date});
+            return ((int)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void LoadDateInfoAsync(string date) {
+            this.LoadDateInfoAsync(date, null);
+        }
+        
+        /// <remarks/>
+        public void LoadDateInfoAsync(string date, object userState) {
+            if ((this.LoadDateInfoOperationCompleted == null)) {
+                this.LoadDateInfoOperationCompleted = new System.Threading.SendOrPostCallback(this.OnLoadDateInfoOperationCompleted);
+            }
+            this.InvokeAsync("LoadDateInfo", new object[] {
+                        date}, this.LoadDateInfoOperationCompleted, userState);
+        }
+        
+        private void OnLoadDateInfoOperationCompleted(object arg) {
+            if ((this.LoadDateInfoCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.LoadDateInfoCompleted(this, new LoadDateInfoCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/updatePrintInfo", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void updatePrintInfo(string date, int afterPtintedNumb) {
+            this.Invoke("updatePrintInfo", new object[] {
+                        date,
+                        afterPtintedNumb});
+        }
+        
+        /// <remarks/>
+        public void updatePrintInfoAsync(string date, int afterPtintedNumb) {
+            this.updatePrintInfoAsync(date, afterPtintedNumb, null);
+        }
+        
+        /// <remarks/>
+        public void updatePrintInfoAsync(string date, int afterPtintedNumb, object userState) {
+            if ((this.updatePrintInfoOperationCompleted == null)) {
+                this.updatePrintInfoOperationCompleted = new System.Threading.SendOrPostCallback(this.OnupdatePrintInfoOperationCompleted);
+            }
+            this.InvokeAsync("updatePrintInfo", new object[] {
+                        date,
+                        afterPtintedNumb}, this.updatePrintInfoOperationCompleted, userState);
+        }
+        
+        private void OnupdatePrintInfoOperationCompleted(object arg) {
+            if ((this.updatePrintInfoCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.updatePrintInfoCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/MES_DeptInfo", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public string MES_DeptInfo() {
+            object[] results = this.Invoke("MES_DeptInfo", new object[0]);
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void MES_DeptInfoAsync() {
+            this.MES_DeptInfoAsync(null);
+        }
+        
+        /// <remarks/>
+        public void MES_DeptInfoAsync(object userState) {
+            if ((this.MES_DeptInfoOperationCompleted == null)) {
+                this.MES_DeptInfoOperationCompleted = new System.Threading.SendOrPostCallback(this.OnMES_DeptInfoOperationCompleted);
+            }
+            this.InvokeAsync("MES_DeptInfo", new object[0], this.MES_DeptInfoOperationCompleted, userState);
+        }
+        
+        private void OnMES_DeptInfoOperationCompleted(object arg) {
+            if ((this.MES_DeptInfoCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.MES_DeptInfoCompleted(this, new MES_DeptInfoCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/MES_ProcessTrack", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataTable MES_ProcessTrack(int WOId, string ProcessCode, string CntrCode) {
+            object[] results = this.Invoke("MES_ProcessTrack", new object[] {
+                        WOId,
+                        ProcessCode,
+                        CntrCode});
+            return ((System.Data.DataTable)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void MES_ProcessTrackAsync(int WOId, string ProcessCode, string CntrCode) {
+            this.MES_ProcessTrackAsync(WOId, ProcessCode, CntrCode, null);
+        }
+        
+        /// <remarks/>
+        public void MES_ProcessTrackAsync(int WOId, string ProcessCode, string CntrCode, object userState) {
+            if ((this.MES_ProcessTrackOperationCompleted == null)) {
+                this.MES_ProcessTrackOperationCompleted = new System.Threading.SendOrPostCallback(this.OnMES_ProcessTrackOperationCompleted);
+            }
+            this.InvokeAsync("MES_ProcessTrack", new object[] {
+                        WOId,
+                        ProcessCode,
+                        CntrCode}, this.MES_ProcessTrackOperationCompleted, userState);
+        }
+        
+        private void OnMES_ProcessTrackOperationCompleted(object arg) {
+            if ((this.MES_ProcessTrackCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.MES_ProcessTrackCompleted(this, new MES_ProcessTrackCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/MES_GetTempEmployeeInfo", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataTable MES_GetTempEmployeeInfo() {
+            object[] results = this.Invoke("MES_GetTempEmployeeInfo", new object[0]);
+            return ((System.Data.DataTable)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void MES_GetTempEmployeeInfoAsync() {
+            this.MES_GetTempEmployeeInfoAsync(null);
+        }
+        
+        /// <remarks/>
+        public void MES_GetTempEmployeeInfoAsync(object userState) {
+            if ((this.MES_GetTempEmployeeInfoOperationCompleted == null)) {
+                this.MES_GetTempEmployeeInfoOperationCompleted = new System.Threading.SendOrPostCallback(this.OnMES_GetTempEmployeeInfoOperationCompleted);
+            }
+            this.InvokeAsync("MES_GetTempEmployeeInfo", new object[0], this.MES_GetTempEmployeeInfoOperationCompleted, userState);
+        }
+        
+        private void OnMES_GetTempEmployeeInfoOperationCompleted(object arg) {
+            if ((this.MES_GetTempEmployeeInfoCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.MES_GetTempEmployeeInfoCompleted(this, new MES_GetTempEmployeeInfoCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -1632,11 +2138,11 @@ namespace PLM_TreatScan.PLMWebService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     public delegate void isCnnectedCompletedEventHandler(object sender, isCnnectedCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class isCnnectedCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1658,11 +2164,11 @@ namespace PLM_TreatScan.PLMWebService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     public delegate void existNewVersionCompletedEventHandler(object sender, existNewVersionCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class existNewVersionCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1692,11 +2198,11 @@ namespace PLM_TreatScan.PLMWebService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     public delegate void offLineCompletedEventHandler(object sender, offLineCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class offLineCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1726,11 +2232,11 @@ namespace PLM_TreatScan.PLMWebService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     public delegate void WH_Treat_flowLogin_isValidCompletedEventHandler(object sender, WH_Treat_flowLogin_isValidCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class WH_Treat_flowLogin_isValidCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1752,11 +2258,11 @@ namespace PLM_TreatScan.PLMWebService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     public delegate void WH_Treat_LoginTypeCompletedEventHandler(object sender, WH_Treat_LoginTypeCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class WH_Treat_LoginTypeCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1778,11 +2284,11 @@ namespace PLM_TreatScan.PLMWebService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     public delegate void WH_Treat_intevalCount_FlowLineCompletedEventHandler(object sender, WH_Treat_intevalCount_FlowLineCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class WH_Treat_intevalCount_FlowLineCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1812,11 +2318,11 @@ namespace PLM_TreatScan.PLMWebService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     public delegate void WH_queryOrderInfoByBarCodeCompletedEventHandler(object sender, WH_queryOrderInfoByBarCodeCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class WH_queryOrderInfoByBarCodeCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1838,11 +2344,11 @@ namespace PLM_TreatScan.PLMWebService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     public delegate void isValidStorageCodeCompletedEventHandler(object sender, isValidStorageCodeCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class isValidStorageCodeCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1864,11 +2370,11 @@ namespace PLM_TreatScan.PLMWebService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     public delegate void getDataCompletedEventHandler(object sender, getDataCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class getDataCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1890,11 +2396,11 @@ namespace PLM_TreatScan.PLMWebService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     public delegate void ExecuteDataCompletedEventHandler(object sender, ExecuteDataCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ExecuteDataCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1916,11 +2422,11 @@ namespace PLM_TreatScan.PLMWebService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     public delegate void WH_queryOrderInfoByBarCode_TCompletedEventHandler(object sender, WH_queryOrderInfoByBarCode_TCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class WH_queryOrderInfoByBarCode_TCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1942,11 +2448,11 @@ namespace PLM_TreatScan.PLMWebService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     public delegate void WH_queryOrderInfoByBarCode_SCompletedEventHandler(object sender, WH_queryOrderInfoByBarCode_SCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class WH_queryOrderInfoByBarCode_SCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1968,11 +2474,11 @@ namespace PLM_TreatScan.PLMWebService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     public delegate void isBoundStateCompletedEventHandler(object sender, isBoundStateCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class isBoundStateCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1994,19 +2500,19 @@ namespace PLM_TreatScan.PLMWebService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     public delegate void Storage_BoundStateCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     public delegate void StoragePosCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     public delegate void Transfer_offLineListCompletedEventHandler(object sender, Transfer_offLineListCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class Transfer_offLineListCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2028,11 +2534,11 @@ namespace PLM_TreatScan.PLMWebService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     public delegate void Tranfer_OffLine_queryOrderCompletedEventHandler(object sender, Tranfer_OffLine_queryOrderCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class Tranfer_OffLine_queryOrderCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2054,11 +2560,11 @@ namespace PLM_TreatScan.PLMWebService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     public delegate void Transfer_offLine_createTranferCompletedEventHandler(object sender, Transfer_offLine_createTranferCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class Transfer_offLine_createTranferCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2080,15 +2586,15 @@ namespace PLM_TreatScan.PLMWebService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     public delegate void Transfer_offLine_orderBindCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     public delegate void Treat_orderInfoCompletedEventHandler(object sender, Treat_orderInfoCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class Treat_orderInfoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2110,11 +2616,11 @@ namespace PLM_TreatScan.PLMWebService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     public delegate void Treat_optRecordCompletedEventHandler(object sender, Treat_optRecordCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class Treat_optRecordCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2136,11 +2642,11 @@ namespace PLM_TreatScan.PLMWebService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     public delegate void Treat_reBoundStorageCompletedEventHandler(object sender, Treat_reBoundStorageCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class Treat_reBoundStorageCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2162,15 +2668,15 @@ namespace PLM_TreatScan.PLMWebService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     public delegate void WH_ChangeStorageCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     public delegate void Treat_returnStorageCompletedEventHandler(object sender, Treat_returnStorageCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class Treat_returnStorageCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2192,11 +2698,11 @@ namespace PLM_TreatScan.PLMWebService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     public delegate void getDistDataCompletedEventHandler(object sender, getDistDataCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class getDistDataCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2218,11 +2724,11 @@ namespace PLM_TreatScan.PLMWebService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     public delegate void execDistCompletedEventHandler(object sender, execDistCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class execDistCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2244,11 +2750,11 @@ namespace PLM_TreatScan.PLMWebService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     public delegate void GetOrderInfoFromStorageCompletedEventHandler(object sender, GetOrderInfoFromStorageCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetOrderInfoFromStorageCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2270,11 +2776,11 @@ namespace PLM_TreatScan.PLMWebService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     public delegate void WH_Storage_MergeCntrCompletedEventHandler(object sender, WH_Storage_MergeCntrCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class WH_Storage_MergeCntrCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2296,15 +2802,15 @@ namespace PLM_TreatScan.PLMWebService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     public delegate void WH_Serials_BoundCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     public delegate void WH_Verify_CountCompletedEventHandler(object sender, WH_Verify_CountCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class WH_Verify_CountCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2326,11 +2832,11 @@ namespace PLM_TreatScan.PLMWebService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     public delegate void WH_Storage_b2tCompletedEventHandler(object sender, WH_Storage_b2tCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class WH_Storage_b2tCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2360,11 +2866,11 @@ namespace PLM_TreatScan.PLMWebService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     public delegate void WH_Check_AddTransferCompletedEventHandler(object sender, WH_Check_AddTransferCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class WH_Check_AddTransferCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2386,11 +2892,11 @@ namespace PLM_TreatScan.PLMWebService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     public delegate void WH_Check_Add_BCompletedEventHandler(object sender, WH_Check_Add_BCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class WH_Check_Add_BCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2412,15 +2918,15 @@ namespace PLM_TreatScan.PLMWebService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     public delegate void WH_Check_BoundStorage_BCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     public delegate void WH_queryOrderListCompletedEventHandler(object sender, WH_queryOrderListCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class WH_queryOrderListCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2442,11 +2948,11 @@ namespace PLM_TreatScan.PLMWebService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     public delegate void WH_OrderStorageListCompletedEventHandler(object sender, WH_OrderStorageListCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class WH_OrderStorageListCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2468,11 +2974,11 @@ namespace PLM_TreatScan.PLMWebService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     public delegate void WH_StorageDetailsCompletedEventHandler(object sender, WH_StorageDetailsCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class WH_StorageDetailsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2494,11 +3000,11 @@ namespace PLM_TreatScan.PLMWebService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     public delegate void WH_TreatAndOffLineCompletedEventHandler(object sender, WH_TreatAndOffLineCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class WH_TreatAndOffLineCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2520,11 +3026,11 @@ namespace PLM_TreatScan.PLMWebService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     public delegate void WH_orderQueryByOrderNoCompletedEventHandler(object sender, WH_orderQueryByOrderNoCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class WH_orderQueryByOrderNoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2546,11 +3052,11 @@ namespace PLM_TreatScan.PLMWebService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     public delegate void WH_getDistLinesCompletedEventHandler(object sender, WH_getDistLinesCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class WH_getDistLinesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2572,11 +3078,11 @@ namespace PLM_TreatScan.PLMWebService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     public delegate void PROD_IsValiadBarCodeCompletedEventHandler(object sender, PROD_IsValiadBarCodeCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class PROD_IsValiadBarCodeCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2598,11 +3104,11 @@ namespace PLM_TreatScan.PLMWebService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     public delegate void WH_TreatProgressCompletedEventHandler(object sender, WH_TreatProgressCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class WH_TreatProgressCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2624,11 +3130,11 @@ namespace PLM_TreatScan.PLMWebService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     public delegate void WH_AllStorageInfoCompletedEventHandler(object sender, WH_AllStorageInfoCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class WH_AllStorageInfoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2636,6 +3142,372 @@ namespace PLM_TreatScan.PLMWebService {
         private object[] results;
         
         internal WH_AllStorageInfoCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataTable Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataTable)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
+    public delegate void PROD_BarCodeInfoCompletedEventHandler(object sender, PROD_BarCodeInfoCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class PROD_BarCodeInfoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal PROD_BarCodeInfoCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataTable Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataTable)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
+    public delegate void PROD_OrderInfoBindCompletedEventHandler(object sender, PROD_OrderInfoBindCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class PROD_OrderInfoBindCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal PROD_OrderInfoBindCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
+    public delegate void PROD_QueryOrderInfoCompletedEventHandler(object sender, PROD_QueryOrderInfoCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class PROD_QueryOrderInfoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal PROD_QueryOrderInfoCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataTable Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataTable)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
+    public delegate void PROD_ModifyBindInfoCompletedEventHandler(object sender, PROD_ModifyBindInfoCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class PROD_ModifyBindInfoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal PROD_ModifyBindInfoCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime execTime {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.DateTime)(this.results[1]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
+    public delegate void PROD_GetLineOrdersCompletedEventHandler(object sender, PROD_GetLineOrdersCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class PROD_GetLineOrdersCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal PROD_GetLineOrdersCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataTable Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataTable)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
+    public delegate void PROD_ClearLoginInfoCompletedEventHandler(object sender, PROD_ClearLoginInfoCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class PROD_ClearLoginInfoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal PROD_ClearLoginInfoCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
+    public delegate void PROD_BindCountCompletedEventHandler(object sender, PROD_BindCountCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class PROD_BindCountCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal PROD_BindCountCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataTable Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataTable)(this.results[0]));
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime queryTime {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.DateTime)(this.results[1]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
+    public delegate void PROD_isValidDateCompletedEventHandler(object sender, PROD_isValidDateCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class PROD_isValidDateCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal PROD_isValidDateCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public int Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((int)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
+    public delegate void WH_getServerTimeCompletedEventHandler(object sender, WH_getServerTimeCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class WH_getServerTimeCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal WH_getServerTimeCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public int Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((int)(this.results[0]));
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime serverTime {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.DateTime)(this.results[1]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
+    public delegate void LoadDateInfoCompletedEventHandler(object sender, LoadDateInfoCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class LoadDateInfoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal LoadDateInfoCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public int Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((int)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
+    public delegate void updatePrintInfoCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
+    public delegate void MES_DeptInfoCompletedEventHandler(object sender, MES_DeptInfoCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class MES_DeptInfoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal MES_DeptInfoCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
+    public delegate void MES_ProcessTrackCompletedEventHandler(object sender, MES_ProcessTrackCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class MES_ProcessTrackCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal MES_ProcessTrackCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataTable Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataTable)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
+    public delegate void MES_GetTempEmployeeInfoCompletedEventHandler(object sender, MES_GetTempEmployeeInfoCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class MES_GetTempEmployeeInfoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal MES_GetTempEmployeeInfoCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
