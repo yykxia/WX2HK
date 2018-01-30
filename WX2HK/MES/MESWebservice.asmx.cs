@@ -347,7 +347,7 @@ namespace WX2HK.MES
         }
 
         [WebMethod]
-        public DataTable MES_Worder(string BeginDate, string EndDate, string BillType, string flag)
+        public DataTable MES_Worder(string BeginDate, string EndDate, string BillType, string flag,string order)
         {                         
             //起始时间，单据类型 ,连接标识 
             //北厂定制线数据库抓取工单信息/订单信息/物料耗用信息
@@ -357,20 +357,45 @@ namespace WX2HK.MES
                 //工单数据
                 DataTable WorderDt = new DataTable();
                 string sqlCmd = "";
+                string sqlUorder = "";
+                string uorderList = "";
+                //int cuurentUorderCount = int.Parse(txt);
                 if (BillType == "MES工单-ERP生产订单" && flag == "MES")                //MES中未插入中间库的单据
                 {
-                    WorderDt.TableName = "Worder";//工单
+                    sqlUorder = "select uorder_number,inserttime  from executeSystem where 1=1";
 
-                    sqlCmd = "select uorder_number,worder_number,worder_rmtnumber,worder_rmtname,worder_rmttype,worder_rmtunit,";
-                    sqlCmd += "worder_rmtsource,worder_rmtlength,worder_rmtlgtunit,worder_rmtwidth,worder_rmtwdtunit,";
-                    sqlCmd += "worder_rmtthickness,worder_rmttikunit,worder_rmtcolour,worder_rmtmaterial,worder_rmtnum,";
-                    sqlCmd += "uorder_ordertime,uorder_finishtime,worder_status,worder_status,worder_status,worder_status,convert(varchar(100),inserttime,23) as inserttime,";
-                    sqlCmd += " uorder_productnumber,uorder_id,uorder_productnum,uorder_Blength,uorder_Bwidth,uorder_Bthickness from InterFace_WorderExcute where 1=1 ";
+                    if (!BeginDate.Equals("") && !EndDate.Equals(""))
+                    {
+                        sqlUorder += "and inserttime>='" + BeginDate + " 00:00:00'      and inserttime<'" + EndDate + " 23:59:59 ' ";
+                    }
+                    uorderList = SqlSel.ExeSqlCount(sqlUorder, "MES");
+                    //计算订单
+                    WorderDt.TableName = "Worder";//工单
+                    if (!order.Equals(""))
+                    {
+                        sqlCmd = "select  uorder_number,worder_number,worder_rmtnumber,worder_rmtname,worder_rmttype,worder_rmtunit,";
+                        sqlCmd += "worder_rmtsource,worder_rmtlength,worder_rmtlgtunit,worder_rmtwidth,worder_rmtwdtunit,";
+                        sqlCmd += "worder_rmtthickness,worder_rmttikunit,worder_rmtcolour,worder_rmtmaterial,worder_rmtnum,";
+                        sqlCmd += "uorder_ordertime,uorder_finishtime,worder_status,worder_status,worder_status,worder_status,convert(varchar(100),inserttime,23) as inserttime,";
+                        sqlCmd += " uorder_productnumber,InterFace_WorderExcute.uorder_id,uorder_productnum,uorder_Blength,uorder_Bwidth,uorder_Bthickness from InterFace_WorderExcute  where 1=1   ";
+                        sqlCmd += " and uorder_number like '%" + order + "%'";
+                    }
+                    else
+                    {
+                        sqlCmd = "select  uorder_number,worder_number,worder_rmtnumber,worder_rmtname,worder_rmttype,worder_rmtunit,";
+                        sqlCmd += "worder_rmtsource,worder_rmtlength,worder_rmtlgtunit,worder_rmtwidth,worder_rmtwdtunit,";
+                        sqlCmd += "worder_rmtthickness,worder_rmttikunit,worder_rmtcolour,worder_rmtmaterial,worder_rmtnum,";
+                        sqlCmd += "uorder_ordertime,uorder_finishtime,worder_status,worder_status,worder_status,worder_status,convert(varchar(100),inserttime,23) as inserttime,";
+                        sqlCmd += " uorder_productnumber,InterFace_WorderExcute.uorder_id,uorder_productnum,uorder_Blength,uorder_Bwidth,uorder_Bthickness from InterFace_WorderExcute  where 1=1   ";
+                        sqlCmd += "and uorder_number in" + uorderList + "";
+                     }
 
                     if (!BeginDate.Equals("") && !EndDate.Equals(""))
                     {
                         sqlCmd += "and inserttime>='" + BeginDate + " 00:00:00'      and inserttime<'" + EndDate + " 23:59:59 ' ";
                     }
+                   
+                    
                     sqlCmd += "order by uorder_number,inserttime";
                     SqlSel.GetMesDataset(ref WorderDt, sqlCmd, "", "", "MES");  //"MES" MES连接  "MIDDLE"中间库连接 "ERP" ERP连接
                 }
@@ -391,10 +416,30 @@ namespace WX2HK.MES
                 }
                 if (BillType == "MES销售-ERP入库领料" && flag == "Consume")
                 {
+                    sqlUorder = "select  distinct uorder_number  from ORDER_CONSUME  ";
+                    uorderList = SqlSel.ExeSqlCount(sqlUorder, "MIDDLE");
+                    
                     WorderDt.TableName = "Consume"; //中间库入库数据
-                    sqlCmd = "select top 100  uorder_number,uorder_productnumber,uorder_productnum,worder_rmtnumber,worder_rmtname,worder_rmtnum,BLENGTH as uorder_Blength   ";
-                    sqlCmd += ",BWIDTH  as uorder_Bwidth, BTHICKNESS as uorder_Bthickness from ORDER_CONSUME where exists(select orderno from ordernoConsume    ";
-                    sqlCmd += " where orderno=ORDER_CONSUME.uorder_number and flag=0 )  or uorder_number not in  (select orderno from  ordernoConsume)  order by uorder_number ";
+                    //sqlCmd = "select top 100  uorder_number,uorder_productnumber,uorder_productnum,worder_rmtnumber,worder_rmtname,worder_rmtnum,BLENGTH as uorder_Blength   ";
+                    //sqlCmd += ",BWIDTH  as uorder_Bwidth, BTHICKNESS as uorder_Bthickness from ORDER_CONSUME where exists(select orderno from ordernoConsume";
+                    //sqlCmd += " where orderno=ORDER_CONSUME.uorder_number and flag=0 )  or uorder_number not in  (select orderno from  ordernoConsume)";
+                    //sqlCmd = "select top 100  uorder_number,uorder_productnumber,uorder_productnum,worder_rmtnumber,worder_rmtname,worder_rmtnum,BLENGTH as uorder_Blength   ";
+                    //sqlCmd += ",BWIDTH  as uorder_Bwidth, BTHICKNESS as uorder_Bthickness from ORDER_CONSUME where exists(select orderno from ordernoConsume";
+                    //sqlCmd += " where orderno=ORDER_CONSUME.uorder_number and flag=0 )  or uorder_number  not in  (select orderno from  ordernoConsume  where flag=0 )";
+
+
+                    if (!order.Equals(""))
+                    {
+                        sqlCmd = "select  uorder_number,uorder_productnumber,uorder_productnum,worder_rmtnumber,worder_rmtname,worder_rmtnum,BLENGTH as uorder_Blength   ";
+                        sqlCmd += ",BWIDTH  as uorder_Bwidth, BTHICKNESS as uorder_Bthickness from ORDER_CONSUME where 1=1 ";
+                        sqlCmd += " and uorder_number like '%" + order + "%'";
+                    }
+                    else
+                    {
+                        sqlCmd = "select  uorder_number,uorder_productnumber,uorder_productnum,worder_rmtnumber,worder_rmtname,worder_rmtnum,BLENGTH as uorder_Blength   ";
+                        sqlCmd += ",BWIDTH  as uorder_Bwidth, BTHICKNESS as uorder_Bthickness from ORDER_CONSUME where uorder_number in" + uorderList + "";
+                    }
+                    sqlCmd += " order by uorder_number";
                     SqlSel.GetMesDataset(ref WorderDt, sqlCmd, "", "", "MIDDLE");
                 }
                 if (BillType == "MES销售-ERP入库领料" && flag == "ErpConsume")

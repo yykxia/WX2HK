@@ -18,9 +18,10 @@
 <%--    <div class="auto-style1" style="text-align: center">
         <strong>定制线-ERP接口</strong></div>--%>
      <f:PageManager ID="PageManager1" runat="server" AutoSizePanelID="WorderGrid" />
-        <f:Grid ID="WorderGrid" runat="server" ShowHeader="true" AutoScroll="true"  AllowPaging="true" PageSize="100"  
+        <f:Grid ID="WorderGrid" runat="server" ShowHeader="true" AutoScroll="true"  AllowPaging="true" PageSize="150"  
             EnableSummary="true" SummaryPosition="Flow"  KeepCurrentSelection="true" Title="定制线-ERP接口"
-             EnableCheckBoxSelect="true"  CheckBoxSelectOnly="true" OnPageIndexChange="WorderGrid_PageIndexChange"   >
+             EnableCheckBoxSelect="true"  CheckBoxSelectOnly="true" OnPageIndexChange="WorderGrid_PageIndexChange" 
+             EnableTextSelection="true">
             <Toolbars>
                 <f:Toolbar runat="server" ID="tlb1">
                     <Items>
@@ -30,6 +31,7 @@
 
                     </Items>
                 </f:Toolbar>
+
 
             </Toolbars>
             <Toolbars>
@@ -44,20 +46,23 @@
                 </f:Toolbar>
             </Toolbars>
             <Toolbars>
-                <f:Toolbar runat="server" ID="tlb3">
+                <f:Toolbar runat="server" >
                     <Items>
                         <f:DropDownList ID="ddl_line" Label="单据类型" LabelWidth="100px" Width="300px" runat="server">
                            <f:ListItem Text="--请选择--" Value="Choice" Selected="true"/>
                             <f:ListItem Text="MES工单-ERP生产订单" Value="Worder" />
                             <f:ListItem Text="MES销售-ERP入库领料" Value="Sale" />
                         </f:DropDownList>
-                       
-                    </Items>
+                       <f:TextBox runat="server" Label="订单号" ID="txtOrder">
+                       </f:TextBox>
+                      <f:TextBox runat="server" Label="当前订单数" ID="txtOrderCount" Text="30" Enabled="false"   >
+                       </f:TextBox>
+                        </Items>
                 </f:Toolbar>
             </Toolbars>
 
             <Toolbars>
-                <f:Toolbar runat="server" ID="tlb5">
+                <f:Toolbar runat="server" >
                     <Items>
                         <f:Button ID="btn_filter" Text="查询" runat="server" Icon="SystemSearch" OnClick="btn_filter_Click" ></f:Button>
                         <f:Button ID="btn_middle" Text="导入中间库" runat="server" Icon="SystemSearch" OnClick="btn_middle_Click" Enabled="false"  ></f:Button>
@@ -70,7 +75,7 @@
                 </f:Toolbar>
             </Toolbars>
             <Columns>
-                 <f:TemplateField Width="60px" >
+                 <f:TemplateField Width="60px"  >
                     <ItemTemplate>
                         <asp:Label ID="Label1" runat="server" Text='<%# Container.DataItemIndex + 1 %>'></asp:Label>
                     </ItemTemplate>

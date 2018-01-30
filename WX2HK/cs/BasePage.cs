@@ -222,7 +222,7 @@ namespace WX2HK
         {
             DataTable data = new DataTable();
             string sqlCmd = "select (REALEMPLOYEECODE)code,(REALEMPLOYEECODE || ' ' || EMPLOYEENAME)name" +
-                " from KQZ_EMPLOYEE";
+                " from KQZ_EMPLOYEE where brchid <>'-2' and comment='生产部.模塑仓库'";
             FireBird_Conn.GetSqlSel(ref data, sqlCmd);
             return data;
         }

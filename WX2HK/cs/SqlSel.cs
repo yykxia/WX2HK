@@ -246,6 +246,71 @@ namespace IETCsoft.sql
             }
         }
 
+        public static string ExeSqlCount(string SQL, string flag)
+        {
+            int rowCount = 0;
+            string uorderList="";
+            if (flag == "MES")
+            {
+                ConnectionString = ConMes();
+                rowCount = 30;
+            }
+            else if (flag == "MIDDLE")
+            {
+
+                ConnectionString = ConMesMiddle();
+                rowCount = 5;
+            }
+
+            SqlConnection _SqlConnection1 = new SqlConnection();
+           
+            try
+            {
+                if (_SqlConnection1.State != ConnectionState.Open)
+                {
+                    _SqlConnection1.ConnectionString = ConnectionString;
+                    _SqlConnection1.Open();
+                }
+                //开始执行
+                SqlDataAdapter _SqlDataAdapter = new SqlDataAdapter(SQL,_SqlConnection1);
+                DataSet ds = new DataSet();
+                _SqlDataAdapter.Fill(ds);
+                DataTable dt = ds.Tables[0];
+
+                for (int row = 0; row < rowCount; row++)
+                {
+                    if (row == ds.Tables[0].Rows.Count)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        uorderList = uorderList + ",'" + ds.Tables[0].Rows[row][0] + "'";
+                     }
+                 }
+                uorderList = uorderList.TrimStart(',');
+                uorderList = "("+uorderList+")";
+                return uorderList;
+            
+            }
+            catch
+            {
+                return "";
+            }
+            finally
+            {
+                _SqlConnection1.Close();
+            }
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
         public static int ExemesSql(string SQL, string flag)
         {
 

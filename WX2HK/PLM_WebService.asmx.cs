@@ -2005,7 +2005,7 @@ namespace WX2HK
 
                 //获取最初卸绵记录
                 sqlCmd = "select top 1 * from PLM_WH_InBound_Record " +
-                    "where barCode='" + CntrCode + "' and BoundStatus='1' order by Id";
+                    "where barCode='" + CntrCode + "' and recordId='' and BoundStatus='1' order by Id";
                 DataTable TempDt = new DataTable();
                 if (SqlSel.GetSqlSel(ref TempDt, sqlCmd))
                 {
@@ -2047,6 +2047,47 @@ namespace WX2HK
             }
 
             return JsonConvert.SerializeObject(cntrOrderInfo);
+        }
+
+        /// <summary>
+        /// 是否存在被配送锁定的数据
+        /// </summary>
+        /// <param name="LineNumb">数据被锁行数</param>
+        /// <param name="StorageArr">货位id/数量</param>
+        /// <returns></returns>
+        [WebMethod]
+        public bool WH_ExsitsErrorData(ref string ErrorMsg, string[] StorageArr)
+        {
+            ErrorMsg = string.Empty;
+            bool result = false;
+            string sqlCmd = string.Empty;
+            DataTable dataTable = new DataTable();
+            for (int i = 0; i < StorageArr.Length; i++)
+            {
+                string storageId = StorageArr[i].Substring(0, StorageArr[i].IndexOf("/"));//截取卸绵数量前的库位id
+                sqlCmd = "select * from PLM_WH_Storage_Actual where id='" + storageId + "'";
+                if (SqlSel.GetSqlSel(ref dataTable, sqlCmd))
+                {
+                    if (dataTable.Rows[0]["islocked"].ToString() == "1")
+                    {
+                        result = true;
+                        ErrorMsg = string.Format("第{0}行被配送锁定，请先联系相关人员后再操作！", i + 1);
+                        break;
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+                else
+                {
+                    result = true;
+                    ErrorMsg = string.Format("第{0}行已无订单信息！", i + 1);
+                    break;
+                }
+            }
+            
+            return result;
         }
     }
 }

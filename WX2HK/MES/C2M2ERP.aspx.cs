@@ -17,22 +17,25 @@ using IETCsoft.sql;
 
 namespace WX2HK.MES
 {
-    public partial class C2M2ERP : System.Web.UI.Page
+    public partial class C2M2ERP : BasePage
     {
 
+        //public int cuurentUorderCount = int.Parse(txtOrderCount.Text.ToString()) ;
         public string insert_sql,delete_sql,sql,update_sql;
         public static DataTable Worder,MiddleWorder;
         public static string ProductCode,InstockCode,OutstockCode, ChoiceText ;
         public static MESWebservice MesWeb;
+        private static string curUser = "";
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            //当前登录人员
+           // curUser = GetUser();
         }
         protected void Page_Init(object sender, EventArgs e)
         {
             InitGrid(ChoiceText);
         }
-
+ 
         private void InitGrid(string choicetext)
         {
                 
@@ -148,49 +151,64 @@ namespace WX2HK.MES
                 DateTime dt = Convert.ToDateTime(DatePicker1.Text); 
                 string DateBegin = DatePicker1.Text.Substring(0, 10);
                 string DateEnd = DatePicker2.Text.Substring(0, 10);
-             
+                string order=txtOrder.Text; 
                 ChoiceText = ddl_line.SelectedItem.Text;
                 if (ChoiceText == "MES工单-ERP生产订单")
                 {
-                    Worder = MesWeb.MES_Worder(DateBegin, DateEnd, ChoiceText, "MES");
+                    Worder = MesWeb.MES_Worder(DateBegin, DateEnd, ChoiceText, "MES",order);
                     //"MES"mes工单查询 "MIDDLE" 插入中间库
                     //MES工单过滤
                 }
                 else if (ChoiceText == "MES销售-ERP入库领料")
                 {
-                    MiddleWorder = MesWeb.MES_Worder(DateBegin, DateEnd, ChoiceText, "Instock");
+                    MiddleWorder = MesWeb.MES_Worder(DateBegin, DateEnd, ChoiceText, "Instock","");
                     //取得MES中间库的耗用数据
                     delete_sql = "delete  from ORDER_CONSUME";
                     SqlSel.ExemesSql(delete_sql, "MIDDLE");     //删除临时中间库耗用数据
-                    int row;
-                  decimal   consume;   //面料和非面料耗用取值字段不同
-                    for (row = 0; row < MiddleWorder.Rows.Count; row++)
+                   int row;
+                   string WLBM;
+                  decimal   consume=0;   //面料和非面料耗用取值字段不同
+                  for ( row = 0; row < MiddleWorder.Rows.Count; row++)
                      {
-                         if (MiddleWorder.Rows[row]["WLBM"].ToString().Substring(0, 2).Equals("ML"))
-                              {
-                                  consume = Math.Round(Convert.ToDecimal(MiddleWorder.Rows[row]["L"]) / 100,2);  //面料由厘米化为米 
-                               }
-                             else 
-                               {
-                                   consume = Math.Round(Convert.ToDecimal(MiddleWorder.Rows[row]["Qty"]));
-                                }
-                         insert_sql = "insert into ORDER_CONSUME(uorder_number,uorder_productnumber,uorder_productnum,worder_rmtnumber,worder_rmtname,worder_rmtnum";
-                         insert_sql += ",worder_source,worder_volume,BLENGTH,BWIDTH,BTHICKNESS";
+                         if (!MiddleWorder.Rows[row]["WLBM"].Equals(""))
+                         {
+                             if (MiddleWorder.Rows[row]["WLBM"].ToString().Substring(0, 2).Equals("ML"))
+                             {
+                                 consume = Math.Round(Convert.ToDecimal(MiddleWorder.Rows[row]["L"]) / 100, 2);  //面料由厘米化为米 
+                             }
+                             else
+                             {
+                                 consume = Math.Round(Convert.ToDecimal(MiddleWorder.Rows[row]["Qty"]));
+                             }
+
+                             WLBM = MiddleWorder.Rows[row]["WLBM"].ToString();
+                         }
+                         else
+                         {
+                             WLBM = "NO";
+                         
+                         }
+                      
+                      
+                      insert_sql = "insert into ORDER_CONSUME(uorder_number,uorder_productnumber,uorder_productnum,worder_rmtnumber,worder_rmtname,worder_rmtnum";
+                         insert_sql  += ",worder_source,worder_volume,BLENGTH,BWIDTH,BTHICKNESS";
                          insert_sql += ") values('" + MiddleWorder.Rows[row]["DDH"] + "','" + MiddleWorder.Rows[row]["GDH"] + "'," + Convert.ToInt16(MiddleWorder.Rows[row]["UseQty"]) + ",";
-                         insert_sql += " '" + MiddleWorder.Rows[row]["WLBM"] + "','" + MiddleWorder.Rows[row]["WLMC"] + "'," + consume + " ,'" + MiddleWorder.Rows[row]["WLLY"] + "'";
+                         insert_sql += " '" + WLBM + "','" + MiddleWorder.Rows[row]["WLMC"] + "'," + consume + " ,'" + MiddleWorder.Rows[row]["WLLY"] + "'";
                          insert_sql += "," + Convert.ToDecimal(MiddleWorder.Rows[row]["V"]) + "," + Convert.ToDecimal(MiddleWorder.Rows[row]["DL"]) + "," + Convert.ToDecimal(MiddleWorder.Rows[row]["DW"]) +"";
                          insert_sql += ", " +  Convert.ToDecimal(MiddleWorder.Rows[row]["DH"]) + " ) ";
                          
                         SqlSel.ExemesSql(insert_sql, "MIDDLE");     //插入中间库耗用数据 
                     }
-                    Worder = MesWeb.MES_Worder("", "", ChoiceText, "Consume");
+                 
+                    Worder = MesWeb.MES_Worder("", "", ChoiceText, "Consume",order);
                     //"Instock"入库 
                 }
                 if (Worder.Rows.Count!=0)
                   {
                       WorderGrid.DataSource = Worder;
                       WorderGrid.DataBind();
-                      btn_middle.Enabled = true;
+                      WorderGrid.SelectAllRows();
+                    btn_middle.Enabled = true;
                   }
                   else
                   {
@@ -207,150 +225,161 @@ namespace WX2HK.MES
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            string strsql = ConfigurationManager.ConnectionStrings["ERP"].ConnectionString;//connectstring
-            
-            if (ddl_line.SelectedText == "MES工单-ERP生产订单")
+            try
             {
-                 sql = "[lc0019999].[P_MESTOERP_PRODUCTNO]";
-            }
-            if (ddl_line.SelectedText == "MES销售-ERP入库领料")
-            {
-                sql = "[lc0019999].[P_MESTOERP_INSTOCK]";
-                
-            }
-            SqlConnection constr = new SqlConnection(strsql);//database connect object  parameter is connectstring
-            //SqlCommand comStr = new SqlCommand(sql, constr); // sql execute object  the first is  sql the second is connect
-            //comStr.CommandType = CommandType.StoredProcedure; // set execute type
-            int selectedCount = WorderGrid.SelectedRowIndexArray.Length;
-         
-            if (ddl_line.SelectedText == "MES工单-ERP生产订单")
-            {
-                if (selectedCount > 0)
+                string strsql = ConfigurationManager.ConnectionStrings["ERP"].ConnectionString;//connectstring
+                //验证人员ERP权限
+                string DefualtUser = ConfigurationManager.AppSettings["User_ERPDZ"];
+                if (ddl_line.SelectedText == "MES工单-ERP生产订单")
                 {
-                    int[] selections = WorderGrid.SelectedRowIndexArray;
-                    foreach (int rowIndex in selections)
-                    {
-                        SqlCommand comStr = new SqlCommand(sql, constr); // sql execute object  the first is  sql the second is connect
-                        comStr.CommandType = CommandType.StoredProcedure; // set execute type
-                        comStr.Parameters.Add("@GUID", SqlDbType.VarChar, 50).Value = WorderGrid.DataKeys[rowIndex][9];
-                        comStr.Parameters.Add("@uorder_number", SqlDbType.VarChar, 30).Value = WorderGrid.DataKeys[rowIndex][0];            //original order no 
-                        comStr.Parameters.Add("@operator_id", SqlDbType.VarChar, 30).Value = "2673";                                   //order productno 
-                        comStr.Parameters.Add("@completing_time", SqlDbType.VarChar, 10).Value = DateTime.Now.ToString("yyyy-MM-dd");  //original order id
-                        constr.Open();//open database connect
-                        SqlDataAdapter sda = new SqlDataAdapter(comStr);
-                        DataTable dt = new DataTable();
-                        sda.Fill(dt);
-                        if (dt.Rows.Count > 0)
-                        {
-                            int comLines = Convert.ToInt32(dt.Rows[0]["error_msg"]);
-                            ProductCode = dt.Rows[0]["storage_no"].ToString();  //erp入库单号
-                            if (dt.Rows[0]["error_msg"].ToString() == "404"
-                                || dt.Rows[0]["error_msg"].ToString() == "409")
-                            {
-                                Response.Write("<script>alert('生成订单失败')</script>");
-                                return;
-                            }
-                            else
-                            {
-                                //cmd.ExecuteNonQuery();
-                            }
-                        }
-                        constr.Close();
-                        insert_sql = "insert into ORDER_ATTRIBUTE(ORDER_GUID,FLAG,BILL_NUMBER,ATTRIBUTE_MEM) values ('" + WorderGrid.DataKeys[rowIndex][9] + "','SCDD','" + ProductCode + "','" + DateTime.Now.ToShortDateString().ToString().Substring(0, 10) + "') ";
-                        SqlSel.ExemesSql(insert_sql, "MIDDLE");
-                    
-                    }
-                    //该行已经插入中间库
-                    Worder = MesWeb.MES_Worder("", "", ChoiceText, "MIDDLE");  //中间库
-                    WorderGrid.DataSource = Worder;
-                    WorderGrid.DataBind();
-                    Button1.Enabled = true; 
-                    Alert.ShowInTop("生产ERP生产订单成功!!");
-                
+                    sql = "[lc0019999].[P_MESTOERP_PRODUCTNO]";
                 }
-                else
+                if (ddl_line.SelectedText == "MES销售-ERP入库领料")
                 {
-                    Alert.ShowInTop("没有选中任何一行！");
-                    // sb.Append("<strong>没有选中任何一行！</strong>");
-                }
-            }
+                    sql = "[lc0019999].[P_MESTOERP_INSTOCK]";
 
-        if (ddl_line.SelectedText == "MES销售-ERP入库领料")
-        {
-            string  strwh = "";
-            if (selectedCount > 0)
+                }
+                SqlConnection constr = new SqlConnection(strsql);//database connect object  parameter is connectstring
+                //SqlCommand comStr = new SqlCommand(sql, constr); // sql execute object  the first is  sql the second is connect
+                //comStr.CommandType = CommandType.StoredProcedure; // set execute type
+                int selectedCount = WorderGrid.SelectedRowIndexArray.Length;
+
+                if (ddl_line.SelectedText == "MES工单-ERP生产订单")
                 {
-                    int[] selections = WorderGrid.SelectedRowIndexArray;
-                    foreach (int rowIndex in selections)
+                    if (selectedCount > 0)
                     {
-                        SqlCommand comStr = new SqlCommand(sql, constr); // sql execute object  the first is  sql the second is connect
-                        comStr.CommandType = CommandType.StoredProcedure; // set execute type
-                        comStr.Parameters.Add("@ORDERNO", SqlDbType.VarChar, 30).Value = WorderGrid.DataKeys[rowIndex][0];            //original order no 
-                        comStr.Parameters.Add("@P_CINVCODE", SqlDbType.VarChar, 30).Value = WorderGrid.DataKeys[rowIndex][1];
-                        comStr.Parameters.Add("@INSTOCK_QTY", SqlDbType.Int).Value = Convert.ToInt16(WorderGrid.DataKeys[rowIndex][2]);
-                        comStr.Parameters.Add("@completing_time", SqlDbType.VarChar, 10).Value = DateTime.Now.ToShortDateString().ToString().Substring(0, 10);  //original order id
-                        comStr.Parameters.Add("@ID", SqlDbType.Int).Value = Convert.ToInt16(WorderGrid.DataKeys[rowIndex][10]);
-                        comStr.Parameters.Add("@BLENGTH", SqlDbType.Int).Value = Convert.ToDecimal(WorderGrid.DataKeys[rowIndex][11]);
-                        comStr.Parameters.Add("@BWIDTH", SqlDbType.Int).Value = Convert.ToDecimal(WorderGrid.DataKeys[rowIndex][12]);
-                        comStr.Parameters.Add("@BTHICKNESS", SqlDbType.Int).Value = Convert.ToDecimal(WorderGrid.DataKeys[rowIndex][13]);
-                        comStr.Parameters.Add("@operator_id", SqlDbType.VarChar, 30).Value = "2673";
-                        constr.Open();//open database connect
-                        SqlDataAdapter sda = new SqlDataAdapter(comStr);
-                        DataTable dt = new DataTable();
-                        sda.Fill(dt);
-                        strwh = strwh + "'" + WorderGrid.DataKeys[rowIndex][0].ToString() + "',";
-                        if (dt.Rows.Count > 0)
+                        int[] selections = WorderGrid.SelectedRowIndexArray;
+                        int rowCount = WorderGrid.Rows.Count;
+                        //foreach (int rowIndex in selections)
+                        for (int rowIndex = 0; rowIndex < rowCount; rowIndex++)
                         {
-                            int comLines = Convert.ToInt32(dt.Rows[0]["error_msg"]);
-                            InstockCode = dt.Rows[0]["storage_no"].ToString();  //erp入库单号
-                            OutstockCode = dt.Rows[0]["out_no"].ToString();  //erp入库单号
-                            if (dt.Rows[0]["error_msg"].ToString() == "404"
-                                || dt.Rows[0]["error_msg"].ToString() == "409")
+                            SqlCommand comStr = new SqlCommand(sql, constr); // sql execute object  the first is  sql the second is connect
+                            comStr.CommandType = CommandType.StoredProcedure; // set execute type
+                            comStr.Parameters.Add("@GUID", SqlDbType.VarChar, 50).Value = WorderGrid.DataKeys[rowIndex][9];
+                            comStr.Parameters.Add("@uorder_number", SqlDbType.VarChar, 30).Value = WorderGrid.DataKeys[rowIndex][0];            //original order no 
+                            comStr.Parameters.Add("@operator_id", SqlDbType.VarChar, 30).Value = DefualtUser; // "2673";                                   //order productno 
+                            comStr.Parameters.Add("@completing_time", SqlDbType.VarChar, 10).Value = DateTime.Now.ToString("yyyy-MM-dd");  //original order id
+                            constr.Open();//open database connect
+                            SqlDataAdapter sda = new SqlDataAdapter(comStr);
+                            DataTable dt = new DataTable();
+                            sda.Fill(dt);
+                            if (dt.Rows.Count > 0)
                             {
-                                Response.Write("<script>alert('生成入库领料失败')</script>");
-                                return;
+                                int comLines = Convert.ToInt32(dt.Rows[0]["error_msg"]);
+                                ProductCode = dt.Rows[0]["storage_no"].ToString();  //erp入库单号
+                                if (dt.Rows[0]["error_msg"].ToString() == "404"
+                                    || dt.Rows[0]["error_msg"].ToString() == "409")
+                                {
+                                    Response.Write("<script>alert('生成订单失败')</script>");
+                                    return;
+                                }
+                                else
+                                {
+                                    //cmd.ExecuteNonQuery();
+                                }
                             }
-                            else
-                            {
-                                //cmd.ExecuteNonQuery();
-                            }
+                            constr.Close();
+                            insert_sql = "insert into ORDER_ATTRIBUTE(ORDER_GUID,FLAG,BILL_NUMBER,ATTRIBUTE_MEM) values ('" + WorderGrid.DataKeys[rowIndex][9] + "','SCDD','" + ProductCode + "','" + DateTime.Now.ToString("yyyyMMdd") + "') ";
+                            SqlSel.ExemesSql(insert_sql, "MIDDLE");
+
                         }
-                        constr.Close();
-                        insert_sql = "insert into ORDER_ATTRIBUTE(FLAG,BILL_NUMBER,ATTRIBUTE_MEM) values ('KCRKD','" + InstockCode + "','" + WorderGrid.DataKeys[rowIndex][0] + "') ";
-                        SqlSel.ExemesSql(insert_sql, "MIDDLE");
-                        insert_sql = "insert into ORDER_ATTRIBUTE(FLAG,BILL_NUMBER,ATTRIBUTE_MEM) values ('KCCKD','" + OutstockCode + "','" + WorderGrid.DataKeys[rowIndex][0] + "') ";
-                        SqlSel.ExemesSql(insert_sql, "MIDDLE");
-                        update_sql = "update ORDER_ATTRIBUTE set ORDER_GUID=GUID from ORDER_ATTRIBUTE inner join ORDER_MASTER  on ATTRIBUTE_MEM=ORDERNO ";
-                        SqlSel.ExemesSql(update_sql, "MIDDLE");
                         //该行已经插入中间库
+                        Worder = MesWeb.MES_Worder("", "", ChoiceText, "MIDDLE", "");  //中间库
+                        WorderGrid.DataSource = Worder;
+                        WorderGrid.DataBind();
+                        WorderGrid.SelectAllRows();
+                        Button1.Enabled = true;
+                        Alert.ShowInTop("生产ERP生产订单成功!!");
+
                     }
-                    strwh = strwh.TrimEnd(',');
-                    update_sql = "update ORDER_INSTOCK_CONSUME set flag=2 from ORDER_INSTOCK_CONSUME inner join ORDER_INSTOCK on ORDER_INSTOCK_CONSUME.ORDER_INSTOCK_ID=ORDER_INSTOCK.id";
-                    update_sql += " where ORDER_INSTOCK.ORDERNO in (" + strwh + ")";
-                    SqlSel.ExemesSql(update_sql, "MIDDLE");
-                Worder = MesWeb.MES_Worder("", "", ChoiceText, "ErpConsume");
-           if (Worder.Rows.Count != 0)
-           {
-               WorderGrid.DataSource = Worder;
-               WorderGrid.DataBind();
-               btn_middle.Enabled = false;
-               Button1.Enabled = true;
-           }
-           else
-           {
-               WorderGrid.DataSource = Worder;
-               WorderGrid.DataBind();
-               // Alert.ShowInTop("你选择的条件无数据");
-           }
-           Alert.ShowInTop("生产ERP入库领料成功!!"); 
-            }
-                else
+                    else
+                    {
+                        Alert.ShowInTop("没有选中任何一行！");
+                        // sb.Append("<strong>没有选中任何一行！</strong>");
+                    }
+                }
+
+                if (ddl_line.SelectedText == "MES销售-ERP入库领料")
                 {
-                    Alert.ShowInTop("没有选中任何一行！");
-                    // sb.Append("<strong>没有选中任何一行！</strong>");
+                    string strwh = "";
+                    if (selectedCount > 0)
+                    {
+                        int[] selections = WorderGrid.SelectedRowIndexArray;
+                        foreach (int rowIndex in selections)
+                        {
+                            SqlCommand comStr = new SqlCommand(sql, constr); // sql execute object  the first is  sql the second is connect
+                            comStr.CommandType = CommandType.StoredProcedure; // set execute type
+                            comStr.Parameters.Add("@ORDERNO", SqlDbType.VarChar, 30).Value = WorderGrid.DataKeys[rowIndex][0];            //original order no 
+                            comStr.Parameters.Add("@P_CINVCODE", SqlDbType.VarChar, 30).Value = WorderGrid.DataKeys[rowIndex][1];
+                            comStr.Parameters.Add("@INSTOCK_QTY", SqlDbType.Int).Value = Convert.ToInt16(WorderGrid.DataKeys[rowIndex][2]);
+                            comStr.Parameters.Add("@completing_time", SqlDbType.VarChar, 10).Value = DateTime.Now.ToString("yyyy-MM-dd");  //original order id
+                            comStr.Parameters.Add("@ID", SqlDbType.Int).Value = Convert.ToInt16(WorderGrid.DataKeys[rowIndex][10]);
+                            comStr.Parameters.Add("@BLENGTH", SqlDbType.Int).Value = Convert.ToDecimal(WorderGrid.DataKeys[rowIndex][11]);
+                            comStr.Parameters.Add("@BWIDTH", SqlDbType.Int).Value = Convert.ToDecimal(WorderGrid.DataKeys[rowIndex][12]);
+                            comStr.Parameters.Add("@BTHICKNESS", SqlDbType.Int).Value = Convert.ToDecimal(WorderGrid.DataKeys[rowIndex][13]);
+                            comStr.Parameters.Add("@operator_id", SqlDbType.VarChar, 30).Value = DefualtUser; //"2673";
+                            constr.Open();//open database connect
+                            SqlDataAdapter sda = new SqlDataAdapter(comStr);
+                            DataTable dt = new DataTable();
+                            sda.Fill(dt);
+                            strwh = strwh + "'" + WorderGrid.DataKeys[rowIndex][0].ToString() + "',";
+                            if (dt.Rows.Count > 0)
+                            {
+                                int comLines = Convert.ToInt32(dt.Rows[0]["error_msg"]);
+                                InstockCode = dt.Rows[0]["storage_no"].ToString();  //erp入库单号
+                                OutstockCode = dt.Rows[0]["out_no"].ToString();  //erp入库单号
+                                if (dt.Rows[0]["error_msg"].ToString() == "404"
+                                    || dt.Rows[0]["error_msg"].ToString() == "409")
+                                {
+                                    Response.Write("<script>alert('生成入库领料失败')</script>");
+                                    return;
+                                }
+                                else
+                                {
+                                    //cmd.ExecuteNonQuery();
+                                }
+                            }
+                            constr.Close();
+                            insert_sql = "insert into ORDER_ATTRIBUTE(FLAG,BILL_NUMBER,ATTRIBUTE_MEM) values ('KCRKD','" + InstockCode + "','" + WorderGrid.DataKeys[rowIndex][0] + "') ";
+                            SqlSel.ExemesSql(insert_sql, "MIDDLE");
+                            insert_sql = "insert into ORDER_ATTRIBUTE(FLAG,BILL_NUMBER,ATTRIBUTE_MEM) values ('KCCKD','" + OutstockCode + "','" + WorderGrid.DataKeys[rowIndex][0] + "') ";
+                            SqlSel.ExemesSql(insert_sql, "MIDDLE");
+                            update_sql = "update ORDER_ATTRIBUTE set ORDER_GUID=GUID from ORDER_ATTRIBUTE inner join ORDER_MASTER  on ATTRIBUTE_MEM=ORDERNO ";
+                            SqlSel.ExemesSql(update_sql, "MIDDLE");
+                            //该行已经插入中间库
+                        }
+                        strwh = strwh.TrimEnd(',');
+                        update_sql = "update ORDER_INSTOCK_CONSUME set flag=2 from ORDER_INSTOCK_CONSUME inner join ORDER_INSTOCK on ORDER_INSTOCK_CONSUME.ORDER_INSTOCK_ID=ORDER_INSTOCK.id";
+                        update_sql += " where ORDER_INSTOCK.ORDERNO in (" + strwh + ")";
+                        SqlSel.ExemesSql(update_sql, "MIDDLE");
+                        Worder = MesWeb.MES_Worder("", "", ChoiceText, "ErpConsume", "");
+                        if (Worder.Rows.Count != 0)
+                        {
+                            WorderGrid.DataSource = Worder;
+                            WorderGrid.DataBind();
+                            WorderGrid.SelectAllRows();
+                            btn_middle.Enabled = false;
+                            Button1.Enabled = true;
+                        }
+                        else
+                        {
+                            WorderGrid.DataSource = Worder;
+                            WorderGrid.DataBind();
+                            // Alert.ShowInTop("你选择的条件无数据");
+                        }
+                        Alert.ShowInTop("生产ERP入库领料成功!!");
+                    }
+                    else
+                    {
+                        Alert.ShowInTop("没有选中任何一行！");
+                        // sb.Append("<strong>没有选中任何一行！</strong>");
+                    }
                 }
             }
-            
+            catch (Exception ex) 
+            {
+                Alert.ShowInTop(ex.Message);
+            } 
         }
   
 
@@ -366,7 +395,9 @@ namespace WX2HK.MES
            if (selectedCount > 0)
            {
                int[] selections = WorderGrid.SelectedRowIndexArray;
-               foreach (int rowIndex in selections)
+               int rowCount = WorderGrid.Rows.Count;
+               //foreach (int rowIndex in selections)
+               for (int rowIndex = 0; rowIndex < rowCount;rowIndex++ )
                {
                    System.Guid guid = System.Guid.NewGuid();   //produce new guid
                    sb.AppendFormat("行号:{0} 成品编码:{1} 成品编码:{2} <br />", rowIndex + 1, WorderGrid.DataKeys[rowIndex][1], WorderGrid.DataKeys[rowIndex][2]);
@@ -396,7 +427,7 @@ namespace WX2HK.MES
                    DataTable dt = new DataTable();
                    sda.Fill(dt);
                    //string str = dt.Rows[0][0].ToString() + "#" + dt.Rows[0][1].ToString() + "#" + dt.Rows[0][2].ToString() + "#" + dt.Rows[0][3].ToString() + "#" + dt.Rows[0][4].ToString() + "#" + dt.Rows[0][5].ToString();
-                  // Alert.ShowInTop(str);
+                   // Alert.ShowInTop(str);
                    constr.Close();
                    updatesql = "update Worder set insert_status=1 where worder_number='" + WorderGrid.DataKeys[rowIndex][3] + "'";
                    SqlSel.ExemesSql(updatesql, "MES");
@@ -406,9 +437,10 @@ namespace WX2HK.MES
                Alert.ShowInTop("导入中间库生产订单数据成功!!");
                // btn_filter_Click(null, null);
                btn_middle.Enabled = false;
-               Worder = MesWeb.MES_Worder("", "", ChoiceText, "MIDDLE");  //中间库
+               Worder = MesWeb.MES_Worder("", "", ChoiceText, "MIDDLE","");  //中间库
                WorderGrid.DataSource = Worder;
                WorderGrid.DataBind();
+               WorderGrid.SelectAllRows();
                Button1.Enabled = true; 
            }    
             else
@@ -439,11 +471,15 @@ namespace WX2HK.MES
              SqlSel.ExemesSql(update_sql, "MIDDLE");
              Alert.ShowInTop("导入中间库生产耗用数据成功!!"); 
            }
-           Worder = MesWeb.MES_Worder("", "", ChoiceText, "ErpConsume");
+           //delete_sql = "delete from  ORDER_INSTOCK_CONSUME  where MATERIALNO=''";
+           //切割棉无下级耗用，所以必须删掉，否则存储过程P_MESTOERP_INSTOCK 报错
+           //SqlSel.ExemesSql(delete_sql, "MIDDLE");     //删除临时中间库耗用数据
+           Worder = MesWeb.MES_Worder("", "", ChoiceText, "ErpConsume","");
            if (Worder.Rows.Count != 0)
            {
                WorderGrid.DataSource = Worder;
                WorderGrid.DataBind();
+               WorderGrid.SelectAllRows(); 
                btn_middle.Enabled = false;
                Button1.Enabled = true;
 

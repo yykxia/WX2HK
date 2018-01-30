@@ -19,6 +19,8 @@
                             <Toolbars>
                                 <f:Toolbar ID="tlb1" runat="server">
                                     <Items>
+                                        <f:Button ID="Btn_refresh" runat="server" Text="刷新"
+                                            OnClick="Btn_refresh_Click"></f:Button>
                                         <f:ToolbarFill ID="tlbf1" runat="server"></f:ToolbarFill>
                                         <f:Button ID="btn_commit" runat="server" Text="设定"
                                             OnClick="btn_commit_Click"></f:Button>
@@ -47,7 +49,7 @@
                             <Toolbars>
                                 <f:Toolbar ID="tlb2" runat="server">
                                     <Items>
-                                        <f:DropDownList ID="DDL_Emple" Label="人员"
+                                        <f:DropDownList ID="DDL_Emple" Label="人员" AutoSelectFirstItem="false"
                                             runat="server" EnableEdit="true"></f:DropDownList>
                                         <f:Button ID="Btn_Pick" runat="server" Text="手动分配"
                                             OnClick="Btn_Pick_Click"></f:Button>

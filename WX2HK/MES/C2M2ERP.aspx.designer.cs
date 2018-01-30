@@ -67,15 +67,6 @@ namespace WX2HK.MES {
         protected global::FineUI.DatePicker DatePicker2;
         
         /// <summary>
-        /// tlb3 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::FineUI.Toolbar tlb3;
-        
-        /// <summary>
         /// ddl_line 控件。
         /// </summary>
         /// <remarks>
@@ -85,13 +76,22 @@ namespace WX2HK.MES {
         protected global::FineUI.DropDownList ddl_line;
         
         /// <summary>
-        /// tlb5 控件。
+        /// txtOrder 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FineUI.Toolbar tlb5;
+        protected global::FineUI.TextBox txtOrder;
+        
+        /// <summary>
+        /// txtOrderCount 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.TextBox txtOrderCount;
         
         /// <summary>
         /// btn_filter 控件。

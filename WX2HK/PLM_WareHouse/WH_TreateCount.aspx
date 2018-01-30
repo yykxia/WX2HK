@@ -31,12 +31,11 @@
                             runat="server">
                             <f:ListItem Text="A" Value="A" />
                             <f:ListItem Text="B" Value="B" />
+                            <f:ListItem Text="T" Value="T" />
                         </f:DropDownList>
-<%--                        <f:DropDownList ID="ddl_class" Label="班次" LabelWidth="40px"
+                        <f:DropDownList ID="ddl_WorkerNo" Label="人员" LabelWidth="40px"
                             runat="server">
-                            <f:ListItem Text="白班" Value="C" />
-                            <f:ListItem Text="夜班" Value="D" />
-                        </f:DropDownList>--%>
+                        </f:DropDownList>
                         <f:Button ID="btn_filter" Text="查询" runat="server" Icon="SystemSearch" OnClick="btn_filter_Click"></f:Button>
                         <f:Button ID="Button1" EnableAjax="false" DisableControlBeforePostBack="false"
                             runat="server" Text="导出为Excel文件" Icon="PageExcel" OnClick="Button1_Click">

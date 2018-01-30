@@ -47,6 +47,7 @@
                             runat="server">
                             <f:ListItem Text="C" Value="C" />
                             <f:ListItem Text="D" Value="D" />
+                            <f:ListItem Text="T" Value="T" />
                         </f:DropDownList>
                         <f:DropDownList ID="ddl_group" Label="班组" LabelAlign="Right"
                             runat="server">
@@ -54,9 +55,9 @@
                             <f:ListItem Text="B" Value="B" />
                         </f:DropDownList>
                         <f:Button ID="btn_filter" Text="查询" runat="server" Icon="SystemSearch" OnClick="btn_filter_Click"></f:Button>
-<%--                        <f:Button ID="Button1" EnableAjax="false" DisableControlBeforePostBack="false"
-                            runat="server" Text="导出为Excel文件" Icon="PageExcel" OnClick="Button1_Click">
-                        </f:Button>--%>
+                        <f:Button ID="btn_export" EnableAjax="false" DisableControlBeforePostBack="false"
+                            runat="server" Text="导出为Excel文件" Icon="PageExcel" OnClick="btn_export_Click">
+                        </f:Button>
                     </Items>
                 </f:Toolbar>
             </Toolbars>
@@ -73,6 +74,9 @@
                              Width="80px" TextAlign="Center" HeaderText="吊挂总数"></f:BoundField>
                         <f:BoundField DataField="BQty" ColumnID="BQty"
                              Width="80px" TextAlign="Center" HeaderText="推车总数"></f:BoundField>
+                        <f:BoundField DataField="WorkerNo" ColumnID="WorkerNo"
+                             Width="80px" TextAlign="Center" HeaderText="人员"></f:BoundField>
+                        
                     </Columns>
                 </f:Grid>
             </Items>

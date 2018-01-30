@@ -195,5 +195,10 @@ namespace WX2HK.PLM_WareHouse
                 BindGrid_Going(OnlineId);
             }
         }
+
+        protected void Btn_refresh_Click(object sender, EventArgs e)
+        {
+            bindGrid1();
+        }
     }
 }
